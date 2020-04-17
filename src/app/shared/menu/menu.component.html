@@ -1,0 +1,8 @@
+<nav>
+  <div class="nav-wrapper">
+    <a routerLink="" class="brand-logo">Dream Cars</a>
+    <ul id="nav-mobile" class="right hide-on-small-and-down" *ngFor="let items of menu">
+      <li><a routerLink="{{items.links}}"><span class="material-icons">person</span> {{items.title}}</a></li>
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,61 @@
+<div class="container">
+  <h1 class="with-header center-align">Inscription</h1>
+  <div class="row valign-wrapper">
+    <div class="col s6 offset-s3">
+      <form class="col s12" [formGroup]="inscriptionGroup" (ngSubmit)="onSubmitForm()">
+        <div class="row">
+          <div class="input-field col s10">
+            <input id="email" placeholder="Email" type="email" class="validate" formControlName="email">
+            <label for="email">Username</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="password" placeholder="Password" type="password" class="validate" formControlName="password">
+            <label for="password">Password:</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="passwordConfirm" placeholder="Password" type="password" class="validate" formControlName="passwordConfirm">
+            <label for="passwordConfirm">Confirm Password:</label>
+            <div class="red-text">
+              <ng-container
+                *ngIf="inscriptionGroup.get('passwordConfirm').value && inscriptionGroup.get('password').value
+                      && inscriptionGroup.get('passwordConfirm').value !== inscriptionGroup.get('password').value">
+                <p>Password not match</p>
+              </ng-container>
+            </div>
+            </div>
+          <div class="input-field col s6">
+            <input id="firstName" placeholder="First Name" type="text" class="validate" formControlName="firstName">
+            <label for="firstName">First Name:</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="lastName" placeholder="Last Name" type="text" class="validate" formControlName="lastName">
+            <label for="lastName">Last Name:</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="street" placeholder="Street" type="text" class="validate" formControlName="street">
+            <label for="street">Street:</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="number" placeholder="Number" type="text" class="validate" formControlName="number">
+            <label for="number">Number:</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="codePostal" placeholder="Code Postal" type="text" class="validate" formControlName="postalCode">
+            <label for="codePostal">Code Postal:</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="phone" placeholder="Phone Number" type="tel" class="validate" formControlName="phone">
+            <label for="phone">Phone number:</label>
+          </div>
+          <div class="input-field col s10">
+            <input id="country" placeholder="Country" type="text" class="validate" formControlName="country">
+            <label for="country">Country:</label>
+          </div>
+          <div class="input-field col s10">
+          <button type="submit" class="waves-effect waves-light btn col s5" [disabled]="inscriptionGroup.invalid">Record</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

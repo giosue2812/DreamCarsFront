@@ -44,11 +44,11 @@ export class FormLoginComponent implements OnInit {
           /**
            * When credential is done I call sessionService to save the tokken
            */
-          this.sessionService.start(data);
+          this.sessionService.start(data,this.loginGroup.get('username').value);
           /**
            * Navigation to the home page
            */
-          this.router.navigateByUrl('');
+          this.router.navigateByUrl('home');
         },
         error => {
           /**

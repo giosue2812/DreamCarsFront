@@ -1,8 +1,16 @@
 <nav>
   <div class="nav-wrapper">
     <a routerLink="" class="brand-logo">Dream Cars</a>
-    <ul id="nav-mobile" class="right hide-on-small-and-down" *ngFor="let items of menu">
-      <li><a routerLink="{{items.links}}"><span class="material-icons">person</span> {{items.title}}</a></li>
+    <ul id="nav-mobile" class="right hide-on-small-and-down">
+      <ng-container *ngIf="!islog(); else elseBlock">
+        <li><a routerLink="connexion">Connexion</a></li>
+      </ng-container>
+      <ng-template #elseBlock>
+        <li *ngFor="let items of menu">
+          <a routerLink="{{items.links}}">{{items.title}}</a>
+        </li>
+        <li><a routerLink="logout" (click)="logout()">Deconnexion</a></li>
+      </ng-template>
     </ul>
   </div>
 </nav>

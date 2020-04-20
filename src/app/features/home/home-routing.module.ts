@@ -5,7 +5,7 @@ import {IsLoggedGuard} from '../../core/guards/is-logged.guard';
 
 
 const routes: Routes = [
-  {path:'',component:HomeComponent,canActivate:[IsLoggedGuard]}
+  {path:'home',component:HomeComponent,canActivate:[IsLoggedGuard]}
 ];
 
 @NgModule({

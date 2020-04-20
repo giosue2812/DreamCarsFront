@@ -21,7 +21,7 @@ export class FormInscriptionComponent implements OnInit {
     this.initForm();
   }
 
-  initForm(){
+    initForm(){
     this.inscriptionGroup = this.formBuilder.group({
       email:['',Validators.required],
       password:['',Validators.required],
@@ -36,6 +36,10 @@ export class FormInscriptionComponent implements OnInit {
     })
   }
 
+  /**
+   * Method called from the template when the form is ok.
+   * Call the service to record the new User.
+   */
   onSubmitForm(){
     this.inscriptionService.onRecordServer(this.inscriptionGroup.value)
   }

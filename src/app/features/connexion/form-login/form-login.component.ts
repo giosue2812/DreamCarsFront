@@ -33,15 +33,28 @@ export class FormLoginComponent implements OnInit {
     })
   }
 
+  /**
+   * When form is ok.
+   * I call the service to check the credential.
+   */
   onSubmitForm(){
     this.connexionService.login(this.loginGroup.value)
       .subscribe(
         data => {
+          /**
+           * When credential is done I call sessionService to save the tokken
+           */
           this.sessionService.start(data);
+          /**
+           * Navigation to the home page
+           */
           this.router.navigateByUrl('');
         },
         error => {
-          console.log(error);
+          /**
+           * If the credential is False i send a message.
+           */
+          //Amelioration show in an toast
           return this.messageError = error.statusText;
         }
       );

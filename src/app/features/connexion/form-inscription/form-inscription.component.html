@@ -16,6 +16,7 @@
             <input id="passwordConfirm" placeholder="Password" type="password" class="validate" formControlName="passwordConfirm">
             <label for="passwordConfirm">Confirm Password:</label>
             <div class="red-text">
+              <!--Testing if password match with passwordConfirm-->
               <ng-container
                 *ngIf="inscriptionGroup.get('passwordConfirm').value && inscriptionGroup.get('password').value
                       && inscriptionGroup.get('passwordConfirm').value !== inscriptionGroup.get('password').value">

@@ -16,8 +16,14 @@ export class IsLoggedGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    /**
+     * This.sessionService.isLogged => False
+     */
     if(!this.sessionService.isLogged)
     {
+      /**
+       * Navigation to url Connexion
+       */
       this.router.navigateByUrl('/connexion');
     }
     return this.sessionService.isLogged;

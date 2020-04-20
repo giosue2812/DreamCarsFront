@@ -14,8 +14,14 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(private sessionService: SessionService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    /**
+     * This.sessionService.tokken is not empty
+     */
     if(this.sessionService.tokken != null)
     {
+      /**
+       * Clone the httpRequest i put the Headers with the tokken.
+       */
       let clone = request.clone({setHeaders:{'Authorisation':'Bearer' + this.sessionService.tokken}});
       return next.handle(clone);
     }

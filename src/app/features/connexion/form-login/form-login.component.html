@@ -1,0 +1,22 @@
+<div class="container">
+  <h1 class="with-header center-align">Login</h1>
+  <div class="row valign-wrapper">
+  <div class="col s6 offset-s3">
+  <form class="col s12" [formGroup]="loginGroup" (ngSubmit)="onSubmitForm()">
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="email" placeholder="Email" type="text" class="validate" formControlName="username">
+        <label for="email">Username</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="password" placeholder="Password" type="password" class="validate" formControlName="password">
+        <label for="password">Password:</label>
+      </div>
+      <button type="submit" class="waves-effect waves-light btn col s5">Login</button>
+      <a routerLink="inscription" class="waves-effect waves-light btn col s5 offset-l2">Inscription</a>
+    </div>
+  </form>
+    </div>
+  </div>
+  </div>
+{{messageError}}

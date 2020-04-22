@@ -1,0 +1,52 @@
+<ng-container *ngIf="userModel">
+<div class="col s9">
+  <div class="card">
+    <div class="card-content">
+      <form (ngSubmit)="onSubmitForm(f)" #f="ngForm">
+        <div class="row">
+          <div class="input-field col s10">
+            <input id="email" type="email" class="validate" name="email" [ngModel]="userModel.email" required>
+            <label for="email">Username</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="firstName" placeholder="First Name" type="text" class="validate" name="firstName" [ngModel]="userModel.first_name" required>
+            <label for="firstName">First Name:</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="lastName" placeholder="Last Name" type="text" class="validate" name="lastName" [ngModel]="userModel.last_name" required>
+            <label for="lastName">Last Name:</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="street" placeholder="Street" type="text" class="validate" name="street" [ngModel]="userModel.street" required>
+            <label for="street">Street:</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="number" placeholder="Number" type="text" class="validate" name="number" [ngModel]="userModel.number" required>
+            <label for="number">Number:</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="codePostal" placeholder="Code Postal" type="text" class="validate" name="postalCode" [ngModel]="userModel.postal_code" required>
+            <label for="codePostal">Code Postal:</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="phone" placeholder="Phone Number" type="tel" class="validate" name="phone" [ngModel]="userModel.phone" required>
+            <label for="phone">Phone number:</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="country" placeholder="Country" type="text" class="validate" name="country" [ngModel]="userModel.country" required>
+            <label for="country">Country:</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="city" placeholder="City" type="text" class="validate" name="city" [ngModel]="userModel.city" required>
+            <label for="city">City:</label>
+          </div>
+          <div class="input-field col s10">
+            <button type="submit" class="waves-effect waves-light btn col s5" [disabled]="f.invalid">Record</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</ng-container>
+

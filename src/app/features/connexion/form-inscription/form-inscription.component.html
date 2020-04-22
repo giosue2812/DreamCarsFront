@@ -48,9 +48,13 @@
             <input id="phone" placeholder="Phone Number" type="tel" class="validate" formControlName="phone">
             <label for="phone">Phone number:</label>
           </div>
-          <div class="input-field col s10">
+          <div class="input-field col s6">
             <input id="country" placeholder="Country" type="text" class="validate" formControlName="country">
             <label for="country">Country:</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="city" placeholder="City" type="text" class="validate" formControlName="city">
+            <label for="city">City:</label>
           </div>
           <div class="input-field col s10">
           <button type="submit" class="waves-effect waves-light btn col s5" [disabled]="inscriptionGroup.invalid">Record</button>

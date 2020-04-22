@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {SessionService} from '../../core/services/connexion/session.service';
 import {Router} from '@angular/router';
 import {UserService} from '../../core/services/connexion/user.service';
+import {UserModel} from '../../core/models/UserModel';
 
 @Component({
   selector: 'app-menu',
@@ -10,10 +11,12 @@ import {UserService} from '../../core/services/connexion/user.service';
 })
 export class MenuComponent implements OnInit {
 
+  user : UserModel;
+
   menu = [
     {
       title: "Profil",
-      links: ['profil/'+this.idUser()]
+      links: ['profil']
     }
   ];
 
@@ -36,12 +39,5 @@ export class MenuComponent implements OnInit {
     this.sessionService.remove();
     return this.router.navigateByUrl('connexion');
   }
-
-  /**
-   * Get the user id.
-   */
-  idUser(){
-    return this.userService.getIdUser(this.sessionService.user);
-  }
-
 }
+

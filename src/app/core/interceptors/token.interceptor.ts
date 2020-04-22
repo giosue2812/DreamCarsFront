@@ -22,7 +22,7 @@ export class TokenInterceptor implements HttpInterceptor {
       /**
        * Clone the httpRequest i put the Headers with the tokken.
        */
-      let clone = request.clone({setHeaders:{'Authorisation':'Bearer' + this.sessionService.tokken}});
+      let clone = request.clone({setHeaders:{'Authorization':'Bearer ' + this.sessionService.tokken}});
       return next.handle(clone);
     }
     return next.handle(request);

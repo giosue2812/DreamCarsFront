@@ -1,5 +1,5 @@
-export class BaseModel {
-  private createAt: Date;
-  private updateAt: Date;
-  private deleteAt: Date;
+export interface BaseModel {
+  create_at: Date;
+  update_at: Date;
+  delete_at: Date;
 }

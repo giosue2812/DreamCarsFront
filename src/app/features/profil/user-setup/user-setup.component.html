@@ -1,0 +1,64 @@
+<ng-container *ngIf="userModel">
+<div class="col s9">
+  <div class="card">
+    <div class="card-content">
+      <form (ngSubmit)="onSubmitForm(f)" #f="ngForm">
+        <div class="row">
+          <div class="input-field col s10">
+            <input id="email" type="email" class="validate" [(ngModel)]="userModel.email" name="email">
+            <label class="active" for="email">Username</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="firstName" placeholder="First Name" type="text" class="validate" [(ngModel)]="userModel.firstName" name="firstName">
+            <label class="active" for="firstName">First Name:</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="lastName" placeholder="Last Name" type="text" class="validate" [(ngModel)]="userModel.lastName" name="lastName">
+            <label class="active" for="lastName">Last Name:</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="street" placeholder="Street" type="text" class="validate" [(ngModel)]="userModel.street" name="street">
+            <label class="active" for="street">Street:</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="number" placeholder="Number" type="text" class="validate" [(ngModel)]="userModel.number" name="number">
+            <label class="active" for="number">Number:</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="codePostal" placeholder="Code Postal" type="text" class="validate" [(ngModel)]="userModel.postalCode" name="postalCode">
+            <label class="active" for="codePostal">Code Postal:</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="phone" placeholder="Phone Number" type="tel" class="validate" [(ngModel)]="userModel.phone" name="phone">
+            <label class="active" for="phone">Phone number:</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="country" placeholder="Country" type="text" class="validate" [(ngModel)]="userModel.country" name="country">
+            <label class="active" for="country">Country:</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="city" placeholder="City" type="text" class="validate" [(ngModel)]="userModel.city" name="city">
+            <label class="active" for="city">City:</label>
+          </div>
+          <div class="selected col s10">
+            <label for="groupe">Groupe</label>
+            <select id="groupe" class="browser-default" [(ngModel)]="userModel.groupe" name="groupe">
+              <option *ngFor="let items of userModel.groupe" value="{{items}}">{{items}}</option>
+            </select>
+          </div>
+          <div class="selected col s10">
+            <label for="roles">Roles</label>
+            <select id="roles" class="browser-default" [(ngModel)]="userModel.user_roles" name="user_roles">
+              <option *ngFor="let items of userModel.user_roles" value="{{items[0]}}">{{items[0]}}</option>
+            </select>
+          </div>
+          <div class="input-field col s12">
+            <button type="submit" class="waves-effect waves-light btn col s5" [disabled]="f.invalid">Record</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</ng-container>
+

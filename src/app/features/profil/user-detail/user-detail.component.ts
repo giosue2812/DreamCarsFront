@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {UserModel} from '../../../core/models/UserModel';
+import {UserService} from '../../../core/services/connexion/user.service';
 
 @Component({
   selector: 'app-user-detail',
@@ -6,10 +8,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-detail.component.scss']
 })
 export class UserDetailComponent implements OnInit {
+  userModel: UserModel;
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    /**
+     * I get the current user id
+     */
+    this.userService.getIdUser().subscribe(
+      data => {
+        this.userModel = data;
+        console.log(data);
+      },
+      error => {
+        console.log('Erreur : '+error)
+      }
+    );
   }
-
 }

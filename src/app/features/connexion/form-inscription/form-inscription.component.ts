@@ -32,6 +32,7 @@ export class FormInscriptionComponent implements OnInit {
       street:['',Validators.required],
       number:['',Validators.required],
       postalCode:['',Validators.required],
+      city:['',Validators.required],
       country:['',Validators.required]
     })
   }

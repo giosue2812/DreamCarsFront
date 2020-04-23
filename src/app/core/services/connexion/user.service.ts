@@ -1,19 +1,40 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../../environments/environment';
+import {Observable} from 'rxjs';
+import {UserModel} from '../../models/UserModel';
+import {SessionService} from './session.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private httpClient: HttpClient) { }
+  id:UserModel;
+
+  constructor(private httpClient: HttpClient, private sessionService:SessionService) { }
 
   /**
-   * @param username
    * We get the user id from the server.
    */
-  getIdUser(username: string){
-    return 15;
+  getIdUser(): Observable<UserModel>{
+    return this.httpClient
+      .get<UserModel>(environment.url+'user/'+this.sessionService.user)
+  }
+
+  updateUser(userModel:UserModel){
+   this.getIdUser().subscribe(
+      data => {
+        this.id = data
+        console.log(this.id);
+      },
+     error => {
+        console.log('Erreur : '+error);
+     }
+    );
+    console.log(userModel);
+    return this.httpClient
+      .put(environment.url+'user/update/'+this.id.id,userModel).subscribe()
   }
 
 }

@@ -11,5 +11,8 @@ export interface UserModel extends BaseModel{
   street:string;
   number:number;
   postalCode:string;
+  city:string;
   country:string;
+  groupe:[];
+  user_roles:[];
 }

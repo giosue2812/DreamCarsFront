@@ -2,15 +2,15 @@ import {BaseModel} from './BaseModel';
 
 export interface UserModel extends BaseModel{
   id:number;
-  first_name:string;
-  last_name:string;
+  firstName:string;
+  lastName:string;
   email:string;
   password:string;
   passwordConfirm:string;
   phone:string;
   street:string;
   number:number;
-  postal_code:string;
+  postalCode:string;
   city:string;
   country:string;
   groupe:[];

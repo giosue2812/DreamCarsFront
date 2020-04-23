@@ -10,6 +10,8 @@ import {SessionService} from './session.service';
 })
 export class UserService {
 
+  id:UserModel;
+
   constructor(private httpClient: HttpClient, private sessionService:SessionService) { }
 
   /**
@@ -18,6 +20,21 @@ export class UserService {
   getIdUser(): Observable<UserModel>{
     return this.httpClient
       .get<UserModel>(environment.url+'user/'+this.sessionService.user)
+  }
+
+  updateUser(userModel:UserModel){
+   this.getIdUser().subscribe(
+      data => {
+        this.id = data
+        console.log(this.id);
+      },
+     error => {
+        console.log('Erreur : '+error);
+     }
+    );
+    console.log(userModel);
+    return this.httpClient
+      .put(environment.url+'user/update/'+this.id.id,userModel).subscribe()
   }
 
 }

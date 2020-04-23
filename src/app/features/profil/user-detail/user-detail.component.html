@@ -3,10 +3,10 @@
         <div class="card-content">
           <ul class="collection">
             <ng-container *ngIf="userModel">
-              <li class="collection-item">First Name : {{userModel.first_name}}</li>
-              <li class="collection-item">Last Name : {{userModel.last_name}}</li>
+              <li class="collection-item">First Name : {{userModel.firstName}}</li>
+              <li class="collection-item">Last Name : {{userModel.lastName}}</li>
               <li class="collection-item">Street : {{userModel.street}} {{userModel.number}}</li>
-              <li class="collection-item">Code Postal : {{userModel.postal_code}} {{userModel.city}}</li>
+              <li class="collection-item">Code Postal : {{userModel.postalCode}} {{userModel.city}}</li>
               <li class="collection-item">Phone : {{userModel.phone}}</li>
               <li class="collection-item">Email : {{userModel.email}}</li>
               <li class="collection-item">Create since: {{userModel.create_at|date:'dd-MM-yyyy'}}</li>

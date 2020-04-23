@@ -5,42 +5,54 @@
       <form (ngSubmit)="onSubmitForm(f)" #f="ngForm">
         <div class="row">
           <div class="input-field col s10">
-            <input id="email" type="email" class="validate" name="email" [ngModel]="userModel.email" required>
-            <label for="email">Username</label>
+            <input id="email" type="email" class="validate" [(ngModel)]="userModel.email" name="email">
+            <label class="active" for="email">Username</label>
           </div>
           <div class="input-field col s6">
-            <input id="firstName" placeholder="First Name" type="text" class="validate" name="firstName" [ngModel]="userModel.first_name" required>
-            <label for="firstName">First Name:</label>
+            <input id="firstName" placeholder="First Name" type="text" class="validate" [(ngModel)]="userModel.firstName" name="firstName">
+            <label class="active" for="firstName">First Name:</label>
           </div>
           <div class="input-field col s6">
-            <input id="lastName" placeholder="Last Name" type="text" class="validate" name="lastName" [ngModel]="userModel.last_name" required>
-            <label for="lastName">Last Name:</label>
+            <input id="lastName" placeholder="Last Name" type="text" class="validate" [(ngModel)]="userModel.lastName" name="lastName">
+            <label class="active" for="lastName">Last Name:</label>
           </div>
           <div class="input-field col s6">
-            <input id="street" placeholder="Street" type="text" class="validate" name="street" [ngModel]="userModel.street" required>
-            <label for="street">Street:</label>
+            <input id="street" placeholder="Street" type="text" class="validate" [(ngModel)]="userModel.street" name="street">
+            <label class="active" for="street">Street:</label>
           </div>
           <div class="input-field col s6">
-            <input id="number" placeholder="Number" type="text" class="validate" name="number" [ngModel]="userModel.number" required>
-            <label for="number">Number:</label>
+            <input id="number" placeholder="Number" type="text" class="validate" [(ngModel)]="userModel.number" name="number">
+            <label class="active" for="number">Number:</label>
           </div>
           <div class="input-field col s6">
-            <input id="codePostal" placeholder="Code Postal" type="text" class="validate" name="postalCode" [ngModel]="userModel.postal_code" required>
-            <label for="codePostal">Code Postal:</label>
+            <input id="codePostal" placeholder="Code Postal" type="text" class="validate" [(ngModel)]="userModel.postalCode" name="postalCode">
+            <label class="active" for="codePostal">Code Postal:</label>
           </div>
           <div class="input-field col s6">
-            <input id="phone" placeholder="Phone Number" type="tel" class="validate" name="phone" [ngModel]="userModel.phone" required>
-            <label for="phone">Phone number:</label>
+            <input id="phone" placeholder="Phone Number" type="tel" class="validate" [(ngModel)]="userModel.phone" name="phone">
+            <label class="active" for="phone">Phone number:</label>
           </div>
           <div class="input-field col s6">
-            <input id="country" placeholder="Country" type="text" class="validate" name="country" [ngModel]="userModel.country" required>
-            <label for="country">Country:</label>
+            <input id="country" placeholder="Country" type="text" class="validate" [(ngModel)]="userModel.country" name="country">
+            <label class="active" for="country">Country:</label>
           </div>
           <div class="input-field col s6">
-            <input id="city" placeholder="City" type="text" class="validate" name="city" [ngModel]="userModel.city" required>
-            <label for="city">City:</label>
+            <input id="city" placeholder="City" type="text" class="validate" [(ngModel)]="userModel.city" name="city">
+            <label class="active" for="city">City:</label>
           </div>
-          <div class="input-field col s10">
+          <div class="selected col s10">
+            <label for="groupe">Groupe</label>
+            <select id="groupe" class="browser-default" [(ngModel)]="userModel.groupe" name="groupe">
+              <option *ngFor="let items of userModel.groupe" value="{{items}}">{{items}}</option>
+            </select>
+          </div>
+          <div class="selected col s10">
+            <label for="roles">Roles</label>
+            <select id="roles" class="browser-default" [(ngModel)]="userModel.user_roles" name="user_roles">
+              <option *ngFor="let items of userModel.user_roles" value="{{items[0]}}">{{items[0]}}</option>
+            </select>
+          </div>
+          <div class="input-field col s12">
             <button type="submit" class="waves-effect waves-light btn col s5" [disabled]="f.invalid">Record</button>
           </div>
         </div>

@@ -27,7 +27,7 @@ export class UserSetupComponent implements OnInit {
   }
 
   onSubmitForm(form: NgForm){
-    console.log(form.value);
-  }
+    return this.userService.updateUser(form.value);
+   }
 
 }

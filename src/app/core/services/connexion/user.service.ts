@@ -40,9 +40,12 @@ export class UserService {
       .put(environment.url+'user/update/'+this.id.id,userModel).subscribe()
   }
 
-  getUser(any):Observable<UserModel>{
-    console.log(any);
-    return any
+  /**
+   * @param user
+   */
+  getUser(user):Observable<UserModel[]>{
+    return this.httpClient
+      .get<UserModel[]>(environment.url+'user/search/'+user.search);
   }
 
 }

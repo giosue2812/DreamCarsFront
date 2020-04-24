@@ -19,14 +19,17 @@ export class UserService {
    */
   getIdUser(): Observable<UserModel>{
     return this.httpClient
-      .get<UserModel>(environment.url+'user/'+this.sessionService.user)
+      .get<UserModel>(environment.url+'user/'+this.sessionService.username)
   }
 
+  /**
+   * @param userModel
+   * Update User
+   */
   updateUser(userModel:UserModel){
    this.getIdUser().subscribe(
       data => {
-        this.id = data
-        console.log(this.id);
+        this.id = data;
       },
      error => {
         console.log('Erreur : '+error);
@@ -35,6 +38,11 @@ export class UserService {
     console.log(userModel);
     return this.httpClient
       .put(environment.url+'user/update/'+this.id.id,userModel).subscribe()
+  }
+
+  getUser(any):Observable<UserModel>{
+    console.log(any);
+    return any
   }
 
 }

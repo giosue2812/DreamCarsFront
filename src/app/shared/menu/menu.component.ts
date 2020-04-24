@@ -20,7 +20,7 @@ export class MenuComponent implements OnInit {
     }
   ];
 
-  constructor(private sessionService: SessionService, private router: Router, private userService:UserService) { }
+  constructor(private sessionService: SessionService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -32,6 +32,12 @@ export class MenuComponent implements OnInit {
    return this.sessionService.isLogged;
   }
 
+  /**
+   * For some route admi is required
+   */
+  isAdmin(){
+    return this.sessionService.isAdmin;
+  }
   /**
    * Logout to finish the operation
    */

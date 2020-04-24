@@ -40,18 +40,6 @@
             <input id="city" placeholder="City" type="text" class="validate" [(ngModel)]="userModel.city" name="city">
             <label class="active" for="city">City:</label>
           </div>
-          <div class="selected col s10">
-            <label for="groupe">Groupe</label>
-            <select id="groupe" class="browser-default" [(ngModel)]="userModel.groupe" name="groupe">
-              <option *ngFor="let items of userModel.groupe" value="{{items}}">{{items}}</option>
-            </select>
-          </div>
-          <div class="selected col s10">
-            <label for="roles">Roles</label>
-            <select id="roles" class="browser-default" [(ngModel)]="userModel.user_roles" name="user_roles">
-              <option *ngFor="let items of userModel.user_roles" value="{{items[0]}}">{{items[0]}}</option>
-            </select>
-          </div>
           <div class="input-field col s12">
             <button type="submit" class="waves-effect waves-light btn col s5" [disabled]="f.invalid">Record</button>
           </div>

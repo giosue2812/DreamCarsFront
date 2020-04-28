@@ -44,7 +44,7 @@ export class FormLoginComponent implements OnInit {
           /**
            * When credential is done I call sessionService to save the tokken
            */
-          this.sessionService.start(data,this.loginGroup.get('username').value);
+          this.sessionService.start(data);
           /**
            * Navigation to the home page
            */

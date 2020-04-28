@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ConnexionService} from '../../../core/services/connexion/connexion.service';
-import {SessionService} from '../../../core/services/connexion/session.service';
+import {ConnexionService} from '../../../core/services/connexion.service';
+import {SessionService} from '../../../core/services/session.service';
 import {$t} from 'codelyzer/angular/styles/chars';
 import {Router} from '@angular/router';
 

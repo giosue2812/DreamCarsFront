@@ -1,10 +1,11 @@
 import {Component,OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {UserService} from '../../../core/services/connexion/user.service';
+import {UserService} from '../../../core/services/user.service';
 import {UserModel} from '../../../core/models/UserModel';
 import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
 import {GroupeModel} from '../../../core/models/GroupeModel';
 import {RoleModel} from '../../../core/models/RoleModel';
+import {GroupeService} from '../../../core/services/groupe.service';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -14,6 +15,7 @@ export class SearchComponent implements OnInit {
   searchGroup: FormGroup;
   userModel:UserModel[];
   groupeModel:GroupeModel;
+  groupeModelArray:GroupeModel[];
   roleModel:RoleModel;
   updateGr = false;
   upfateRl = false;
@@ -22,16 +24,30 @@ export class SearchComponent implements OnInit {
    * @param router
    * @param formBuilder
    * @param userService
+   * @param groupeService
    */
   constructor(
     private router:Router,
     private formBuilder: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private groupeService: GroupeService
 
   ) { }
 
   ngOnInit(): void {
     this.initForm();
+    this.getGroupe();
+  }
+
+  getGroupe(){
+    this.groupeService.getGroupe().subscribe(
+      data => {
+        this.groupeModelArray = data
+      },
+      error => {
+        console.log('Erreur : '+error)
+      }
+    )
   }
 
   /**

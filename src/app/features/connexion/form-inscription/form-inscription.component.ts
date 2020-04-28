@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Form, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {InscriptionService} from '../../../core/services/connexion/inscription.service';
+import {InscriptionService} from '../../../core/services/inscription.service';
 @Component({
   selector: 'app-form-inscription',
   templateUrl: './form-inscription.component.html',

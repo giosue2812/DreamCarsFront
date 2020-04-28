@@ -63,10 +63,7 @@
         <div class="card-content">
           <label for="role">Role</label>
           <select id="role" class="browser-default" [(ngModel)]="roleModel" name="role" required>
-            <option value="1">Option 1</option>
-            <option value="2">Option 1</option>
-            <option value="3">Option 1</option>
-            <option value="4">Option 1</option>
+            <option *ngFor="let roleChoice of rolesModelArray" value="{{roleChoice.role}}">{{roleChoice.role}}</option>
           </select>
         </div>
         <button type="submit" class="waves-effect waves-light btn col s5" [disabled]="formRole.invalid">Update</button>

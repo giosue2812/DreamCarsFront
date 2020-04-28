@@ -6,6 +6,7 @@ import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
 import {GroupeModel} from '../../../core/models/GroupeModel';
 import {RoleModel} from '../../../core/models/RoleModel';
 import {GroupeService} from '../../../core/services/groupe.service';
+import {RoleService} from '../../../core/services/role.service';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -16,6 +17,7 @@ export class SearchComponent implements OnInit {
   userModel:UserModel[];
   groupeModel:GroupeModel;
   groupeModelArray:GroupeModel[];
+  rolesModelArray:RoleModel[];
   roleModel:RoleModel;
   updateGr = false;
   upfateRl = false;
@@ -25,18 +27,21 @@ export class SearchComponent implements OnInit {
    * @param formBuilder
    * @param userService
    * @param groupeService
+   * @param roleService
    */
   constructor(
     private router:Router,
     private formBuilder: FormBuilder,
     private userService: UserService,
-    private groupeService: GroupeService
+    private groupeService: GroupeService,
+    private roleService:RoleService
 
   ) { }
 
   ngOnInit(): void {
     this.initForm();
     this.getGroupe();
+    this.getRole();
   }
 
   getGroupe(){
@@ -46,6 +51,17 @@ export class SearchComponent implements OnInit {
       },
       error => {
         console.log('Erreur : '+error)
+      }
+    )
+  }
+
+  getRole(){
+    this.roleService.getRoles().subscribe(
+      data => {
+        this.rolesModelArray = data
+      },
+      error => {
+        console.log('Erreur : '+error);
       }
     )
   }

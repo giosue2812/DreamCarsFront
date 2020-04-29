@@ -4,7 +4,7 @@
           <div class="card-content">
             <label for="group">Groupe</label>
             <select id="group" class="browser-default" [(ngModel)]="groupeModel" name="group" required>
-              <option *ngFor=" let groupChoice of groupeModel" value="{{groupChoice.groupe}}">{{groupChoice.groupe}}</option>
+              <option *ngFor="let group of groupeModelChoice" value="{{group.groupe}}">{{group.groupe}}</option>
             </select>
           </div>
           <button type="submit" class="waves-effect waves-light btn col s5" [disabled]="formGroupe.invalid">Update</button>

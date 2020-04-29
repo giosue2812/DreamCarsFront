@@ -10,12 +10,16 @@ import {NgForm} from '@angular/forms';
 })
 export class AddRoleUserComponent implements OnInit {
 
-  roleModel:RoleModel[];
+  roleModel:RoleModel;
+  roleModelChoice:RoleModel[];
 
   constructor(private route:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.route.data.subscribe((data:{roleAll:RoleModel[]})=> this.roleModel = data.roleAll)
+    this.route.data.subscribe((data:{roleAll:RoleModel[]})=> this.roleModelChoice = data.roleAll)
   }
-  onSubmitFormRole(form:NgForm){}
+  onSubmitFormRole(form:NgForm){
+    console.log(form.value);
+    console.log(this.route.snapshot.paramMap.get('user'));
+  }
 }

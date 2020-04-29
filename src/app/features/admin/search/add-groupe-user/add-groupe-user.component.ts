@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {GroupeModel} from '../../../../core/models/GroupeModel';
@@ -10,13 +10,17 @@ import {GroupeModel} from '../../../../core/models/GroupeModel';
 })
 export class AddGroupeUserComponent implements OnInit {
 
-  groupeModel:GroupeModel[]
+  groupeModel:GroupeModel;
+  groupeModelChoice:GroupeModel[];
 
   constructor(private route:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.route.data.subscribe((data:{groupeAll:GroupeModel[]})=>this.groupeModel = data.groupeAll)
+    this.route.data.subscribe((data:{groupeAll:GroupeModel[]})=>this.groupeModelChoice = data.groupeAll)
   }
 
-  onSubmitFormGroupe(form:NgForm){}
+  onSubmitFormGroupe(form:NgForm){
+    console.log(form.value);
+    console.log(this.route.snapshot.paramMap.get('user'));
+  }
 }

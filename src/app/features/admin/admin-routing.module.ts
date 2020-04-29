@@ -20,8 +20,8 @@ const routes: Routes = [
       {path:'search',component:SearchComponent,children:[
           {path:'',component:SearchFormComponent},
           {path:'result/:keyWord',component:SearchResultComponent,resolve:{userFound:UserModelResolver},children:[
-              {path:'addGroupe',component: AddGroupeUserComponent,resolve:{groupeAll:GroupeModelResolver}},
-              {path:'addRole', component: AddRoleUserComponent,resolve:{roleAll:RoleModelResolver}}
+              {path:'addGroupe/:user',component: AddGroupeUserComponent,resolve:{groupeAll:GroupeModelResolver}},
+              {path:'addRole/:user', component: AddRoleUserComponent,resolve:{roleAll:RoleModelResolver}}
             ]},
         ]},
 

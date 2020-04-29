@@ -14,9 +14,11 @@
       {{role[0]}} - Actif depuis {{role[1]}}
       <button (click)="onRemoveRole()" class="waves-effect waves-light secondary-content">Delete</button>
     </li>
+    <li class="collection-item">
+      <a routerLink="addGroupe/{{item.id}}" class="waves-effect waves-light btn">Update Groupe</a>
+      <a routerLink="addRole/{{item.id}}" class="waves-effect waves-light btn">Update Role</a>
+    </li>
   </ul>
-  <a routerLink="addGroupe" class="waves-effect waves-light btn">Update Groupe</a>
-  <a routerLink="addRole" class="waves-effect waves-light btn">Update Role</a>
   <div class="row">
   <router-outlet></router-outlet>
   </div>

@@ -12,7 +12,6 @@ export class GroupeModelResolver implements Resolve<GroupeModel[]>{
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<GroupeModel[]> | Promise<GroupeModel[]> | GroupeModel[] {
-
     return this.groupeService.getGroupe();
   }
 }

@@ -1,0 +1,14 @@
+  <div class="input-field col s12">
+    <form (ngSubmit)="onSubmitFormRole(formRole)" #formRole="ngForm">
+      <div class="card">
+        <div class="card-content">
+          <label for="role">Role</label>
+          <select id="role" class="browser-default" [(ngModel)]="roleModel" name="role" required>
+            <option *ngFor="let roleChoice of roleModel" value="{{roleChoice.role}}">{{roleChoice.role}}</option>
+          </select>
+        </div>
+        <button type="submit" class="waves-effect waves-light btn col s5" [disabled]="formRole.invalid">Update</button>
+      </div>
+    </form>
+  </div>
+

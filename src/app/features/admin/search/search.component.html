@@ -1,75 +1,8 @@
 <div class="col s9">
   <div class="card">
     <div class="card-content">
-      <ng-container *ngIf="!userModel;else elseBlock">
-      <form [formGroup]="searchGroup" (ngSubmit)="onSubmitForm()">
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="user" type="text" class="validate" formControlName="search">
-            <label for="user">User Search</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s2">
-            <button type="submit" class="waves-effect waves-light btn">Search</button>
-          </div>
-        </div>
-      </form>
-      </ng-container>
-
-      <ng-template #elseBlock>
-        <ul class="collection" *ngFor="let item of userModel">
-          <li class="collection-item">User : {{item.firstName}} {{item.lastName}}</li>
-          <li class="collection-item">Email : {{item.email}}</li>
-          <li class="collection-item">Street : {{item.street}} {{item.number}}</li>
-          <li class="collection-item">City/Code Postal : {{item.city}} {{item.postalCode}}</li>
-          <li class="collection-item">Phone : {{item.phone}}</li>
-          <li class="collection-item">Actif depuis : {{item.create_at|date:'dd-MM-yyyy'}}</li>
-          <li class="collection-item" *ngFor="let group of item.groupe">
-            Groupe :<br/> {{group}}
-            <button (click)="onRemoveGroupe()" class="waves-effect waves-light secondary-content">Delete</button>
-          </li>
-          <li class="collection-item" *ngFor="let role of item.user_roles">
-            Role Temporaire :<br/>
-            {{role[0]}} - Actif depuis {{role[1]}}
-            <button (click)="onRemoveRole()" class="waves-effect waves-light secondary-content">Delete</button>
-          </li>
-        </ul>
-        <button class="waves-effect waves-light btn" (click)="updateGr = true">Update Groupe</button>
-        <button class="waves-effect waves-light btn" (click)="upfateRl = true">Update Role</button>
-      </ng-template>
+      <router-outlet></router-outlet>
     </div>
   </div>
-  <ng-container *ngIf="updateGr">
-    <div class="input-field col s12">
-    <form (ngSubmit)="onSubmitFormGroupe(formGroupe)" #formGroupe="ngForm">
-      <div class="card">
-        <div class="card-content">
-          <label for="group">Groupe</label>
-          <select id="group" class="browser-default" [(ngModel)]="groupeModel" name="group" required>
-            <option *ngFor=" let groupChoice of groupeModelArray" value="{{groupChoice.groupe}}">{{groupChoice.groupe}}</option>
-          </select>
-        </div>
-        <button type="submit" class="waves-effect waves-light btn col s5" [disabled]="formGroupe.invalid">Update</button>
-      </div>
-    </form>
-    </div>
-  </ng-container>
-
-  <ng-container *ngIf="upfateRl">
-    <div class="input-field col s12">
-    <form (ngSubmit)="onSubmitFormRole(formRole)" #formRole="ngForm">
-      <div class="card">
-        <div class="card-content">
-          <label for="role">Role</label>
-          <select id="role" class="browser-default" [(ngModel)]="roleModel" name="role" required>
-            <option *ngFor="let roleChoice of rolesModelArray" value="{{roleChoice.role}}">{{roleChoice.role}}</option>
-          </select>
-        </div>
-        <button type="submit" class="waves-effect waves-light btn col s5" [disabled]="formRole.invalid">Update</button>
-      </div>
-    </form>
-    </div>
-  </ng-container>
 </div>
 

@@ -4,6 +4,7 @@ import {environment} from '../../../environments/environment';
 import {Observable} from 'rxjs';
 import {UserModel} from '../models/UserModel';
 import {SessionService} from './session.service';
+import {GroupeModel} from '../models/GroupeModel';
 
 @Injectable({
   providedIn: 'root'
@@ -45,7 +46,18 @@ export class UserService {
    */
   getUser(user):Observable<UserModel[]>{
     return this.httpClient
-      .get<UserModel[]>(environment.url+'user/search/'+user.search);
+      .get<UserModel[]>(environment.url+'user/search/'+user);
+  }
+
+  /**
+   *
+   * @param userModel
+   * @param groupeModel
+   */
+  addGroupe(userModel:UserModel[],groupeModel:GroupeModel){
+    // console.log(userModel);
+    // console.log(groupeModel);
+    return this.httpClient.put(environment.url+'user/addGroupe/'+userModel.map(s => s.id),groupeModel.groupe).subscribe();
   }
 
 }

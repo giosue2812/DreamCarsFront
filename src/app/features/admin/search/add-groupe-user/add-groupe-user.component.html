@@ -1,0 +1,13 @@
+    <div class="input-field col s12">
+      <form (ngSubmit)="onSubmitFormGroupe(formGroupe)" #formGroupe="ngForm">
+        <div class="card">
+          <div class="card-content">
+            <label for="group">Groupe</label>
+            <select id="group" class="browser-default" [(ngModel)]="groupeModel" name="group" required>
+              <option *ngFor=" let groupChoice of groupeModel" value="{{groupChoice.groupe}}">{{groupChoice.groupe}}</option>
+            </select>
+          </div>
+          <button type="submit" class="waves-effect waves-light btn col s5" [disabled]="formGroupe.invalid">Update</button>
+        </div>
+      </form>
+    </div>

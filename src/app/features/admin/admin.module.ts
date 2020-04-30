@@ -14,7 +14,17 @@ import { AddRoleUserComponent } from './search/add-role-user/add-role-user.compo
 
 
 @NgModule({
-  declarations: [AdminComponent, MenuComponent, SearchComponent, GroupeComponent, RoleComponent, SearchFormComponent, SearchResultComponent, AddGroupeUserComponent, AddRoleUserComponent],
+  declarations: [
+    AdminComponent,
+    MenuComponent,
+    SearchComponent,
+    GroupeComponent,
+    RoleComponent,
+    SearchFormComponent,
+    SearchResultComponent,
+    AddGroupeUserComponent,
+    AddRoleUserComponent
+  ],
   imports: [
     CommonModule,
     AdminRoutingModule,

@@ -8,10 +8,19 @@ import {Injectable} from '@angular/core';
 
 export class GroupeModelResolver implements Resolve<GroupeModel[]>{
 
-  constructor(private groupeService: GroupeService) {
-  }
+  /**
+   * @param groupeService
+   */
+  constructor(private groupeService: GroupeService) {}
 
+  /**
+   * @param route
+   * @param state
+   */
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<GroupeModel[]> | Promise<GroupeModel[]> | GroupeModel[] {
+    /**
+     * This service return all groupe
+     */
     return this.groupeService.getGroupe();
   }
 }

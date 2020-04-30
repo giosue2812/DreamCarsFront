@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ConnexionService} from '../../../core/services/connexion.service';
 import {SessionService} from '../../../core/services/session.service';
-import {$t} from 'codelyzer/angular/styles/chars';
 import {Router} from '@angular/router';
 
 @Component({
@@ -15,6 +14,12 @@ export class FormLoginComponent implements OnInit {
   loginGroup: FormGroup;
   messageError: string;
 
+  /**
+   * @param router
+   * @param formBuilder
+   * @param connexionService
+   * @param sessionService
+   */
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -26,6 +31,9 @@ export class FormLoginComponent implements OnInit {
     this.initForm();
   }
 
+  /**
+   * Form for login
+   */
   initForm(){
     this.loginGroup = this.formBuilder.group({
       username:['',Validators.required],

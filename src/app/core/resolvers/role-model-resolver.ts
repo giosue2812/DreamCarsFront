@@ -7,11 +7,20 @@ import {RoleService} from '../services/role.service';
 @Injectable({providedIn:'root'})
 export class RoleModelResolver implements Resolve<RoleModel[]>{
 
+  /**
+   * @param roleService
+   */
   constructor(private roleService: RoleService) {}
 
+  /**
+   * @param route
+   * @param state
+   */
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<RoleModel[]> | Promise<RoleModel[]> | RoleModel[] {
-
-      return this.roleService.getRoles();
+    /**
+     * This service return all roles
+     */
+    return this.roleService.getRoles();
 
     }
 }

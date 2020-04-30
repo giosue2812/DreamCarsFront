@@ -8,11 +8,19 @@ import {SessionService} from '../services/session.service';
 })
 export class IsLoggedGuard implements CanActivate {
 
+  /**
+   * @param sessionService
+   * @param router
+   */
   constructor(
     private sessionService: SessionService,
     private router: Router
   ) {}
 
+  /**
+   * @param next
+   * @param state
+   */
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {

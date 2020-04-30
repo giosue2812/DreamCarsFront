@@ -8,8 +8,13 @@ import {UserService} from '../../../core/services/user.service';
   styleUrls: ['./user-detail.component.scss']
 })
 export class UserDetailComponent implements OnInit {
+
   userModel: UserModel;
 
+  /**
+   *
+   * @param userService
+   */
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {

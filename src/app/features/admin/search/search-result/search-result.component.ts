@@ -11,8 +11,14 @@ export class SearchResultComponent implements OnInit {
 
   userModel:UserModel[];
 
+  /**
+   * @param route
+   */
   constructor(private route: ActivatedRoute) { }
 
+  /**
+   * Get user from route
+   */
   ngOnInit(): void {
     this.route.data.subscribe(
       (data:{userFound:UserModel[]}) => this.userModel = data.userFound

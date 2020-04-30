@@ -12,8 +12,12 @@ import {Router} from '@angular/router';
 export class SearchFormComponent implements OnInit {
 
   searchGroup: FormGroup;
-  userModel: UserModel[];
 
+  /**
+   * @param formBuilder
+   * @param userService
+   * @param router
+   */
   constructor(
     private formBuilder:FormBuilder,
     private userService:UserService,
@@ -24,12 +28,18 @@ export class SearchFormComponent implements OnInit {
     this.initForm();
   }
 
+  /**
+   * This form make search user
+   */
   initForm(){
       this.searchGroup = this.formBuilder.group({
         search: ['', Validators.required]
     })
   }
 
+  /**
+   * Submit search to the route. This route is a resolver
+   */
   onSubmitForm() {
     this.router.navigateByUrl('admin/search/result/' + this.searchGroup.get('search').value);
   }

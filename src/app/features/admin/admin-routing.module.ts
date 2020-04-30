@@ -15,8 +15,11 @@ import {RoleModelResolver} from '../../core/resolvers/role-model-resolver';
 
 
 const routes: Routes = [
-  {path:'',component:AdminComponent,canActivate:[IsAdminGuard],children:[
 
+  /**
+   * This route is only for Role Admin
+   */
+  {path:'',component:AdminComponent,canActivate:[IsAdminGuard],children:[
       {path:'search',component:SearchComponent,children:[
           {path:'',component:SearchFormComponent},
           {path:'result/:keyWord',component:SearchResultComponent,resolve:{userFound:UserModelResolver},children:[
@@ -24,7 +27,6 @@ const routes: Routes = [
               {path:'addRole/:user', component: AddRoleUserComponent,resolve:{roleAll:RoleModelResolver}}
             ]},
         ]},
-
       {path:'groupe',component: GroupeComponent},
       {path:'role',component: RoleComponent}
     ]}

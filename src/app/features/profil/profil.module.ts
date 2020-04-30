@@ -9,7 +9,12 @@ import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
-  declarations: [UserDetailComponent, MenuComponent, UserSetupComponent, ProfilComponent],
+  declarations: [
+    UserDetailComponent,
+    MenuComponent,
+    UserSetupComponent,
+    ProfilComponent
+  ],
   imports: [
     CommonModule,
     ProfilRoutingModule,

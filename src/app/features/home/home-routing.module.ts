@@ -5,6 +5,9 @@ import {IsLoggedGuard} from '../../core/guards/is-logged.guard';
 
 
 const routes: Routes = [
+  /**
+   * This route is only if the user is logged
+   */
   {path:'home',component:HomeComponent,canActivate:[IsLoggedGuard]}
 ];
 

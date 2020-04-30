@@ -10,6 +10,9 @@ import {TokenModel} from '../models/TokenModel';
 })
 export class ConnexionService {
 
+  /**
+   * @param httpClient
+   */
   constructor(private httpClient:HttpClient) { }
 
   /**
@@ -17,6 +20,7 @@ export class ConnexionService {
    * Method return a observable => type TokenModel. Send the login credential to the server.
    */
   login(login: LoginModel): Observable<TokenModel>{
+
     return this.httpClient.post<TokenModel>(environment.url + 'login_check',login)
   }
 }

@@ -11,6 +11,11 @@ export class FormInscriptionComponent implements OnInit {
 
   inscriptionGroup: FormGroup;
 
+  /**
+   * @param router
+   * @param formBuilder
+   * @param inscriptionService
+   */
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -21,7 +26,10 @@ export class FormInscriptionComponent implements OnInit {
     this.initForm();
   }
 
-    initForm(){
+  /**
+   * This form is for inscription
+   */
+  initForm(){
     this.inscriptionGroup = this.formBuilder.group({
       email:['',Validators.required],
       password:['',Validators.required],

@@ -11,8 +11,15 @@ import {GroupeModel} from '../models/GroupeModel';
 })
 export class UserService {
 
+  /**
+   * Variable id type user model to recupe the id from user
+   */
   id:UserModel;
 
+  /**
+   * @param httpClient
+   * @param sessionService
+   */
   constructor(private httpClient: HttpClient, private sessionService:SessionService) { }
 
   /**
@@ -26,6 +33,7 @@ export class UserService {
   /**
    * @param userModel
    * Update User
+   * This service update the user. First a get the id user.After a put the new modification
    */
   updateUser(userModel:UserModel){
    this.getIdUser().subscribe(
@@ -36,13 +44,14 @@ export class UserService {
         console.log('Erreur : '+error);
      }
     );
-    console.log(userModel);
+
     return this.httpClient
       .put(environment.url+'user/update/'+this.id.id,userModel).subscribe()
   }
 
   /**
    * @param user
+   * I get a user if exist
    */
   getUser(user):Observable<UserModel[]>{
     return this.httpClient
@@ -51,13 +60,12 @@ export class UserService {
 
   /**
    *
-   * @param userModel
+   * @param userId
    * @param groupeModel
+   * This service add a new groupe.
    */
-  addGroupe(userModel:UserModel[],groupeModel:GroupeModel){
-    // console.log(userModel);
-    // console.log(groupeModel);
-    return this.httpClient.put(environment.url+'user/addGroupe/'+userModel.map(s => s.id),groupeModel.groupe).subscribe();
+  addGroupe(userId,groupeModel:GroupeModel){
+    return this.httpClient.put(environment.url+'user/addGroupe/'+userId,groupeModel.groupe).subscribe();
   }
 
 }

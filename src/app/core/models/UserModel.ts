@@ -1,5 +1,8 @@
 import {BaseModel} from './BaseModel';
 
+/**
+ * Thie interface define object user ans extend from Base model
+ */
 export interface UserModel extends BaseModel{
   id:number;
   firstName:string;

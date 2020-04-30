@@ -10,13 +10,9 @@ export class SessionService {
 
   private loginModel:LoginModel;
 
-  constructor() {
-
-  }
-
   /**
    * @param token
-   * When the login is success. Saving the tokken in session storage and the user.
+   * When the login is success. Saving the tokken in session storage.
    */
   start(token: TokenModel){
     sessionStorage.setItem('TOKEN',token.token);

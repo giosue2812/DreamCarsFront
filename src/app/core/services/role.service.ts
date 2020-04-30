@@ -9,8 +9,14 @@ import {environment} from '../../../environments/environment';
 })
 export class RoleService {
 
+  /**
+   * @param httpClient
+   */
   constructor(private httpClient:HttpClient) { }
 
+  /**
+   * This service return the all roles. Return a response type Observable role model
+   */
   getRoles():Observable<RoleModel[]>{
     return this.httpClient.get<RoleModel[]>(environment.url+'roles');
   }

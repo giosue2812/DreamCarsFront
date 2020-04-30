@@ -14,7 +14,11 @@ export class GroupeService {
    */
   constructor(private httpClient: HttpClient) { }
 
+  /**
+   * This service request all groupe from server. This return a groupe model
+   */
   getGroupe():Observable<GroupeModel[]>{
+
     return this.httpClient.get<GroupeModel[]>(environment.url+'groupe');
   }
 }

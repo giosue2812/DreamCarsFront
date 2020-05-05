@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {UserModel} from '../models/UserModel';
 import {SessionService} from './session.service';
 import {GroupeModel} from '../models/GroupeModel';
+import {RoleModel} from '../models/RoleModel';
 
 @Injectable({
   providedIn: 'root'
@@ -68,4 +69,7 @@ export class UserService {
     return this.httpClient.put(environment.url+'user/addGroupe/'+userId,groupeModel).subscribe();
   }
 
+  addRole(userId,roleModel:RoleModel){
+    console.log(userId,roleModel.id_role)
+  }
 }

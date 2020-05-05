@@ -3,7 +3,7 @@
         <div class="card">
           <div class="card-content">
             <label for="group">Groupe</label>
-            <select id="group" class="browser-default" [(ngModel)]="groupeModel" name="group" required>
+            <select id="group" class="browser-default" [(ngModel)]="groupeModel" name="groupe" required>
               <option *ngFor="let group of groupeModelChoice" value="{{group.groupe}}">{{group.groupe}}</option>
             </select>
           </div>

@@ -65,7 +65,7 @@ export class UserService {
    * This service add a new groupe.
    */
   addGroupe(userId,groupeModel:GroupeModel){
-    return this.httpClient.put(environment.url+'user/addGroupe/'+userId,groupeModel.groupe).subscribe();
+    return this.httpClient.put(environment.url+'user/addGroupe/'+userId,groupeModel).subscribe();
   }
 
 }

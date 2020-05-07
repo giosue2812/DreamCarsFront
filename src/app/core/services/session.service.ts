@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {TokenModel} from '../models/TokenModel';
 import * as jwt_decode from 'jwt-decode';
 import {LoginModel} from '../models/LoginModel';
+import {RoleModel} from '../models/RoleModel';
+import {element} from 'protractor';
 
 @Injectable({
   providedIn: 'root'
@@ -35,9 +37,13 @@ export class SessionService {
   /**
    * Recuperation of user role
    */
-  get isAdmin():boolean{
+    get isAdmin():boolean{
+    let role = [];
     this.tokenDecode();
-    return this.loginModel.roles.find(p => p === 'ROLE_ADMIN');
+    this.loginModel.roles.forEach(function(item) {
+      role.push(item)
+    });
+    return !!role.find(p => p === 'ROLE_ADMIN');
   }
 
   /**

@@ -5,39 +5,39 @@
       <form (ngSubmit)="onSubmitForm(f)" #f="ngForm">
         <div class="row">
           <div class="input-field col s10">
-            <input id="email" type="email" class="validate" [(ngModel)]="userModel.email" name="email">
+            <input id="email" type="email" class="validate" [(ngModel)]="userModel.data.email" name="email">
             <label class="active" for="email">Username</label>
           </div>
           <div class="input-field col s6">
-            <input id="firstName" placeholder="First Name" type="text" class="validate" [(ngModel)]="userModel.firstName" name="firstName">
+            <input id="firstName" placeholder="First Name" type="text" class="validate" [(ngModel)]="userModel.data.firstName" name="firstName">
             <label class="active" for="firstName">First Name:</label>
           </div>
           <div class="input-field col s6">
-            <input id="lastName" placeholder="Last Name" type="text" class="validate" [(ngModel)]="userModel.lastName" name="lastName">
+            <input id="lastName" placeholder="Last Name" type="text" class="validate" [(ngModel)]="userModel.data.lastName" name="lastName">
             <label class="active" for="lastName">Last Name:</label>
           </div>
           <div class="input-field col s6">
-            <input id="street" placeholder="Street" type="text" class="validate" [(ngModel)]="userModel.street" name="street">
+            <input id="street" placeholder="Street" type="text" class="validate" [(ngModel)]="userModel.data.street" name="street">
             <label class="active" for="street">Street:</label>
           </div>
           <div class="input-field col s6">
-            <input id="number" placeholder="Number" type="text" class="validate" [(ngModel)]="userModel.number" name="number">
+            <input id="number" placeholder="Number" type="text" class="validate" [(ngModel)]="userModel.data.number" name="number">
             <label class="active" for="number">Number:</label>
           </div>
           <div class="input-field col s6">
-            <input id="codePostal" placeholder="Code Postal" type="text" class="validate" [(ngModel)]="userModel.postalCode" name="postalCode">
+            <input id="codePostal" placeholder="Code Postal" type="text" class="validate" [(ngModel)]="userModel.data.postalCode" name="postalCode">
             <label class="active" for="codePostal">Code Postal:</label>
           </div>
           <div class="input-field col s6">
-            <input id="phone" placeholder="Phone Number" type="tel" class="validate" [(ngModel)]="userModel.phone" name="phone">
+            <input id="phone" placeholder="Phone Number" type="tel" class="validate" [(ngModel)]="userModel.data.phone" name="phone">
             <label class="active" for="phone">Phone number:</label>
           </div>
           <div class="input-field col s6">
-            <input id="country" placeholder="Country" type="text" class="validate" [(ngModel)]="userModel.country" name="country">
+            <input id="country" placeholder="Country" type="text" class="validate" [(ngModel)]="userModel.data.country" name="country">
             <label class="active" for="country">Country:</label>
           </div>
           <div class="input-field col s6">
-            <input id="city" placeholder="City" type="text" class="validate" [(ngModel)]="userModel.city" name="city">
+            <input id="city" placeholder="City" type="text" class="validate" [(ngModel)]="userModel.data.city" name="city">
             <label class="active" for="city">City:</label>
           </div>
           <div class="input-field col s12">

@@ -47,7 +47,7 @@ export class UserService {
     );
 
     return this.httpClient
-      .put(environment.url+'user/update/'+this.id.id,userModel).subscribe()
+      .put(environment.url+'user/update/'+this.id.data.id,userModel).subscribe()
   }
 
   /**
@@ -70,6 +70,6 @@ export class UserService {
   }
 
   addRole(userId,roleModel:RoleModel){
-    console.log(userId,roleModel.id_role)
+    return this.httpClient.put(environment.url+'user/addRole/'+userId,roleModel).subscribe();
   }
 }

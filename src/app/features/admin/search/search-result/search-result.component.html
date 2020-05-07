@@ -5,15 +5,18 @@
     <li class="collection-item">City/Code Postal : {{item.city}} {{item.postalCode}}</li>
     <li class="collection-item">Phone : {{item.phone}}</li>
     <li class="collection-item">Actif depuis : {{item.create_at|date:'dd-MM-yyyy'}}</li>
+
     <li class="collection-item" *ngFor="let group of item.groupe">
       Groupe :<br/> {{group}}
       <button (click)="onRemoveGroupe()" class="waves-effect waves-light secondary-content">Delete</button>
     </li>
+
     <li class="collection-item" *ngFor="let role of item.user_roles">
       Role Temporaire :<br/>
       {{role[0]}} - Actif depuis {{role[1]}}
       <button (click)="onRemoveRole()" class="waves-effect waves-light secondary-content">Delete</button>
     </li>
+
     <li class="collection-item">
       <a routerLink="addGroupe/{{item.id}}" class="waves-effect waves-light btn">Update Groupe</a>
       <a routerLink="addRole/{{item.id}}" class="waves-effect waves-light btn">Update Role</a>

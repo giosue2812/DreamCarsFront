@@ -6,7 +6,9 @@ const routes: Routes = [
   {path: 'home',loadChildren:()=> import('../app/features/home/home.module').then(m => m.HomeModule)},
   {path: 'connexion',loadChildren:() => import('../app/features/connexion/connexion.module').then(m => m.ConnexionModule)},
   {path: 'profil',loadChildren:() => import('../app/features/profil/profil.module').then(m => m.ProfilModule)},
-  {path: 'admin',loadChildren:()=> import('../app/features/admin/admin.module').then(m => m.AdminModule)}
+  {path: 'admin',loadChildren:()=> import('../app/features/admin/admin.module').then(m => m.AdminModule)},
+  {path: '**',redirectTo:'connexion',pathMatch:'full'},
+  {path: '',redirectTo:'connexion',pathMatch:'full'}
 ];
 
 @NgModule({

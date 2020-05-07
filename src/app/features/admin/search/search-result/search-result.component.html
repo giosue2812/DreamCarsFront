@@ -8,7 +8,7 @@
 
     <li class="collection-item" *ngFor="let group of item.groupe">
       Groupe :<br/> {{group}}
-      <button (click)="onRemoveGroupe()" class="waves-effect waves-light secondary-content">Delete</button>
+      <button (click)="onRemoveGroupe(item.id,group)" class="waves-effect waves-light secondary-content">Delete</button>
     </li>
 
     <li class="collection-item" *ngFor="let role of item.user_roles">

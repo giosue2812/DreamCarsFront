@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Data} from '@angular/router';
 import {UserModel} from '../../../../core/models/UserModel';
+import {GroupeModel} from '../../../../core/models/GroupeModel';
+import {UserService} from '../../../../core/services/user.service';
 
 @Component({
   selector: 'app-search-result',
@@ -13,8 +15,9 @@ export class SearchResultComponent implements OnInit {
 
   /**
    * @param route
+   * @param userService
    */
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private userService:UserService) { }
 
   /**
    * Get user from route
@@ -24,7 +27,14 @@ export class SearchResultComponent implements OnInit {
       (data:{userFound:UserModel[]}) => this.userModel = data.userFound
     );
   }
-  onRemoveGroupe(){}
+
+  /**
+   * @param groupe
+   * @param userId
+   */
+  onRemoveGroupe(userId,groupe){
+    this.userService.removeRole(userId,groupe);
+  }
   onRemoveRole(){}
 }
 

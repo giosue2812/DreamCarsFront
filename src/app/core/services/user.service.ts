@@ -72,4 +72,10 @@ export class UserService {
   addRole(userId,roleModel:RoleModel){
     return this.httpClient.put(environment.url+'user/addRole/'+userId,roleModel).subscribe();
   }
+
+  removeRole(userId,groupe){
+    console.log(userId);
+    console.log(groupe);
+    return this.httpClient.delete(environment.url+'user/removeGroupe/'+userId+'/'+groupe).subscribe();
+  }
 }

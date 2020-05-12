@@ -1,41 +1,7 @@
 <div class="col s9">
   <div class="card">
     <div class="card-content">
-      <ng-container *ngIf="!userModel;else elseBlock">
-      <form [formGroup]="searchGroup" (ngSubmit)="onSubmitForm()">
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="user" type="text" class="validate" formControlName="search">
-            <label for="user">User Search</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s2">
-            <button type="submit" class="waves-effect waves-light btn">Search</button>
-          </div>
-        </div>
-      </form>
-      </ng-container>
-      <ng-template #elseBlock>
-        <ul class="collection" *ngFor="let item of userModel">
-          <li class="collection-item">User : {{item.firstName}} {{item.lastName}}</li>
-          <li class="collection-item">Email : {{item.email}}</li>
-          <li class="collection-item">Street : {{item.street}} {{item.number}}</li>
-          <li class="collection-item">City/Code Postal : {{item.city}} {{item.postalCode}}</li>
-          <li class="collection-item">Phone : {{item.phone}}</li>
-          <li class="collection-item">Actif depuis : {{item.create_at|date:'dd-MM-yyyy'}}</li>
-          <li class="collection-item" *ngFor="let group of item.groupe">
-            Groupe :<br/> {{group}}
-            <a href="#" class="secondary-content">Update</a>
-          </li>
-          <li class="collection-item" *ngFor="let rol of item.user_roles">
-            Role Temporaire :<br/>
-            {{rol[0]}} - Actif depuis
-            {{rol[1]|date:'dd-MM-yyyy'}}
-            <a href="#" class="secondary-content">Update</a>
-          </li>
-        </ul>
-      </ng-template>
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>

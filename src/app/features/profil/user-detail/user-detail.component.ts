@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {UserModel} from '../../../core/models/UserModel';
-import {UserService} from '../../../core/services/connexion/user.service';
+import {UserModelArray} from '../../../core/models/UserModelArray';
+import {UserService} from '../../../core/services/user.service';
+import {UserModelObject} from '../../../core/models/UserModelObject';
 
 @Component({
   selector: 'app-user-detail',
@@ -8,8 +9,13 @@ import {UserService} from '../../../core/services/connexion/user.service';
   styleUrls: ['./user-detail.component.scss']
 })
 export class UserDetailComponent implements OnInit {
-  userModel: UserModel;
 
+  userModelObject: UserModelObject;
+
+  /**
+   *
+   * @param userService
+   */
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
@@ -18,7 +24,7 @@ export class UserDetailComponent implements OnInit {
      */
     this.userService.getIdUser().subscribe(
       data => {
-        this.userModel = data;
+        this.userModelObject = data;
       },
       error => {
         console.log('Erreur : '+error)

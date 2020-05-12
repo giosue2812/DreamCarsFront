@@ -5,7 +5,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss']
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent{
+
   menu = [
     {
       title: 'Search',
@@ -20,9 +21,4 @@ export class MenuComponent implements OnInit {
       link: ['role']
     }
   ];
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

@@ -1,6 +1,9 @@
 import {BaseModel} from './BaseModel';
 
-export interface UserModel extends BaseModel{
+/**
+ * Thie interface define object user ans extend from Base model
+ */
+export interface Data extends BaseModel{
   id:number;
   firstName:string;
   lastName:string;
@@ -15,4 +18,9 @@ export interface UserModel extends BaseModel{
   country:string;
   groupe:[];
   user_roles:[];
+}
+export interface UserModelArray {
+  code:string,
+  status:string,
+  data:Data[];
 }

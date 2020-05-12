@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {TokenModel} from '../../models/TokenModel';
+import {TokenModel} from '../models/TokenModel';
 import * as jwt_decode from 'jwt-decode';
-import {LoginModel} from '../../models/LoginModel';
+import {LoginModel} from '../models/LoginModel';
 
 @Injectable({
   providedIn: 'root'
@@ -10,13 +10,9 @@ export class SessionService {
 
   private loginModel:LoginModel;
 
-  constructor() {
-
-  }
-
   /**
    * @param token
-   * When the login is success. Saving the tokken in session storage and the user.
+   * When the login is success. Saving the tokken in session storage.
    */
   start(token: TokenModel){
     sessionStorage.setItem('TOKEN',token.token);
@@ -39,9 +35,13 @@ export class SessionService {
   /**
    * Recuperation of user role
    */
-  get isAdmin():boolean{
+    get isAdmin():boolean{
+    let role = [];
     this.tokenDecode();
-    return this.loginModel.roles.find(p => p === 'ROLE_ADMIN');
+    this.loginModel.roles.forEach(function(item) {
+      role.push(item)
+    });
+    return !!role.find(p => p === 'ROLE_ADMIN');
   }
 
   /**

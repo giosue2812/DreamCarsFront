@@ -6,13 +6,20 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {SessionService} from '../services/connexion/session.service';
+import {SessionService} from '../services/session.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
+  /**
+   * @param sessionService
+   */
   constructor(private sessionService: SessionService) {}
 
+  /**
+   * @param request
+   * @param next
+   */
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     /**
      * This.sessionService.tokken is not empty

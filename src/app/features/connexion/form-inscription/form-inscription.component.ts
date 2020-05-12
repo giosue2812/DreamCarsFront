@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Form, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {InscriptionService} from '../../../core/services/connexion/inscription.service';
+import {InscriptionService} from '../../../core/services/inscription.service';
 @Component({
   selector: 'app-form-inscription',
   templateUrl: './form-inscription.component.html',
@@ -11,6 +11,11 @@ export class FormInscriptionComponent implements OnInit {
 
   inscriptionGroup: FormGroup;
 
+  /**
+   * @param router
+   * @param formBuilder
+   * @param inscriptionService
+   */
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -21,7 +26,10 @@ export class FormInscriptionComponent implements OnInit {
     this.initForm();
   }
 
-    initForm(){
+  /**
+   * This form is for inscription
+   */
+  initForm(){
     this.inscriptionGroup = this.formBuilder.group({
       email:['',Validators.required],
       password:['',Validators.required],
@@ -39,7 +47,7 @@ export class FormInscriptionComponent implements OnInit {
 
   /**
    * Method called from the template when the form is ok.
-   * Call the service to record the new User.
+   * Call the service to record the new UserDetails.
    */
   onSubmitForm(){
     this.inscriptionService.onRecordServer(this.inscriptionGroup.value)

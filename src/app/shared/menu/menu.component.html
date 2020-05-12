@@ -2,20 +2,9 @@
   <div class="nav-wrapper">
     <a routerLink="" class="brand-logo">Dream Cars</a>
     <ul id="nav-mobile" class="right hide-on-small-and-down">
-      <ng-container *ngIf="!islog(); else elseBlock">
-        <li><a routerLink="connexion">Connexion</a></li>
-      </ng-container>
-
-      <ng-template #elseBlock>
-        <ng-container *ngIf="isAdmin()">
-          <li><a routerLink="admin">Admin</a></li>
-        </ng-container>
-        <li *ngFor="let items of menu">
-          <a routerLink="{{items.links}}">{{items.title}}</a>
-        </li>
-        <li><a routerLink="logout" (click)="logout()">Deconnexion</a></li>
-      </ng-template>
-
+      <app-menu-user></app-menu-user>
+      <app-menu-admin></app-menu-admin>
     </ul>
   </div>
 </nav>
+

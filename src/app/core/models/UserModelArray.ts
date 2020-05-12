@@ -19,8 +19,8 @@ export interface Data extends BaseModel{
   groupe:[];
   user_roles:[];
 }
-export interface UserModel {
+export interface UserModelArray {
   code:string,
   status:string,
-  data:Data;
+  data:Data[];
 }

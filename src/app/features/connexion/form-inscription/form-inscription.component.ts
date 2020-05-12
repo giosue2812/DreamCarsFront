@@ -47,7 +47,7 @@ export class FormInscriptionComponent implements OnInit {
 
   /**
    * Method called from the template when the form is ok.
-   * Call the service to record the new User.
+   * Call the service to record the new UserDetails.
    */
   onSubmitForm(){
     this.inscriptionService.onRecordServer(this.inscriptionGroup.value)

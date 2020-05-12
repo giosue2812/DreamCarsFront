@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {UserModel} from '../../../core/models/UserModel';
+import {UserModelArray} from '../../../core/models/UserModelArray';
 import {UserService} from '../../../core/services/user.service';
+import {UserModelObject} from '../../../core/models/UserModelObject';
 
 @Component({
   selector: 'app-user-detail',
@@ -9,7 +10,7 @@ import {UserService} from '../../../core/services/user.service';
 })
 export class UserDetailComponent implements OnInit {
 
-  userModel: UserModel;
+  userModelObject: UserModelObject;
 
   /**
    *
@@ -23,7 +24,7 @@ export class UserDetailComponent implements OnInit {
      */
     this.userService.getIdUser().subscribe(
       data => {
-        this.userModel = data;
+        this.userModelObject = data;
       },
       error => {
         console.log('Erreur : '+error)

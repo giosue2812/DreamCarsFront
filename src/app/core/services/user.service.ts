@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {Observable} from 'rxjs';
-import {UserModel} from '../models/UserModel';
+import {UserModelArray} from '../models/UserModelArray';
 import {SessionService} from './session.service';
 import {GroupeModel} from '../models/GroupeModel';
 import {RoleModel} from '../models/RoleModel';
+import {UserModelObject} from '../models/UserModelObject';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class UserService {
   /**
    * Variable id type user model to recupe the id from user
    */
-  id:UserModel;
+  id:UserModelObject;
 
   /**
    * @param httpClient
@@ -26,17 +27,17 @@ export class UserService {
   /**
    * We get the user id from the server.
    */
-  getIdUser(): Observable<UserModel>{
+  getIdUser(): Observable<UserModelObject>{
     return this.httpClient
-      .get<UserModel>(environment.url+'user/'+this.sessionService.username)
+      .get<UserModelObject>(environment.url+'user/'+this.sessionService.username)
   }
 
   /**
    * @param userModel
-   * Update User
+   * Update UserDetails
    * This service update the user. First a get the id user.After a put the new modification
    */
-  updateUser(userModel:UserModel){
+  updateUser(userModel:UserModelObject){
    this.getIdUser().subscribe(
       data => {
         this.id = data;
@@ -47,16 +48,16 @@ export class UserService {
     );
 
     return this.httpClient
-      .put(environment.url+'user/update/'+this.id.data.id,userModel).subscribe()
+      .put(environment.url+'user/update/'+this.id,userModel).subscribe()
   }
 
   /**
    * @param user
    * I get a user if exist
    */
-  getUser(user):Observable<UserModel[]>{
+  getUser(user):Observable<UserModelArray[]>{
     return this.httpClient
-      .get<UserModel[]>(environment.url+'user/search/'+user);
+      .get<UserModelArray[]>(environment.url+'user/search/'+user);
   }
 
   /**
@@ -69,13 +70,26 @@ export class UserService {
     return this.httpClient.put(environment.url+'user/addGroupe/'+userId,groupeModel).subscribe();
   }
 
+  /**
+   * @param userId
+   * @param roleModel
+   */
   addRole(userId,roleModel:RoleModel){
     return this.httpClient.put(environment.url+'user/addRole/'+userId,roleModel).subscribe();
   }
 
-  removeRole(userId,groupe){
-    console.log(userId);
-    console.log(groupe);
+  /**
+   * @param userId
+   * @param groupe
+   */
+  removeGroupe(userId,groupe){
     return this.httpClient.delete(environment.url+'user/removeGroupe/'+userId+'/'+groupe).subscribe();
+  }
+
+  /**
+   * @param roleId
+   */
+  removeRole(roleId){
+    return this.httpClient.delete(environment.url+'user/updateUserRole/'+roleId).subscribe();
   }
 }

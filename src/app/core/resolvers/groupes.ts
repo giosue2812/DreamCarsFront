@@ -6,7 +6,7 @@ import {Injectable} from '@angular/core';
 
 @Injectable({providedIn:'root'})
 
-export class GroupeModelResolver implements Resolve<GroupeModel[]>{
+export class Groupes implements Resolve<GroupeModel[]>{
 
   /**
    * @param groupeService

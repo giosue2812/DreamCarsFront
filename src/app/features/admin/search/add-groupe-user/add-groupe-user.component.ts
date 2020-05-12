@@ -1,8 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {NgForm} from '@angular/forms';
-import {ActivatedRoute} from '@angular/router';
+import {FormGroup, NgForm,FormBuilder,Validators} from '@angular/forms';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {GroupeModel} from '../../../../core/models/GroupeModel';
 import {UserService} from '../../../../core/services/user.service';
+import {Location} from '@angular/common';
+import set = Reflect.set;
 
 @Component({
   selector: 'app-add-groupe-user',
@@ -19,23 +21,39 @@ export class AddGroupeUserComponent implements OnInit {
    */
   groupeModelChoice:GroupeModel[];
 
+  addGroupeForm:FormGroup;
+
   /**
    * @param route
    * @param userService
+   * @param formBuilder
    */
-  constructor(private route:ActivatedRoute, private userService: UserService) { }
+  constructor(
+    private route:ActivatedRoute,
+    private userService: UserService,
+    private formBuilder: FormBuilder) {}
 
   /**
    * This subscribe get a parms from route "groueAll" and push into groupeModelChioce.
    */
   ngOnInit(): void {
     this.route.data.subscribe((data:{groupeAll:GroupeModel[]})=>this.groupeModelChoice = data.groupeAll)
+    this.initForm();
   }
 
-  /**
-   * @param form
-   */
-  onSubmitFormGroupe(form:NgForm){
-    this.userService.addGroupe(this.route.snapshot.paramMap.get('user'),form.value);
+  initForm(){
+    this.addGroupeForm = this.formBuilder.group({
+      groupe:['',Validators.required]
+    })
+  }
+
+  onSubmitFormGroupe(){
+    this.userService.addGroupe(this.route.snapshot.paramMap.get('user'),this.addGroupeForm.value);
+    return new Promise(resolve => {
+     setTimeout(()=> {
+       window.location.reload();
+       resolve();
+     },1000)
+    })
   }
 }

@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 import {RoleService} from '../services/role.service';
 
 @Injectable({providedIn:'root'})
-export class RoleModelResolver implements Resolve<RoleModel[]>{
+export class Roles implements Resolve<RoleModel[]>{
 
   /**
    * @param roleService
@@ -24,3 +24,4 @@ export class RoleModelResolver implements Resolve<RoleModel[]>{
 
     }
 }
+

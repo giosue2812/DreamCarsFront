@@ -1,12 +1,12 @@
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
-import {UserModel} from '../models/UserModel';
+import {UserModelArray} from '../models/UserModelArray';
 import {Observable} from 'rxjs';
 import {UserService} from '../services/user.service';
 import {Injectable} from '@angular/core';
 
 @Injectable({providedIn:'root'})
 
-export class UserModelResolver implements Resolve<UserModel[]>{
+export class UserSearch implements Resolve<UserModelArray[]>{
   /**
    * @param userService
    */
@@ -16,7 +16,7 @@ export class UserModelResolver implements Resolve<UserModel[]>{
    * @param route
    * @param state
    */
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<UserModel[]> | Promise<UserModel[]> | UserModel[] {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<UserModelArray[]> | Promise<UserModelArray[]> | UserModelArray[] {
     /**
      * This service return the search user found
      */

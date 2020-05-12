@@ -7,11 +7,11 @@ import {GroupeComponent} from './groupe/groupe.component';
 import {RoleComponent} from './role/role.component';
 import {SearchFormComponent} from './search/search-form/search-form.component';
 import {SearchResultComponent} from './search/search-result/search-result.component';
-import {UserModelResolver} from '../../core/resolvers/user-model-resolver';
-import {GroupeModelResolver} from '../../core/resolvers/groupe-model-resolver';
+import {UserSearch} from '../../core/resolvers/user-search';
+import {Groupes} from '../../core/resolvers/groupes';
 import {AddGroupeUserComponent} from './search/add-groupe-user/add-groupe-user.component';
 import {AddRoleUserComponent} from './search/add-role-user/add-role-user.component';
-import {RoleModelResolver} from '../../core/resolvers/role-model-resolver';
+import {Roles} from '../../core/resolvers/roles';
 
 
 const routes: Routes = [
@@ -22,9 +22,9 @@ const routes: Routes = [
   {path:'',component:AdminComponent,canActivate:[IsAdminGuard],children:[
       {path:'search',component:SearchComponent,children:[
           {path:'',component:SearchFormComponent},
-          {path:'result/:keyWord',component:SearchResultComponent,resolve:{userFound:UserModelResolver},children:[
-              {path:'addGroupe/:user',component: AddGroupeUserComponent,resolve:{groupeAll:GroupeModelResolver}},
-              {path:'addRole/:user', component: AddRoleUserComponent,resolve:{roleAll:RoleModelResolver}}
+          {path:'result/:keyWord',component:SearchResultComponent,resolve:{userFound:UserSearch},children:[
+              {path:'addGroupe/:user',component: AddGroupeUserComponent,resolve:{groupeAll:Groupes}},
+              {path:'addRole/:user', component: AddRoleUserComponent,resolve:{roleAll:Roles}}
             ]},
         ]},
       {path:'groupe',component: GroupeComponent},

@@ -1,14 +1,30 @@
   <div class="input-field col s12">
     <form [formGroup]="addRoleForm" (ngSubmit)="onSubmitFormRole()">
+      <ng-container *ngIf="roleService.isLoading$|async;else isLoaded">
+        <div class="preloader-wrapper big active">
+          <div class="spinner-layer spinner-blue-only">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #isLoaded>
       <div class="card">
         <div class="card-content">
           <label for="role">Role</label>
-          <select id="role" class="browser-default" [(ngModel)]="roleModel" formControlName="id_role">
-            <option *ngFor="let roleChoice of roleModelChoice" value="{{roleChoice.id_role}}">{{roleChoice.role}}</option>
+          <select id="role" class="browser-default" formControlName="id_role">
+            <option *ngFor="let role of roleModel" value="{{role.id_role}}">{{role.role}}</option>
           </select>
+          <div *ngIf="addRoleForm.errors && addRoleForm.errors.roleAlreadyExist">The role is already present</div>
         </div>
-        <button type="submit" class="waves-effect waves-light btn col s5" [disabled]="addRoleForm.invalid">Update</button>
+        <button type="submit" class="waves-effect waves-light btn col s5" *ngIf="addRoleForm.valid">Update</button>
       </div>
+      </ng-template>
     </form>
   </div>
 

@@ -1,1 +1,32 @@
-<p>role works!</p>
+<h4>Role List</h4>
+<form (ngSubmit)="onSubmitForm()" [formGroup]="editRoleForm">
+  <ng-container *ngIf="roleService.isLoading$ | async; else isLoaded">
+    <div class="preloader-wrapper big active">
+      <div class="spinner-layer spinner-blue-only">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+        <div class="circle"></div>
+      </div><div class="circle-clipper right">
+        <div class="circle"></div>
+      </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #isLoaded>
+    <ul mCollapsible class="collapsible">
+      <li *ngFor="let item of roleModel">
+        <div class="collapsible-header">{{item.role}} - Created at : {{item.create_at}} - Last Update - {{item.update_at}}</div>
+        <div class="collapsible-body">
+          <button (click)="removeRole(item.id_role)" class="waves-effect waves-effect btn">Delete</button>
+          <input id="role" type="text" value="{{item.role}}" formControlName="role" upperCase>
+          <label for="role">Role</label><br/>
+          <div *ngIf="editRoleForm.errors && editRoleForm.errors.roleAlreadyExist">Il existe déja un role de ce label</div>
+          <button class="btn waves-effect waves-light" type="submit" *ngIf="editRoleForm.valid">Update</button>
+        </div>
+      </li>
+    </ul>
+  </ng-template>
+  <button routerLink="newRole" class="waves-effect waves-light btn">New</button>
+</form>
+<router-outlet></router-outlet>

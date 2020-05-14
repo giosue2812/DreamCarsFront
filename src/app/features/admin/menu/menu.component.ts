@@ -10,7 +10,7 @@ export class MenuComponent{
   menu = [
     {
       title: 'Search',
-      link:['search']
+      link: ['search']
     },
     {
       title: 'Groupe',

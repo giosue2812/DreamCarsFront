@@ -1,17 +1,17 @@
-  <ul class="collection" *ngFor="let item of userModelArray.data">
-    <li class="collection-item">User : {{item.firstName}} {{item.lastName}}</li>
-    <li class="collection-item">Email : {{item.email}}</li>
-    <li class="collection-item">Street : {{item.street}} {{item.number}}</li>
-    <li class="collection-item">City/Code Postal : {{item.city}} {{item.postalCode}}</li>
-    <li class="collection-item">Phone : {{item.phone}}</li>
-    <li class="collection-item">Actif depuis : {{item.create_at|date:'dd-MM-yyyy'}}</li>
+  <ul class="collection" *ngIf="userModel">
+    <li class="collection-item">User : {{userModel.data.firstName}} {{userModel.data.lastName}}</li>
+    <li class="collection-item">Email : {{userModel.data.email}}</li>
+    <li class="collection-item">Street : {{userModel.data.street}} {{userModel.data.number}}</li>
+    <li class="collection-item">City/Code Postal : {{userModel.data.city}} {{userModel.data.postalCode}}</li>
+    <li class="collection-item">Phone : {{userModel.data.phone}}</li>
+    <li class="collection-item">Actif depuis : {{userModel.data.create_at|date:'dd-MM-yyyy'}}</li>
 
-    <li class="collection-item" *ngFor="let group of item.groupe">
+    <li class="collection-item" *ngFor="let group of userModel.data.groupe">
       Groupe :<br/> {{group}}
-      <button (click)="onRemoveGroupe(item.id,group)" class="waves-effect waves-light secondary-content">Delete</button>
+      <button (click)="onRemoveGroupe(userModel.data.id,group)" class="waves-effect waves-light secondary-content">Delete</button>
     </li>
 
-    <ng-container *ngFor="let role of item.user_roles">
+    <ng-container *ngFor="let role of userModel.data.user_roles">
       <li class="collection-item" *ngIf="role[3] == null">
         Role Temporaire :<br/>
         {{role[1]}} - Actif depuis {{role[2]|date:'dd-MM-yyyy'}}
@@ -19,8 +19,8 @@
       </li>
     </ng-container>
     <li class="collection-item">
-      <a routerLink="addGroupe/{{item.id}}" class="waves-effect waves-light btn">Update Groupe</a>
-      <a routerLink="addRole/{{item.id}}" class="waves-effect waves-light btn">Update Role</a>
+      <a routerLink="addGroupe/{{userModel.data.id}}" class="waves-effect waves-light btn">Update Groupe</a>
+      <a routerLink="addRole/{{userModel.data.id}}" class="waves-effect waves-light btn">Update Role</a>
     </li>
   </ul>
   <div class="row">

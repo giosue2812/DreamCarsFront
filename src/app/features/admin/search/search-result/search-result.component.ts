@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Data, Route, Router} from '@angular/router';
-import {UserModelArray} from '../../../../core/models/UserModelArray';
 import {UserService} from '../../../../core/services/user.service';
+import {UserModel} from '../../../../core/models/UserModel';
 
 
 @Component({
@@ -11,7 +11,7 @@ import {UserService} from '../../../../core/services/user.service';
 })
 export class SearchResultComponent implements OnInit {
 
-  userModelArray:UserModelArray;
+  userModel:UserModel;
 
   /**
    * @param route
@@ -24,9 +24,9 @@ export class SearchResultComponent implements OnInit {
    * Get user from route
    */
   ngOnInit(): void {
-    this.route.data.subscribe(
-      (data:{userFound:UserModelArray}) => {this.userModelArray = data.userFound}
-    );
+    this.userService.getUser(this.route.snapshot.paramMap.get('keyWord')).subscribe(data => {
+      this.userModel = data;
+    });
   }
 
   /**
@@ -36,21 +36,9 @@ export class SearchResultComponent implements OnInit {
    */
   onRemoveGroupe(userId,groupe){
     this.userService.removeGroupe(userId,groupe);
-    return new Promise(resolve => {
-      setTimeout(()=>{
-        window.location.reload();
-        resolve();
-      },1000)
-    })
   }
   onRemoveRole(roleID){
     this.userService.removeRole(roleID);
-    return new Promise(resolve => {
-      setTimeout(()=>{
-        window.location.reload();
-        resolve();
-      },1000)
-    })
   }
 }
 

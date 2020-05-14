@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {UserModelArray} from '../models/UserModelArray';
 import {environment} from '../../../environments/environment';
 import {Router} from '@angular/router';
+import {UserModel} from '../models/UserModel';
 @Injectable({
   providedIn: 'root'
 })
@@ -18,7 +18,7 @@ export class InscriptionService {
    * @param userModel
    * I post the new user to the server.
    */
-  onRecordServer(userModel: UserModelArray){
+  onRecordServer(userModel: UserModel){
       return this.httpClient.post(environment.url+'create',userModel).subscribe(
       ()=>{
         /**

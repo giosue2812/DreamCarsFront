@@ -47,7 +47,13 @@ export class RoleComponent implements OnInit {
 
   onSubmitForm(){
     if (this.editRoleForm.valid) {
-      console.log(this.editRoleForm.value);
+      let id_role = 0;
+      this.roleModel.data.forEach(function(element) {
+        id_role = element.id_role
+      });
+     return this.roleService.updateRole(id_role,this.editRoleForm.value).subscribe(data => {
+       this.roleModel = data;
+     });
     }
   }
 

@@ -36,9 +36,20 @@ export class RoleService implements OnDestroy{
     this.httpClient.post<RoleModel>(environment.url+'role/addRole',roleModel)
       .subscribe(data => {
         this.roles$.next(data);
-        console.log(data);
         this.isLoading$.next(false);
       });
+  }
+
+  /**
+   * @param idRole
+   * @param roleModel
+   */
+  updateRole(idRole,roleModel){
+    this.httpClient.put<RoleModel>(environment.url+'role/updateRole'+idRole,roleModel)
+      .subscribe(data => {
+        this.roles$.next(data);
+      });
+    return this.roles$;
   }
 
   ngOnDestroy(): void {

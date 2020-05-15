@@ -1,5 +1,5 @@
     <div class="input-field col s12">
-      <form [formGroup]="addGroupeForm" (ngSubmit)="onSubmitFormGroupe()">
+      <form *ngIf="addGroupeForm" [formGroup]="addGroupeForm" (ngSubmit)="onSubmitFormGroupe()">
         <ng-container *ngIf="groupeService.isLoading$|async;else isLoaded">
           <div class="preloader-wrapper big active">
             <div class="spinner-layer spinner-blue-only">

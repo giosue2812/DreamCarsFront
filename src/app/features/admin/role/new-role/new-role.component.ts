@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Component, Input, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {RoleModel} from '../../../../core/models/RoleModel';
 import {RoleService} from '../../../../core/services/role.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-new-role',
@@ -11,19 +11,34 @@ import {Router} from '@angular/router';
 })
 export class NewRoleComponent implements OnInit {
 
-
   newRoleForm:FormGroup;
+  roleModel:RoleModel;
 
-  constructor(private formBuilder:FormBuilder, private roleService:RoleService,private router:Router) { }
+  constructor(
+    private formBuilder:FormBuilder,
+    private roleService:RoleService) { }
 
   ngOnInit(): void {
-    this.initForm();
+    this.roleService.getRoles().subscribe(data => {
+      this.roleModel = data;
+      this.initForm();
+    });
   }
 
   initForm(){
     this.newRoleForm = this.formBuilder.group({
-      role:['',Validators.required]
-    })
+      role:new FormControl('',[Validators.required])
+    },{validators:[this.validForm()]})
+  }
+
+  validForm(){
+    return (role: FormGroup) => {
+      const rol = role.get('role').value;
+      if(rol) {
+        const find = this.roleModel.data.find(r => r.role === rol);
+        return !find ? null : {roleAlreadyExist: true};
+      }
+    }
   }
 
   onSubmitForm(){

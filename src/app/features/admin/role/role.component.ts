@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Route} from '@angular/router';
 import {RoleModel} from '../../../core/models/RoleModel';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Subscription} from 'rxjs';
 import {RoleService} from '../../../core/services/role.service';
 
 @Component({
@@ -13,7 +12,7 @@ import {RoleService} from '../../../core/services/role.service';
 export class RoleComponent implements OnInit {
 
   editRoleForm:FormGroup;
-  roleModel:RoleModel[];
+  roleModel:RoleModel;
 
   constructor(
     public roleService: RoleService,
@@ -21,11 +20,10 @@ export class RoleComponent implements OnInit {
     private formBuilder:FormBuilder) { }
 
   ngOnInit(): void {
-   this.roleService.getRoles().subscribe(data => {
-     this.roleModel = data;
-     this.initForm();
-   });
-    // this.initForm();
+      this.roleService.getRoles().subscribe(data => {
+        this.roleModel = data;
+        this.initForm();
+      });
   }
 
   initForm()
@@ -38,15 +36,17 @@ export class RoleComponent implements OnInit {
   }
 
   validForm() {
-    return (group: FormGroup) => {
-      const role = group.get('role').value;
-      const find = this.roleModel.find(r => r.role === role);
-      return !find ? null : {roleAlreadyExist: true};
+    return (role: FormGroup) => {
+      const rol = role.get('role').value;
+      if(rol) {
+        const find = this.roleModel.data.find(r => r.role === rol);
+        return !find ? null : {roleAlreadyExist: true};
+      }
     }
   }
 
   onSubmitForm(){
-    if (this.editRoleForm.valid){
+    if (this.editRoleForm.valid) {
       console.log(this.editRoleForm.value);
     }
   }

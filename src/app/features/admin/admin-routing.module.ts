@@ -26,7 +26,7 @@ const routes: Routes = [
         ]},
       {path:'groupe',component: GroupeComponent},
       {path:'role',component: RoleComponent,children: [
-          {path:'newRole',component: NewRoleComponent}
+          {path:'newRole',component: NewRoleComponent,pathMatch:'full'}
         ]},
     ]}
 ];

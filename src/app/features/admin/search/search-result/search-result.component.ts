@@ -13,6 +13,17 @@ export class SearchResultComponent implements OnInit {
 
   userModel:UserModel;
 
+  linkUpdateRoleAndGroup = [
+    {
+      title:"Update Groupe",
+      link:['addGroupe/']
+    },
+    {
+      title:"Update Role",
+      link:['addRole/']
+    }
+  ];
+
   /**
    * @param route
    * @param userService

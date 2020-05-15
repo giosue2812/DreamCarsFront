@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {RoleModel} from '../../../../core/models/RoleModel';
-import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../../../core/services/user.service';
 import {RoleService} from '../../../../core/services/role.service';
-import {UserModel} from '../../../../core/models/UserModel';
 import {UserRoleService} from '../../../../core/services/user-role.service';
 import {UserRoleModel} from '../../../../core/models/UserRoleModel';
 
@@ -18,7 +17,7 @@ export class AddRoleUserComponent implements OnInit {
   /**
    * A variable roleModel is to get a value from form
    */
-  roleModel:RoleModel[];
+  roleModel:RoleModel;
   userRoleModel:UserRoleModel;
   addRoleForm:FormGroup;
 
@@ -51,20 +50,22 @@ export class AddRoleUserComponent implements OnInit {
     this.addRoleForm = this.formBuilder.group({
       id_role:new FormControl('',[Validators.required])
     },{
-      // validators:[this.validForm()]
+      validators:[this.validForm()]
     })
   }
 
-  // validForm(){
-  //   return (role: FormGroup) => {
-  //     const rol = role.get('id_role').value;
-  //     this.userRoleService.getUserRole().subscribe(data =>{
-  //       this.userRoleModel = data;
-  //     });
-  //     const find = this.userRoleModel.data.role == rol;
-  //     return !find ? null : {roleAlreadyExist: true}
-  //   }
-  // }
+  validForm(){
+    return (role: FormGroup) => {
+      const rol = role.get('id_role').value;
+      this.userRoleService.getUserRole().subscribe(data =>{
+        this.userRoleModel = data;
+      });
+      if(rol) {
+        const find = this.userRoleModel.data.role == rol;
+        return !find ? null : {roleAlreadyExist: true}
+      }
+    }
+  }
 
   onSubmitFormRole(){
     this.userService.addRole(this.route.snapshot.paramMap.get('user'),this.addRoleForm.value);

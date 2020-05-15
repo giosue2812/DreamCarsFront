@@ -9,7 +9,7 @@ import {environment} from '../../../environments/environment';
 })
 export class RoleService implements OnDestroy{
 
-  private roles$ = new BehaviorSubject<RoleModel[]>([]);
+  private roles$ = new BehaviorSubject<RoleModel>(null);
   isLoading$ = new BehaviorSubject<boolean>(false);
 
   /**
@@ -20,15 +20,14 @@ export class RoleService implements OnDestroy{
   /**
    * This service return the all roles. Return a response type Observable role model
    */
-  getRoles():Observable<RoleModel[]>{
+  getRoles():Observable<RoleModel>{
     this.isLoading$.next(true);
-    this.httpClient.get<RoleModel[]>(environment.url+'roles').subscribe(data => {
+    this.httpClient.get<RoleModel>(environment.url+'roles').subscribe(data => {
       this.roles$.next(data);
       this.isLoading$.next(false);
     });
     return this.roles$;
   }
-
   /**
    * @param roleModel
    */
@@ -36,17 +35,13 @@ export class RoleService implements OnDestroy{
     this.isLoading$.next(true);
     this.httpClient.post<RoleModel>(environment.url+'role/addRole',roleModel)
       .subscribe(data => {
-        this.roles$.next([...this.roles$.getValue(), data]);
+        this.roles$.next(data);
+        console.log(data);
         this.isLoading$.next(false);
       });
-
-    // return this.roles$;
   }
 
   ngOnDestroy(): void {
     this.roles$.unsubscribe();
   }
-
-
-
 }

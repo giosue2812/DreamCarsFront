@@ -1,5 +1,5 @@
 <div class="row">
-  <form *ngIf="newRoleForm" class="col s12" (ngSubmit)="onSubmitForm()" [formGroup]="newRoleForm">
+  <form class="col s12" (ngSubmit)="onSubmitForm()" [formGroup]="newRoleForm">
     <div class="card">
       <div class="card-content">
           <input placeholder="Role" id="role" type="text" class="validate" formControlName="role" upperCase>

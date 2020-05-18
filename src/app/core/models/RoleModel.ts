@@ -6,6 +6,7 @@
     role: string;
     create_at: string;
     update_at?: any;
+    delete_at?: any;
   }
 
   export interface RoleModel {

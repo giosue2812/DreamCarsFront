@@ -12,7 +12,6 @@ import {toNumbers} from '@angular/compiler-cli/src/diagnostics/typescript_versio
 })
 export class RoleComponent implements OnInit {
 
-  @Input() idRole = 0;
   editRoleForm:FormGroup;
   roleModel:RoleModel;
 
@@ -51,7 +50,7 @@ export class RoleComponent implements OnInit {
         this.roleService.updateRole(idRole,this.editRoleForm.value)
   }
 
-  removeRole(roleId){
-    console.log(roleId);
+  removeRole(idRole){
+    this.roleService.removeRole(idRole);
   }
 }

@@ -19,9 +19,9 @@ export class NewRoleComponent implements OnInit {
     private roleService:RoleService) { }
 
   ngOnInit(): void {
+    this.initForm();
     this.roleService.getRoles().subscribe(data => {
       this.roleModel = data;
-      this.initForm();
     });
   }
 
@@ -35,7 +35,7 @@ export class NewRoleComponent implements OnInit {
     return (role: FormGroup) => {
       const rol = role.get('role').value;
       if(rol) {
-        const find = this.roleModel.data.find(r => r.role === rol);
+        const find = this.roleModel.data.find(r => r.role === rol && r.delete_at == null);
         return !find ? null : {roleAlreadyExist: true};
       }
     }

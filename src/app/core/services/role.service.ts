@@ -52,6 +52,13 @@ export class RoleService implements OnDestroy{
     return this.roles$;
   }
 
+  removeRole(idRole){
+    this.httpClient.delete<RoleModel>(environment.url+'role/removeRole/'+idRole).subscribe(
+      data => {
+        this.roles$.next(data);
+      });
+    return this.roles$;
+  }
   ngOnDestroy(): void {
     this.roles$.unsubscribe();
   }

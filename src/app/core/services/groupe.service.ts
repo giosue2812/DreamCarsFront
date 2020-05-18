@@ -37,8 +37,17 @@ export class GroupeService implements OnDestroy{
       data => {
         this.groupe$.next(data);
         this.isLoading$.next(false);
-      }
-    );
+      });
+  }
+
+  updateGroupe(idGroupe,groupeModel){
+    this.isLoading$.next(true);
+    this.httpClient.put<GroupeModel>(environment.url+'groupe/updateGroupe/'+idGroupe,groupeModel).subscribe(
+      data => {
+        this.groupe$.next(data);
+        this.isLoading$.next(false);
+      });
+    return this.groupe$;
   }
   ngOnDestroy(): void {
     this.groupe$.unsubscribe();

@@ -43,7 +43,8 @@ export class GroupeComponent implements OnInit {
     }
   }
 
-  onSubmitForm(idRole){
+  onSubmitForm(idGroupe){
+    this.groupeService.updateGroupe(idGroupe,this.editGroupeForm.value);
   }
 
   removeGroupe(idRole){

@@ -22,7 +22,7 @@
             <button (click)="removeGroupe(item.id_groupe)" class="waves-effect waves-effect btn">Delete</button>
             <input id="groupe" type="text" value="{{item.groupe}}" formControlName="groupe" upperCase>
             <label for="groupe">Groupe</label><br/>
-            <div *ngIf="editGroupeForm.errors && editGroupeForm.errors.roleAlreadyExist">This role already exists</div>
+            <div *ngIf="editGroupeForm.errors && editGroupeForm.errors.groupeAlreadyExist">This role already exists</div>
             <button class="btn waves-effect waves-light" type="submit" (click)="onSubmitForm(item.id_groupe)" *ngIf="editGroupeForm.valid">Update</button>
           </div>
         </ng-container>

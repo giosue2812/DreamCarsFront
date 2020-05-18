@@ -1,9 +1,8 @@
-import {AfterViewInit, Component, Input, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Route} from '@angular/router';
 import {RoleModel} from '../../../core/models/RoleModel';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {RoleService} from '../../../core/services/role.service';
-import {toNumbers} from '@angular/compiler-cli/src/diagnostics/typescript_version';
 
 @Component({
   selector: 'app-role',
@@ -21,14 +20,13 @@ export class RoleComponent implements OnInit {
     private formBuilder:FormBuilder) { }
 
   ngOnInit(): void {
+      this.initForm();
       this.roleService.getRoles().subscribe(data => {
         this.roleModel = data;
-        this.initForm();
       });
   }
 
-  initForm()
-  {
+  initForm(){
     this.editRoleForm = this.formBuilder.group({
       role: new FormControl('', [Validators.required])
     }, {

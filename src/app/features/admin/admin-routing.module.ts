@@ -10,6 +10,7 @@ import {SearchResultComponent} from './search/search-result/search-result.compon
 import {AddGroupeUserComponent} from './search/add-groupe-user/add-groupe-user.component';
 import {AddRoleUserComponent} from './search/add-role-user/add-role-user.component';
 import {NewRoleComponent} from './role/new-role/new-role.component';
+import {NewGroupeComponent} from './groupe/new-groupe/new-groupe.component';
 
 const routes: Routes = [
 
@@ -24,9 +25,11 @@ const routes: Routes = [
               {path:'addRole/:user', component: AddRoleUserComponent}
             ]},
         ]},
-      {path:'groupe',component: GroupeComponent},
+      {path:'groupe',component: GroupeComponent,children: [
+          {path:'newGroupe',component: NewGroupeComponent}
+        ]},
       {path:'role',component: RoleComponent,children: [
-          {path:'newRole',component: NewRoleComponent,pathMatch:'full'}
+          {path:'newRole',component: NewRoleComponent}
         ]},
     ]}
 ];

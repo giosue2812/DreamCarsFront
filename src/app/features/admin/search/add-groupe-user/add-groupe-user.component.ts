@@ -15,7 +15,7 @@ export class AddGroupeUserComponent implements OnInit {
   /**
    * A variable groupeModel is to get a value from form
    */
-  groupeModel:GroupeModel[];
+  groupeModel:GroupeModel;
   userModel:UserModel;
   addGroupeForm:FormGroup;
 
@@ -35,7 +35,7 @@ export class AddGroupeUserComponent implements OnInit {
    * This subscribe get a parms from route "groueAll" and push into groupeModelChioce.
    */
   ngOnInit(): void {
-    this.groupeService.getGroupe().subscribe(data => {
+    this.groupeService.getGroupes().subscribe(data => {
       this.groupeModel = data;
       this.initForm();
     });

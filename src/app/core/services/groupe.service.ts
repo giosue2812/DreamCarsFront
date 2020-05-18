@@ -49,6 +49,16 @@ export class GroupeService implements OnDestroy{
       });
     return this.groupe$;
   }
+
+  removeGroupe(idGroupe){
+    this.isLoading$.next(true);
+    this.httpClient.delete<GroupeModel>(environment.url+'groupe/removeGroupe/'+idGroupe).subscribe(
+      data => {
+        this.groupe$.next(data);
+        this.isLoading$.next(false);
+      });
+    return this.groupe$;
+  }
   ngOnDestroy(): void {
     this.groupe$.unsubscribe();
   }

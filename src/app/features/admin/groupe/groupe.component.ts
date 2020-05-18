@@ -47,6 +47,7 @@ export class GroupeComponent implements OnInit {
     this.groupeService.updateGroupe(idGroupe,this.editGroupeForm.value);
   }
 
-  removeGroupe(idRole){
+  removeGroupe(idGroupe){
+    this.groupeService.removeGroupe(idGroupe);
   }
 }

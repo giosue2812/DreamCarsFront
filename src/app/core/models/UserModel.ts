@@ -1,5 +1,3 @@
-import {BaseModel} from './BaseModel';
-
 export interface Data {
     id: number;
     create_at: string;

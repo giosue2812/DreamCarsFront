@@ -14,6 +14,7 @@ import { AddRoleUserComponent } from './search/add-role-user/add-role-user.compo
 import {CoreModule} from '../../core/core.module';
 import {NgxUpperCaseDirectiveModule} from 'ngx-upper-case-directive';
 import { NewRoleComponent } from './role/new-role/new-role.component';
+import { NewGroupeComponent } from './groupe/new-groupe/new-groupe.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { NewRoleComponent } from './role/new-role/new-role.component';
     SearchResultComponent,
     AddGroupeUserComponent,
     AddRoleUserComponent,
-    NewRoleComponent
+    NewRoleComponent,
+    NewGroupeComponent
   ],
   imports: [
     CommonModule,

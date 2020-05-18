@@ -13,12 +13,10 @@ import {UserModel} from '../models/UserModel';
 export class UserService implements OnDestroy{
   user$ = new BehaviorSubject<UserModel>(null);
   isLoading$ = new BehaviorSubject<boolean>(false);
-
   /**
    * Variable id type user model to recupe the id from user
    */
   id:UserModel;
-
   /**
    * @param httpClient
    * @param sessionService
@@ -44,17 +42,17 @@ export class UserService implements OnDestroy{
    * This service update the user. First a get the id user.After a put the new modification
    */
   updateUser(userModel:UserModel[]){
-   this.getIdUser().subscribe(
+    this.getIdUser().subscribe(
       data => {
-        // this.id.data.id = data;
+        this.id = data;
       },
-     error => {
+      error => {
         console.log('Erreur : '+error);
-     }
+      }
     );
 
     return this.httpClient
-      .put(environment.url+'user/update/'+this.id,userModel).subscribe()
+      .put(environment.url+'user/update/'+this.id.data.id,userModel).subscribe()
   }
 
   /**

@@ -35,8 +35,7 @@ export class UserSetupComponent implements OnInit {
   /**
    * @param form
    */
-  onSubmitForm(form: NgForm){
-    return this.userService.updateUser(form.value);
+  onSubmitForm(form:NgForm){
+    this.userService.updateUser(form.value);
    }
-
 }

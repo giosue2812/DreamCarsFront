@@ -18,7 +18,7 @@
           <div class="card-content">
             <label for="group">Groupe</label>
             <select id="group" class="browser-default" formControlName="groupe">
-              <option *ngFor="let group of groupeModel" value="{{group.groupe}}">{{group.groupe}}</option>
+              <option *ngFor="let group of groupeModel.data" value="{{group.groupe}}">{{group.groupe}}</option>
             </select>
             <div *ngIf="addGroupeForm.errors && addGroupeForm.errors.groupeAlreadyExist">The groupe is already present</div>
           </div>

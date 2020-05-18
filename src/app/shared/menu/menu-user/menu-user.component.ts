@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {UserModelArray} from '../../../core/models/UserModelArray';
 import {SessionService} from '../../../core/services/session.service';
 import {Router} from '@angular/router';
 
@@ -10,7 +9,6 @@ import {Router} from '@angular/router';
 })
 export class MenuUserComponent implements OnInit {
 
-  user: UserModelArray;
 
   menu = [
     {

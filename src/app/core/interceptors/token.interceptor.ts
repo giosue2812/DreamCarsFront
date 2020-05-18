@@ -3,10 +3,12 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
+  HttpHeaders
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {SessionService} from '../services/session.service';
+import {Session} from 'protractor';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {

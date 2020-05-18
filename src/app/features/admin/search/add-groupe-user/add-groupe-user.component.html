@@ -1,13 +1,29 @@
     <div class="input-field col s12">
-      <form [formGroup]="addGroupeForm" (ngSubmit)="onSubmitFormGroupe()">
+      <form *ngIf="addGroupeForm" [formGroup]="addGroupeForm" (ngSubmit)="onSubmitFormGroupe()">
+        <ng-container *ngIf="groupeService.isLoading$|async;else isLoaded">
+          <div class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-blue-only">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #isLoaded>
         <div class="card">
           <div class="card-content">
             <label for="group">Groupe</label>
-            <select id="group" class="browser-default" [(ngModel)]="groupeModel" formControlName="groupe">
-              <option *ngFor="let group of groupeModelChoice" value="{{group.groupe}}">{{group.groupe}}</option>
+            <select id="group" class="browser-default" formControlName="groupe">
+              <option *ngFor="let group of groupeModel" value="{{group.groupe}}">{{group.groupe}}</option>
             </select>
+            <div *ngIf="addGroupeForm.errors && addGroupeForm.errors.groupeAlreadyExist">The groupe is already present</div>
           </div>
-          <button type="submit" class="waves-effect waves-light btn col s5" [disabled]="addGroupeForm.invalid">Update</button>
+          <button type="submit" class="waves-effect waves-light btn col s5" *ngIf="addGroupeForm.valid">Update</button>
         </div>
+        </ng-template>
       </form>
     </div>

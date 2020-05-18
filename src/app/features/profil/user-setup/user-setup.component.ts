@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {UserService} from '../../../core/services/user.service';
-import {UserModelArray} from '../../../core/models/UserModelArray';
-import {UserModelObject} from '../../../core/models/UserModelObject';
+import {UserModel} from '../../../core/models/UserModel';
 
 @Component({
   selector: 'app-user-setup',
@@ -11,7 +10,7 @@ import {UserModelObject} from '../../../core/models/UserModelObject';
 })
 export class UserSetupComponent implements OnInit {
 
-  userModel: UserModelObject;
+  userModel: UserModel;
 
   /**
    *

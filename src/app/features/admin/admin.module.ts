@@ -11,6 +11,9 @@ import { SearchFormComponent } from './search/search-form/search-form.component'
 import { SearchResultComponent } from './search/search-result/search-result.component';
 import { AddGroupeUserComponent } from './search/add-groupe-user/add-groupe-user.component';
 import { AddRoleUserComponent } from './search/add-role-user/add-role-user.component';
+import {CoreModule} from '../../core/core.module';
+import {NgxUpperCaseDirectiveModule} from 'ngx-upper-case-directive';
+import { NewRoleComponent } from './role/new-role/new-role.component';
 
 
 @NgModule({
@@ -23,13 +26,16 @@ import { AddRoleUserComponent } from './search/add-role-user/add-role-user.compo
     SearchFormComponent,
     SearchResultComponent,
     AddGroupeUserComponent,
-    AddRoleUserComponent
+    AddRoleUserComponent,
+    NewRoleComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    CoreModule,
+    NgxUpperCaseDirectiveModule
   ]
 })
 export class AdminModule { }

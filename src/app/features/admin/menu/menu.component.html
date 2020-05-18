@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-content">
     <ul class="collection">
-      <li class="collection-item" *ngFor="let item of menu"><a routerLink="{{item.link}}" routerLinkActive="is-active">{{item.title}}</a></li>
+      <li class="collection-item" *ngFor="let item of menu"><a [routerLink]="item.link" routerLinkActive="is-active">{{item.title}}</a></li>
     </ul>
   </div>
 </div>

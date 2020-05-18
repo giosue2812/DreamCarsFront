@@ -2,24 +2,24 @@
       <div class="card">
         <div class="card-content">
           <ul class="collection">
-            <ng-container *ngIf="userModelObject">
-              <li class="collection-item">First Name : {{userModelObject.data.firstName}}</li>
-              <li class="collection-item">Last Name : {{userModelObject.data.lastName}}</li>
-              <li class="collection-item">Street : {{userModelObject.data.street}} {{userModelObject.data.number}}</li>
-              <li class="collection-item">Code Postal : {{userModelObject.data.postalCode}} {{userModelObject.data.city}}</li>
-              <li class="collection-item">Phone : {{userModelObject.data.phone}}</li>
-              <li class="collection-item">Email : {{userModelObject.data.email}}</li>
-              <li class="collection-item">Create since: {{userModelObject.data.create_at|date:'dd-MM-yyyy'}}</li>
-              <li class="collection-item">Last Update : {{userModelObject.data.update_at}}</li>
-              <ng-container *ngIf="userModelObject.data.groupe.length">
+            <ng-container *ngIf="userModel">
+              <li class="collection-item">First Name : {{userModel.data.firstName}}</li>
+              <li class="collection-item">Last Name : {{userModel.data.lastName}}</li>
+              <li class="collection-item">Street : {{userModel.data.street}} {{userModel.data.number}}</li>
+              <li class="collection-item">Code Postal : {{userModel.data.postalCode}} {{userModel.data.city}}</li>
+              <li class="collection-item">Phone : {{userModel.data.phone}}</li>
+              <li class="collection-item">Email : {{userModel.data.email}}</li>
+              <li class="collection-item">Create since: {{userModel.data.create_at|date:'dd-MM-yyyy'}}</li>
+              <li class="collection-item">Last Update : {{userModel.data.update_at}}</li>
+              <ng-container *ngIf="userModel.data.groupe.length">
                 Groupe :
-                <ul *ngFor="let gr of userModelObject.data.groupe">
+                <ul *ngFor="let gr of userModel.data.groupe">
                   <li class="collection-item">{{gr}}</li>
                 </ul>
               </ng-container>
-              <ng-container *ngIf="userModelObject.data.user_roles.length">
+              <ng-container *ngIf="userModel.data.user_roles.length">
                 Role:
-                <ul *ngFor="let rl of userModelObject.data.user_roles">
+                <ul *ngFor="let rl of userModel.data.user_roles">
                   <ng-container *ngIf="rl[3] == null">
                   <li class="collection-item">{{rl[1]}}</li>
                   </ng-container>

@@ -1,9 +1,16 @@
-import {BaseModel} from './BaseModel';
-
 /**
  * This interface define role object. This interface extend BaseModel
  */
-export interface RoleModel extends BaseModel{
-  id_role:number;
-  role:string;
-}
+  export interface Data {
+    id_role: number;
+    role: string;
+    create_at: string;
+    update_at?: any;
+    delete_at?: any;
+  }
+
+  export interface RoleModel {
+    code: number;
+    status: string;
+    data: Data[];
+  }

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../../../core/services/user.service';
 import {Router} from '@angular/router';
+import {$t} from 'codelyzer/angular/styles/chars';
 
 @Component({
   selector: 'app-search-form',
@@ -37,9 +38,9 @@ export class SearchFormComponent implements OnInit {
   }
 
   /**
-   * Submit search to the route. This route is a resolver
+   * Submit search to the route.
    */
   onSubmitForm() {
-    this.router.navigateByUrl('admin/search/result/' + this.searchGroup.get('search').value);
+    this.router.navigateByUrl('/admin/search/result/'+this.searchGroup.get('search').value);
   }
 }

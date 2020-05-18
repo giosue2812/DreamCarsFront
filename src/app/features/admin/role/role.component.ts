@@ -1,8 +1,9 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit, Output} from '@angular/core';
 import {ActivatedRoute, Route} from '@angular/router';
 import {RoleModel} from '../../../core/models/RoleModel';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {RoleService} from '../../../core/services/role.service';
+import {toNumbers} from '@angular/compiler-cli/src/diagnostics/typescript_version';
 
 @Component({
   selector: 'app-role',
@@ -11,6 +12,7 @@ import {RoleService} from '../../../core/services/role.service';
 })
 export class RoleComponent implements OnInit {
 
+  @Input() idRole = 0;
   editRoleForm:FormGroup;
   roleModel:RoleModel;
 
@@ -45,16 +47,8 @@ export class RoleComponent implements OnInit {
     }
   }
 
-  onSubmitForm(){
-    if (this.editRoleForm.valid) {
-      let id_role = 0;
-      this.roleModel.data.forEach(function(element) {
-        id_role = element.id_role
-      });
-     return this.roleService.updateRole(id_role,this.editRoleForm.value).subscribe(data => {
-       this.roleModel = data;
-     });
-    }
+  onSubmitForm(idRole){
+        this.roleService.updateRole(idRole,this.editRoleForm.value)
   }
 
   removeRole(roleId){

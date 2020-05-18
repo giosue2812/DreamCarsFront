@@ -1,5 +1,5 @@
 <h4>Role List</h4>
-<form *ngIf="editRoleForm" (ngSubmit)="onSubmitForm()" [formGroup]="editRoleForm">
+<form *ngIf="editRoleForm" [formGroup]="editRoleForm">
   <ng-container *ngIf="roleService.isLoading$|async; else isLoaded">
     <div class="preloader-wrapper big active">
       <div class="spinner-layer spinner-blue-only">
@@ -22,7 +22,7 @@
           <input id="role" type="text" value="{{item.role}}" formControlName="role" upperCase>
           <label for="role">Role</label><br/>
           <div *ngIf="editRoleForm.errors && editRoleForm.errors.roleAlreadyExist">This role already exists</div>
-          <button class="btn waves-effect waves-light" type="submit" *ngIf="editRoleForm.valid">Update</button>
+          <button class="btn waves-effect waves-light" type="submit" (click)="onSubmitForm(item.id_role)" *ngIf="editRoleForm.valid">Update</button>
         </div>
         </li>
     </ul>

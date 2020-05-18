@@ -42,10 +42,10 @@ export class RoleService implements OnDestroy{
 
   /**
    * @param idRole
-   * @param roleModel
+   * @param role
    */
-  updateRole(idRole,roleModel){
-    this.httpClient.put<RoleModel>(environment.url+'role/updateRole'+idRole,roleModel)
+  updateRole(idRole,role){
+    this.httpClient.put<RoleModel>(environment.url+'role/updateRole/'+idRole,role)
       .subscribe(data => {
         this.roles$.next(data);
       });

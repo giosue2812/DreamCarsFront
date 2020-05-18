@@ -40,7 +40,7 @@ export class NewGroupeComponent implements OnInit {
   }
 
   onSubmitForm(){
-    console.log(this.newGroupeForm.value);
+    this.groupeService.newGroupe(this.newGroupeForm.value);
   }
 
 }

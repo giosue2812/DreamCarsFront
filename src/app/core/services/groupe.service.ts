@@ -28,6 +28,18 @@ export class GroupeService implements OnDestroy{
     return this.groupe$;
   }
 
+  /**
+   * @param groupeModel
+   */
+  newGroupe(groupeModel){
+    this.isLoading$.next(true);
+    this.httpClient.post<GroupeModel>(environment.url+'groupe/addGroupe',groupeModel).subscribe(
+      data => {
+        this.groupe$.next(data);
+        this.isLoading$.next(false);
+      }
+    );
+  }
   ngOnDestroy(): void {
     this.groupe$.unsubscribe();
   }

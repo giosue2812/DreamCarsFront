@@ -9,7 +9,7 @@ import {environment} from '../../../environments/environment';
 })
 export class GroupeService implements OnDestroy{
 
-  private groupe$ = new BehaviorSubject<GroupeModel>(null);
+  private groupe$ = new BehaviorSubject<GroupeModel[]>([]);
   isLoading$ = new BehaviorSubject<boolean>(false);
   /**
    * @param httpClient
@@ -19,9 +19,9 @@ export class GroupeService implements OnDestroy{
   /**
    * This service request all groupe from server. This return a groupe model
    */
-  getGroupes():Observable<GroupeModel>{
+  getGroupes():Observable<GroupeModel[]>{
     this.isLoading$.next(true);
-    this.httpClient.get<GroupeModel>(environment.url+'groupe').subscribe(data => {
+    this.httpClient.get<GroupeModel[]>(environment.url+'groupe').subscribe(data => {
       this.groupe$.next(data);
       this.isLoading$.next(false);
       });
@@ -33,7 +33,7 @@ export class GroupeService implements OnDestroy{
    */
   newGroupe(groupeModel){
     this.isLoading$.next(true);
-    this.httpClient.post<GroupeModel>(environment.url+'groupe/addGroupe',groupeModel).subscribe(
+    this.httpClient.post<GroupeModel[]>(environment.url+'groupe/addGroupe',groupeModel).subscribe(
       data => {
         this.groupe$.next(data);
         this.isLoading$.next(false);
@@ -42,7 +42,7 @@ export class GroupeService implements OnDestroy{
 
   updateGroupe(idGroupe,groupeModel){
     this.isLoading$.next(true);
-    this.httpClient.put<GroupeModel>(environment.url+'groupe/updateGroupe/'+idGroupe,groupeModel).subscribe(
+    this.httpClient.put<GroupeModel[]>(environment.url+'groupe/updateGroupe/'+idGroupe,groupeModel).subscribe(
       data => {
         this.groupe$.next(data);
         this.isLoading$.next(false);
@@ -52,7 +52,7 @@ export class GroupeService implements OnDestroy{
 
   removeGroupe(idGroupe){
     this.isLoading$.next(true);
-    this.httpClient.delete<GroupeModel>(environment.url+'groupe/removeGroupe/'+idGroupe).subscribe(
+    this.httpClient.delete<GroupeModel[]>(environment.url+'groupe/removeGroupe/'+idGroupe).subscribe(
       data => {
         this.groupe$.next(data);
         this.isLoading$.next(false);

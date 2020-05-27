@@ -12,7 +12,7 @@ import {RoleService} from '../../../core/services/role.service';
 export class RoleComponent implements OnInit {
 
   editRoleForm:FormGroup;
-  roleModel:RoleModel;
+  roleModel:RoleModel[];
 
   constructor(
     public roleService: RoleService,
@@ -38,7 +38,7 @@ export class RoleComponent implements OnInit {
     return (role: FormGroup) => {
       const rol = role.get('role').value;
       if(rol) {
-        const find = this.roleModel.data.find(r => r.role === rol);
+        const find = this.roleModel.find(r => r.role === rol && r.delete_at == null);
         return !find ? null : {roleAlreadyExist: true};
       }
     }

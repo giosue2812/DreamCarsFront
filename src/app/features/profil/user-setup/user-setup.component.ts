@@ -10,7 +10,7 @@ import {UserModel} from '../../../core/models/UserModel';
 })
 export class UserSetupComponent implements OnInit {
 
-  userModel: UserModel;
+  userModel: UserModel[];
 
   /**
    *

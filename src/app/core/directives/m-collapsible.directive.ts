@@ -6,7 +6,9 @@ declare const M:any;
   selector: '[mCollapsible]'
 })
 export class MCollapsibleDirective implements AfterViewInit, OnDestroy {
+
   private instance: any;
+
   constructor(private elRef: ElementRef<HTMLDivElement>) { }
 
   ngAfterViewInit(): void {

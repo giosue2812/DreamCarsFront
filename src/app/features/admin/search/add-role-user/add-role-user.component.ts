@@ -6,6 +6,7 @@ import {UserService} from '../../../../core/services/user.service';
 import {RoleService} from '../../../../core/services/role.service';
 import {UserRoleService} from '../../../../core/services/user-role.service';
 import {UserRoleModel} from '../../../../core/models/UserRoleModel';
+import {GroupeModel} from '../../../../core/models/GroupeModel';
 
 
 @Component({
@@ -17,8 +18,8 @@ export class AddRoleUserComponent implements OnInit {
   /**
    * A variable roleModel is to get a value from form
    */
-  roleModel:RoleModel;
-  userRoleModel:UserRoleModel;
+  roleModel:RoleModel[];
+  userRoleModel:UserRoleModel[];
   addRoleForm:FormGroup;
 
   /**
@@ -61,9 +62,12 @@ export class AddRoleUserComponent implements OnInit {
         this.userRoleModel = data;
       });
       if(rol) {
-        const find = this.userRoleModel.data.role == rol;
+        const userId = parseInt(this.route.snapshot.paramMap.get('user'));
+        const find = this.userRoleModel.find(r => r.role == rol && r.end_date == null && r.user == userId) ;
+        console.log(find);
+        console.log(this.userRoleModel);
         return !find ? null : {roleAlreadyExist: true}
-      }
+    }
     }
   }
 

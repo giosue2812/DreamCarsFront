@@ -1,4 +1,4 @@
-export interface Data {
+export interface UserModel {
     id: number;
     create_at: string;
     update_at?: any;
@@ -13,10 +13,4 @@ export interface Data {
     country: string;
     groupe: string[];
     user_roles: any[][];
-  }
-
-  export interface UserModel {
-    code: number;
-    status: string;
-    data: Data;
   }

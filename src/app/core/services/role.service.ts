@@ -9,7 +9,7 @@ import {environment} from '../../../environments/environment';
 })
 export class RoleService implements OnDestroy{
 
-  private roles$ = new BehaviorSubject<RoleModel>(null);
+  private roles$ = new BehaviorSubject<RoleModel[]>([]);
   isLoading$ = new BehaviorSubject<boolean>(false);
 
   /**
@@ -20,9 +20,9 @@ export class RoleService implements OnDestroy{
   /**
    * This service return the all roles. Return a response type Observable role model
    */
-  getRoles():Observable<RoleModel>{
+  getRoles():Observable<RoleModel[]>{
     this.isLoading$.next(true);
-    this.httpClient.get<RoleModel>(environment.url+'roles').subscribe(data => {
+    this.httpClient.get<RoleModel[]>(environment.url+'roles').subscribe(data => {
       this.roles$.next(data);
       this.isLoading$.next(false);
     });
@@ -33,7 +33,7 @@ export class RoleService implements OnDestroy{
    */
   newRole(roleModel){
     this.isLoading$.next(true);
-    this.httpClient.post<RoleModel>(environment.url+'role/addRole',roleModel)
+    this.httpClient.post<RoleModel[]>(environment.url+'role/addRole',roleModel)
       .subscribe(data => {
         this.roles$.next(data);
         this.isLoading$.next(false);
@@ -45,7 +45,7 @@ export class RoleService implements OnDestroy{
    * @param role
    */
   updateRole(idRole,role){
-    this.httpClient.put<RoleModel>(environment.url+'role/updateRole/'+idRole,role)
+    this.httpClient.put<RoleModel[]>(environment.url+'role/updateRole/'+idRole,role)
       .subscribe(data => {
         this.roles$.next(data);
       });
@@ -53,7 +53,7 @@ export class RoleService implements OnDestroy{
   }
 
   removeRole(idRole){
-    this.httpClient.delete<RoleModel>(environment.url+'role/removeRole/'+idRole).subscribe(
+    this.httpClient.delete<RoleModel[]>(environment.url+'role/removeRole/'+idRole).subscribe(
       data => {
         this.roles$.next(data);
       });

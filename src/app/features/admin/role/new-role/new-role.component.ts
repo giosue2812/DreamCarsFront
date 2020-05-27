@@ -12,7 +12,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class NewRoleComponent implements OnInit {
 
   newRoleForm:FormGroup;
-  roleModel:RoleModel;
+  roleModel:RoleModel[];
 
   constructor(
     private formBuilder:FormBuilder,
@@ -35,7 +35,7 @@ export class NewRoleComponent implements OnInit {
     return (role: FormGroup) => {
       const rol = role.get('role').value;
       if(rol) {
-        const find = this.roleModel.data.find(r => r.role === rol && r.delete_at == null);
+        const find = this.roleModel.find(r => r.role === rol && r.delete_at == null);
         return !find ? null : {roleAlreadyExist: true};
       }
     }

@@ -15,7 +15,7 @@
   </ng-container>
   <ng-template #isLoaded>
     <ul mCollapsible class="collapsible">
-      <li *ngFor="let item of groupeModel.data">
+      <li *ngFor="let item of groupeModel">
         <ng-container *ngIf="item.delete_at == null">
           <div class="collapsible-header">{{item.groupe}} - Created at : {{item.create_at}} - Last Update - {{item.update_at}}</div>
           <div class="collapsible-body">

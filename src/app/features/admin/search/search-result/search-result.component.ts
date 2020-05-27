@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Data, Route, Router} from '@angular/router';
 import {UserService} from '../../../../core/services/user.service';
 import {UserModel} from '../../../../core/models/UserModel';
+import {GroupeModel} from '../../../../core/models/GroupeModel';
 
 
 @Component({
@@ -11,7 +12,7 @@ import {UserModel} from '../../../../core/models/UserModel';
 })
 export class SearchResultComponent implements OnInit {
 
-  userModel:UserModel;
+  userModel:UserModel[];
 
   linkUpdateRoleAndGroup = [
     {

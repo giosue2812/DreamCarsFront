@@ -9,7 +9,7 @@ import {UserModel} from '../../../core/models/UserModel';
 })
 export class UserDetailComponent implements OnInit {
 
-  userModel: UserModel;
+  userModel: UserModel[];
 
   /**
    *

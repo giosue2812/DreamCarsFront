@@ -6,17 +6,19 @@ import {SessionService} from './session.service';
 import {GroupeModel} from '../models/GroupeModel';
 import {RoleModel} from '../models/RoleModel';
 import {UserModel} from '../models/UserModel';
+import {UserRoleModel} from '../models/UserRoleModel';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService implements OnDestroy{
-  user$ = new BehaviorSubject<UserModel>(null);
+  userArray$ = new BehaviorSubject<UserModel[]>([]);
+  userRoleModel$ = new BehaviorSubject<UserRoleModel>(null)
   isLoading$ = new BehaviorSubject<boolean>(false);
   /**
    * Variable id type user model to recupe the id from user
    */
-  id:UserModel;
+  id:UserModel[];
   /**
    * @param httpClient
    * @param sessionService
@@ -26,14 +28,14 @@ export class UserService implements OnDestroy{
   /**
    * We get the user id from the server.
    */
-  getIdUser(): Observable<UserModel>{
+  getIdUser(): Observable<UserModel[]>{
     this.httpClient
-      .get<UserModel>(environment.url+'user/'+this.sessionService.username).subscribe(
+      .get<UserModel[]>(environment.url+'user/'+this.sessionService.username).subscribe(
         data => {
-          this.user$.next(data);
+          this.userArray$.next(data);
         }
       );
-    return this.user$;
+    return this.userArray$;
   }
 
   /**
@@ -41,7 +43,7 @@ export class UserService implements OnDestroy{
    * Update UserDetails
    * This service update the user. First a get the id user.After a put the new modification
    */
-  updateUser(userModel:UserModel[]){
+  updateUser(userModel:UserModel){
     this.getIdUser().subscribe(
       data => {
         this.id = data;
@@ -52,32 +54,32 @@ export class UserService implements OnDestroy{
     );
 
     return this.httpClient
-      .put(environment.url+'user/update/'+this.id.data.id,userModel).subscribe()
+      .put(environment.url+'user/update/'+this.id,userModel).subscribe()
   }
 
   /**
    * @param id
    */
-  getUserById(id:string):Observable<UserModel>{
+  getUserById(id:string):Observable<UserModel[]>{
     this.isLoading$.next(true);
     this.httpClient
-      .get<UserModel>(environment.url+'userID/'+id).subscribe(data => {
-        this.user$.next(data);
+      .get<UserModel[]>(environment.url+'userID/'+id).subscribe(data => {
+        this.userArray$.next(data);
         this.isLoading$.next(false);
     });
-    return this.user$;
+    return this.userArray$;
   }
   /**
    * @param user
    * I get a user if exist
    */
-  getUser(user):Observable<UserModel>{
+  getUser(user):Observable<UserModel[]>{
     this.isLoading$.next(true);
-    this.httpClient.get<UserModel>(environment.url+'user/search/giosue').subscribe(data => {
-      this.user$.next(data);
+    this.httpClient.get<UserModel[]>(environment.url+'user/search/'+user).subscribe(data => {
+      this.userArray$.next(data);
       this.isLoading$.next(false);
     });
-    return this.user$;
+    return this.userArray$;
   }
   /**
    *
@@ -87,8 +89,8 @@ export class UserService implements OnDestroy{
    */
   addGroupe(userId,groupeModel:GroupeModel){
     this.isLoading$.next(true);
-    this.httpClient.put<UserModel>(environment.url+'user/addGroupe/'+userId,groupeModel).subscribe(data =>{
-      this.user$.next(data);
+    this.httpClient.put<UserModel[]>(environment.url+'user/addGroupe/'+userId,groupeModel).subscribe(data =>{
+      this.userArray$.next(data);
       this.isLoading$.next(false);
     });
   }
@@ -99,9 +101,13 @@ export class UserService implements OnDestroy{
    */
   addRole(userId,roleModel:RoleModel){
     this.isLoading$.next(true);
-    return this.httpClient.put<UserModel>(environment.url+'user/addRole/'+userId,roleModel).subscribe(
+    this.httpClient.put<UserRoleModel>(environment.url+'user/addRole/'+userId,roleModel).subscribe(
       data => {
-        this.user$.next(data);
+        this.httpClient.get<UserModel[]>(environment.url+'userID/'+data.user).subscribe(
+          data => {
+            this.userArray$.next(data);
+          }
+        );
         this.isLoading$.next(false);
       }
     );
@@ -113,10 +119,11 @@ export class UserService implements OnDestroy{
    */
   removeGroupe(userId,groupe){
     this.isLoading$.next(true);
-    this.httpClient.delete<UserModel>(environment.url+'user/removeGroupe/'+userId+'/'+groupe).subscribe(data => {
-      this.user$.next(data);
+    this.httpClient.delete<UserModel[]>(environment.url+'user/removeGroupe/'+userId+'/'+groupe).subscribe(data => {
+      this.userArray$.next(data);
       this.isLoading$.next(false);
     });
+    return this.userArray$;
   }
 
   /**
@@ -124,15 +131,19 @@ export class UserService implements OnDestroy{
    */
   removeRole(roleId){
     this.isLoading$.next(true);
-    return this.httpClient.delete<UserModel>(environment.url+'user/updateUserRole/'+roleId).subscribe(
+    return this.httpClient.delete<UserRoleModel>(environment.url+'user/updateUserRole/'+roleId).subscribe(
       data => {
-        this.user$.next(data);
-        this.isLoading$.next(false)
+        this.httpClient.get<UserModel[]>(environment.url+'userID/'+data.user).subscribe(
+          data => {
+            this.userArray$.next(data);
+          }
+        );
+        this.isLoading$.next(false);
       }
     );
   }
 
   ngOnDestroy(): void {
-    this.user$.unsubscribe();
+    this.userArray$.unsubscribe();
   }
 }

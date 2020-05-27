@@ -1,17 +1,19 @@
-  <ul class="collection" *ngIf="userModel">
-    <li class="collection-item">User : {{userModel.data.firstName}} {{userModel.data.lastName}}</li>
-    <li class="collection-item">Email : {{userModel.data.email}}</li>
-    <li class="collection-item">Street : {{userModel.data.street}} {{userModel.data.number}}</li>
-    <li class="collection-item">City/Code Postal : {{userModel.data.city}} {{userModel.data.postalCode}}</li>
-    <li class="collection-item">Phone : {{userModel.data.phone}}</li>
-    <li class="collection-item">Actif depuis : {{userModel.data.create_at|date:'dd-MM-yyyy'}}</li>
 
-    <li class="collection-item" *ngFor="let group of userModel.data.groupe">
+<ng-container *ngIf="userModel">
+  <ul class="collection" *ngFor="let item of userModel">
+    <li class="collection-item">User : {{item.firstName}} {{item.lastName}}</li>
+    <li class="collection-item">Email : {{item.email}}</li>
+    <li class="collection-item">Street : {{item.street}} {{item.number}}</li>
+    <li class="collection-item">City/Code Postal : {{item.city}} {{item.postalCode}}</li>
+    <li class="collection-item">Phone : {{item.phone}}</li>
+    <li class="collection-item">Actif depuis : {{item.create_at|date:'dd-MM-yyyy'}}</li>
+
+    <li class="collection-item" *ngFor="let group of item.groupe">
       Groupe :<br/> {{group}}
-      <button (click)="onRemoveGroupe(userModel.data.id,group)" class="waves-effect waves-light secondary-content">Delete</button>
+      <button (click)="onRemoveGroupe(item.id,group)" class="waves-effect waves-light secondary-content">Delete</button>
     </li>
 
-    <ng-container *ngFor="let role of userModel.data.user_roles">
+    <ng-container *ngFor="let role of item.user_roles">
       <li class="collection-item" *ngIf="role[3] == null">
         Role Temporaire :<br/>
         {{role[1]}} - Actif depuis {{role[2]|date:'dd-MM-yyyy'}}
@@ -19,9 +21,10 @@
       </li>
     </ng-container>
     <li class="collection-item" *ngFor="let link of linkUpdateRoleAndGroup">
-      <a [routerLink]="link.link+userModel.data.id" class="waves-effect waves-light btn">{{link.title}}</a>
+      <a [routerLink]="link.link+item.id" class="waves-effect waves-light btn">{{link.title}}</a>
     </li>
   </ul>
   <div class="row">
   <router-outlet></router-outlet>
   </div>
+</ng-container>

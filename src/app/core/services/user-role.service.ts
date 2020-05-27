@@ -9,7 +9,7 @@ import {environment} from '../../../environments/environment';
 })
 export class UserRoleService {
 
-  private userRole$ = new BehaviorSubject<UserRoleModel>(null);
+  private userRole$ = new BehaviorSubject<UserRoleModel[]>([]);
   private isLoading = new BehaviorSubject<boolean>(false);
 
   constructor(private httpClient:HttpClient) { }
@@ -17,7 +17,7 @@ export class UserRoleService {
   getUserRole(){
     this.isLoading.next(true);
     this.httpClient
-      .get<UserRoleModel>(environment.url+'userRole').subscribe(data => {
+      .get<UserRoleModel[]>(environment.url+'userRole').subscribe(data => {
         this.userRole$.next(data);
         this.isLoading.next(false);
     });

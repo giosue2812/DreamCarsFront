@@ -27,9 +27,12 @@ export class IsAdminGuard implements CanActivate {
     if(!this.sessionService.isAdmin)
     {
       this.router.navigateByUrl('/home');
+      throw new DOMException('The user is not admin');
     }
-
-    return true
+    else
+    {
+      return true
+    }
   }
 
 }

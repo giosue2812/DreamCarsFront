@@ -11,7 +11,7 @@ import {GroupeService} from '../../../../core/services/groupe.service';
 export class NewGroupeComponent implements OnInit {
 
   newGroupeForm:FormGroup;
-  groupeModel:GroupeModel;
+  groupeModel:GroupeModel[];
 
   constructor(private formBuilder:FormBuilder,
               private groupeService:GroupeService) { }
@@ -33,7 +33,7 @@ export class NewGroupeComponent implements OnInit {
     return(groupe: FormGroup) => {
       const group = groupe.get('groupe').value;
       if(group){
-        const find = this.groupeModel.data.find(g => g.groupe === group && g.delete_at == null);
+        const find = this.groupeModel.find(g => g.groupe === group && g.delete_at == null);
         return !find ? null: {groupeAlreadyExist: true};
       }
     }

@@ -5,6 +5,7 @@ import {GroupeModel} from '../../../../core/models/GroupeModel';
 import {UserService} from '../../../../core/services/user.service';
 import {GroupeService} from '../../../../core/services/groupe.service';
 import {UserModel} from '../../../../core/models/UserModel';
+import {getGlobalAnalytics} from '@angular/cli/models/analytics';
 
 @Component({
   selector: 'app-add-groupe-user',
@@ -15,8 +16,8 @@ export class AddGroupeUserComponent implements OnInit {
   /**
    * A variable groupeModel is to get a value from form
    */
-  groupeModel:GroupeModel;
-  userModel:UserModel;
+  groupeModel:GroupeModel[];
+  userModel:UserModel[];
   addGroupeForm:FormGroup;
 
   /**
@@ -57,8 +58,10 @@ export class AddGroupeUserComponent implements OnInit {
           this.userModel = data;
         }
       );
-      const find = this.userModel.data.groupe.find(r => r == groupe);
-      return !find ? null : {groupeAlreadyExist: true};
+      if(groupe){
+        const find = this.userModel.find(g => g.groupe.find(g => g == groupe));
+        return !find ? null : {groupeAlreadyExist: true};
+      }
     }
   }
 

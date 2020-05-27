@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {HomeComponent} from './home.component';
 import {IsLoggedGuard} from '../../core/guards/is-logged.guard';
 
 
@@ -8,7 +7,7 @@ const routes: Routes = [
   /**
    * This route is only if the user is logged
    */
-  {path:'home',component:HomeComponent,canActivate:[IsLoggedGuard]}
+  {path:'',loadChildren:()=>import('./product/product.module').then(m => m.ProductModule)}
 ];
 
 @NgModule({

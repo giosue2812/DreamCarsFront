@@ -13,7 +13,6 @@ import {UserRoleModel} from '../models/UserRoleModel';
 })
 export class UserService implements OnDestroy{
   userArray$ = new BehaviorSubject<UserModel[]>([]);
-  userRoleModel$ = new BehaviorSubject<UserRoleModel>(null)
   isLoading$ = new BehaviorSubject<boolean>(false);
   /**
    * Variable id type user model to recupe the id from user

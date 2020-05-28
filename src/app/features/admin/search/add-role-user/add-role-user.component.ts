@@ -64,8 +64,6 @@ export class AddRoleUserComponent implements OnInit {
       if(rol) {
         const userId = parseInt(this.route.snapshot.paramMap.get('user'));
         const find = this.userRoleModel.find(r => r.role == rol && r.end_date == null && r.user == userId) ;
-        console.log(find);
-        console.log(this.userRoleModel);
         return !find ? null : {roleAlreadyExist: true}
     }
     }

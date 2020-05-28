@@ -1,0 +1,5 @@
+<ng-container *ngIf="sessionService.isVente">
+    <li *ngFor="let item of menu">
+        <a routerLink="{{item.links}}">{{item.title}}</a>
+    </li>
+</ng-container>

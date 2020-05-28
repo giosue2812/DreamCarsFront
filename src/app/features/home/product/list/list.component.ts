@@ -21,4 +21,8 @@ export class ListComponent implements OnInit {
     )
   }
 
+  addCard(productId){
+    console.log(productId);
+  }
+
 }

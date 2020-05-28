@@ -1,18 +1,27 @@
-
-<div class="col s12 m7">
   <h4 class="header">Product List</h4>
-  <div class="card horizontal">
+  <div class="card horizontal" *ngFor="let item of productModel">
     <div class="card-image">
-      <img src="https://lorempixel.com/100/190/nature/6">
+      <img alt="{{item.product}}" src="{{item.picture}}">
     </div>
     <div class="card-stacked">
       <div class="card-content">
-        <p>I am a very simple card. I am good at containing small bits of information.</p>
+        <h5>{{item.product}}</h5>
+        <p>{{item.description}}</p>
+      </div>
+      <div class="row">
+      <div>
+        Prix :{{item.price}} €
+      </div>
+      <div>
+        <p *ngIf="item.avaibility;else notAvailable" style="color: green">Dispo</p>
+        <ng-template #notAvailable>
+          <p style="color: red">Rupture de stock</p>
+        </ng-template>
+      </div>
       </div>
       <div class="card-action">
-        <a href="#">This is a link</a>
+        <button class="waves-effect waves-light btn" (click)="addCard(item.id)">Add Card</button>
       </div>
     </div>
   </div>
-</div>
 

@@ -1,5 +1,6 @@
 <li *ngIf="!sessionService.isLogged; else log"><a routerLink="connexion">Connexion</a></li>
 <ng-template #log>
+  <app-menu-sales></app-menu-sales>
   <li *ngFor="let items of menu">
     <a routerLink="{{items.links}}">{{items.title}}</a>
   </li>

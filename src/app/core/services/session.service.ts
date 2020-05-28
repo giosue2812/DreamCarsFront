@@ -44,6 +44,15 @@ export class SessionService {
     return !!role.find(p => p === 'ROLE_ADMIN');
   }
 
+  get isVente():boolean{
+      let role = [];
+      this.tokenDecode();
+      this.loginModel.roles.forEach(function(item) {
+        role.push(item)
+      });
+      return !!role.find(p => p === 'ROLE_VENTE');
+  }
+
   /**
    * Get the username from the token
    */

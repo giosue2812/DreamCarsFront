@@ -5,10 +5,11 @@ import {RouterModule} from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MenuAdminComponent } from './menu/menu-admin/menu-admin.component';
 import { MenuUserComponent } from './menu/menu-user/menu-user.component';
+import { MenuSalesComponent } from './menu/menu-sales/menu-sales.component';
 
 
 @NgModule({
-  declarations: [MenuComponent, MenuAdminComponent, MenuUserComponent],
+  declarations: [MenuComponent, MenuAdminComponent, MenuUserComponent, MenuSalesComponent],
   exports: [
     MenuComponent,
   ],

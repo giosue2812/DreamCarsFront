@@ -1,0 +1,27 @@
+  <h4 class="header">Product List</h4>
+  <div class="card horizontal" *ngFor="let item of productModel">
+    <div class="card-image">
+      <img alt="{{item.product}}" src="{{item.picture}}">
+    </div>
+    <div class="card-stacked">
+      <div class="card-content">
+        <h5>{{item.product}}</h5>
+        <p>{{item.description}}</p>
+      </div>
+      <div class="row">
+      <div>
+        Prix :{{item.price}} €
+      </div>
+      <div>
+        <p *ngIf="item.avaibility;else notAvailable" style="color: green">Dispo</p>
+        <ng-template #notAvailable>
+          <p style="color: red">Rupture de stock</p>
+        </ng-template>
+      </div>
+      </div>
+      <div class="card-action">
+        <button class="waves-effect waves-light btn" (click)="addCard(item.id)">Add Card</button>
+      </div>
+    </div>
+  </div>
+

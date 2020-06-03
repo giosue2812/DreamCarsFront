@@ -1,7 +1,7 @@
 <div>
   <form [formGroup]="searchForm" (ngSubmit)="onSubmitForm()">
     <label for="search">Search</label>
-    <input id="search" type="text" formControlName="search"/>
+    <input id="search" type="text" formControlName="keyWord"/>
     <button class="waves-effect waves-light btn" type="submit">Search</button>
   </form>
 </div>
@@ -17,3 +17,4 @@
     </div>
   </li>
 </ul>
+<a routerLink="new" class="waves-light waves-effect btn">New</a>

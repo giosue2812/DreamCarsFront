@@ -34,6 +34,17 @@ export class ProductService implements OnDestroy{
     return this.products$;
   }
 
+  getSearchProduct(keyWord):Observable<ProductModel[]>{
+    this.isLoading$.next(true);
+    this.httpClient.post<ProductModel[]>(environment.url+'product/search',keyWord).subscribe(
+      data => {
+        this.products$.next(data);
+        this.isLoading$.next(false);
+      }
+    );
+    return this.products$;
+  }
+
   ngOnDestroy(): void {
     this.products$.unsubscribe();
   }

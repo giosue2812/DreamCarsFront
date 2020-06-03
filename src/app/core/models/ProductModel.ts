@@ -4,6 +4,7 @@
     description: string;
     price: string;
     category: string;
+    supplier: string;
     picture?: any;
     avaibility: boolean;
   }

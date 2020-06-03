@@ -9,7 +9,7 @@ import {environment} from '../../../environments/environment';
 })
 export class ProductService implements OnDestroy{
 
-  product$ = new BehaviorSubject<ProductModel[]>([]);
+  products$ = new BehaviorSubject<ProductModel[]>([]);
   isLoading$ = new BehaviorSubject<boolean>(false);
 
   constructor(private httpClient: HttpClient) { }
@@ -18,13 +18,23 @@ export class ProductService implements OnDestroy{
     this.isLoading$.next(true);
     this.httpClient.get<ProductModel[]>(environment.url+'product/list').subscribe(
       data => {
-        this.product$.next(data);
+        this.products$.next(data);
         this.isLoading$.next(false);
       });
-    return this.product$;
+    return this.products$;
+  }
+
+  getProduct(productId):Observable<ProductModel[]>{
+    this.isLoading$.next(true);
+    this.httpClient.get<ProductModel[]>(environment.url+'product/'+productId).subscribe(
+      data => {
+        this.products$.next(data);
+        this.isLoading$.next(false);
+      });
+    return this.products$;
   }
 
   ngOnDestroy(): void {
-    this.product$.unsubscribe();
+    this.products$.unsubscribe();
   }
 }

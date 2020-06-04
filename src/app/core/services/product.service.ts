@@ -1,8 +1,9 @@
 import {Injectable, OnDestroy} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject, Observable, Subscription} from 'rxjs';
 import {ProductModel} from '../models/ProductModel';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
+import {FormGroup} from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +44,14 @@ export class ProductService implements OnDestroy{
       }
     );
     return this.products$;
+  }
+
+  createProduct(product: ProductModel):Observable<ProductModel[]>{
+    this.httpClient.post<ProductModel[]>(environment.url+'product/create',product).subscribe(
+      data => {
+        this.getProductList().subscribe(data => {this.products$.next(data)})
+    });
+    return this.products$
   }
 
   ngOnDestroy(): void {

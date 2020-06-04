@@ -5,6 +5,7 @@ import {SupplierModel} from '../../../../core/models/SupplierModel';
 import {ProductService} from '../../../../core/services/product.service';
 import {CategoryService} from '../../../../core/services/category.service';
 import {SupplierService} from '../../../../core/services/supplier.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-new',
@@ -20,7 +21,8 @@ export class NewComponent implements OnInit {
   constructor(public productService: ProductService,
               public categoryService: CategoryService,
               public supplierService: SupplierService,
-              private formBuilder: FormBuilder) { }
+              private formBuilder: FormBuilder,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.categoryService.getCategories().subscribe(
@@ -43,12 +45,13 @@ export class NewComponent implements OnInit {
       picture: new FormControl(''),
       description: new FormControl(''),
       avaibility: new FormControl(''),
-      category: new FormControl(''),
-      supplier: new FormControl('')
+      category: new FormGroup({name: new FormControl('')}),
+      supplier: new FormGroup({name: new FormControl('')})
     },{validators: [Validators.required]})
   }
 
   onSubmitForm(){
-    console.log(this.newFormGroup.getRawValue());
+    this.productService.createProduct(this.newFormGroup.getRawValue()).subscribe();
+    this.router.navigateByUrl('');
   }
 }

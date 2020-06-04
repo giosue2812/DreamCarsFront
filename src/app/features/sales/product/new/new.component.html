@@ -15,19 +15,21 @@
             <label class="active" for="description">Description</label>
             <input id="description" type="text" formControlName="description">
           </div>
-          <div class="input-field col s6">
+          <div class="input-field col s6" formGroupName="supplier">
             <label class="active" for="supplier">Supplier</label>
-              <select id="supplier" class="browser-default" formControlName="supplier">
+              <select id="supplier" class="browser-default" formControlName="name">
+                <option value="" disabled>Supplier</option>
                 <ng-container *ngFor="let supl of supplierModel">
-                  <option value="{{supl.id}}">{{supl.name}}</option>
+                  <option value="{{supl.name}}">{{supl.name}}</option>
                 </ng-container>
               </select>
           </div>
-          <div class="input-field col s6">
+          <div class="input-field col s6" formGroupName="category">
             <label class="active" for="category">Category</label>
-              <select id="category" class="browser-default" formControlName="category">
+              <select id="category" class="browser-default" formControlName="name">
+                <option value="" disabled>Category</option>
                 <ng-container *ngFor="let cat of categoryModel">
-                  <option value="{{cat.id}}">{{cat.name}}</option>
+                  <option value="{{cat.name}}">{{cat.name}}</option>
                 </ng-container>
               </select>
             </div>

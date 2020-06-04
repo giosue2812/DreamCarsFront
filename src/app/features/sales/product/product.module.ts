@@ -6,10 +6,11 @@ import { ListComponent } from './list/list.component';
 import {CoreModule} from '../../../core/core.module';
 import { EditComponent } from './edit/edit.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { NewComponent } from './new/new.component';
 
 
 @NgModule({
-  declarations: [ListComponent, EditComponent],
+  declarations: [ListComponent, EditComponent, NewComponent],
     imports: [
         CommonModule,
         ProductRoutingModule,

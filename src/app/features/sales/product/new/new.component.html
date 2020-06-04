@@ -1,0 +1,66 @@
+<div class="col s9">
+  <div class="card">
+    <div class="card-content">
+      <form [formGroup]="newFormGroup" (ngSubmit)="onSubmitForm()">
+        <div class="row">
+          <div class="input-field col s6">
+            <label class="active" for="product">Product</label>
+            <input id="product" type="text" formControlName="product">
+          </div>
+          <div class="input-field col s6">
+            <label class="active" for="price">Price</label>
+            <input id="price" type="number" formControlName="price">
+          </div>
+          <div class="input-field col s12">
+            <label class="active" for="description">Description</label>
+            <input id="description" type="text" formControlName="description">
+          </div>
+          <div class="input-field col s6" formGroupName="supplier">
+            <label class="active" for="supplier">Supplier</label>
+              <select id="supplier" class="browser-default" formControlName="name">
+                <option value="" disabled>Supplier</option>
+                <ng-container *ngFor="let supl of supplierModel">
+                  <option value="{{supl.name}}">{{supl.name}}</option>
+                </ng-container>
+              </select>
+          </div>
+          <div class="input-field col s6" formGroupName="category">
+            <label class="active" for="category">Category</label>
+              <select id="category" class="browser-default" formControlName="name">
+                <option value="" disabled>Category</option>
+                <ng-container *ngFor="let cat of categoryModel">
+                  <option value="{{cat.name}}">{{cat.name}}</option>
+                </ng-container>
+              </select>
+            </div>
+          <div class="input-field col s6">
+            <p>
+              <label>Stock Dispo<br/>
+                <input formControlName="avaibility" type="radio" value="true">
+                  <span>Oui</span>
+              </label>
+            </p>
+            <p>
+              <label>
+               <input formControlName="avaibility" type="radio" value="false">
+                 <span>Non</span>
+              </label>
+            </p>
+            </div>
+              <div class="file-field input-field col s12">
+                <div class="btn">
+                  <span>File</span>
+                  <input type="file" formControlName="picture">
+                </div>
+                <div class="file-path-wrapper">
+                  <input class="file-path validate" type="text">
+                </div>
+            </div>
+            <div class="input-field col s12">
+              <button type="submit" class="waves-effect waves-light btn col s5">Update</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

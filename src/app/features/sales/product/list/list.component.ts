@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ProductModel} from '../../../../core/models/ProductModel';
 import {ProductService} from '../../../../core/services/product.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {dashCaseToCamelCase} from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-list',
@@ -25,12 +26,16 @@ export class ListComponent implements OnInit {
 
   initForm(){
     this.searchForm = this.formBuilder.group({
-      search: new FormControl('',[Validators.required])
+      keyWord: new FormControl('',[Validators.required])
     })
   }
 
   onSubmitForm(){
-    console.log(this.searchForm.value);
+    this.productService.getSearchProduct(this.searchForm.getRawValue()).subscribe(
+      data => {
+        this.productModel = data;
+      }
+    )
   }
 
 }

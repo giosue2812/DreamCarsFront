@@ -54,6 +54,15 @@ export class ProductService implements OnDestroy{
     return this.products$
   }
 
+  updateProduct(product: ProductModel, productId):Observable<ProductModel[]>{
+
+    this.httpClient.put<ProductModel[]>(environment.url+'product/edit/'+productId,product).subscribe(
+      data => {
+        this.products$.next(data);
+      }
+    );
+    return this.products$;
+  }
   ngOnDestroy(): void {
     this.products$.unsubscribe();
   }

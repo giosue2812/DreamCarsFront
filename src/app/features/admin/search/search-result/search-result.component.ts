@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Data, Route, Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../../../core/services/user.service';
 import {UserModel} from '../../../../core/models/UserModel';
-import {GroupeModel} from '../../../../core/models/GroupeModel';
+import {catchError} from 'rxjs/operators';
+import {of} from 'rxjs';
 
 
 @Component({
@@ -12,8 +13,8 @@ import {GroupeModel} from '../../../../core/models/GroupeModel';
 })
 export class SearchResultComponent implements OnInit {
 
-  userModel:UserModel[];
-
+  userModel:string | UserModel[];
+  errorMessage:string;
   linkUpdateRoleAndGroup = [
     {
       title:"Update Groupe",
@@ -30,15 +31,16 @@ export class SearchResultComponent implements OnInit {
    * @param userService
    * @param router
    */
-  constructor(private route: ActivatedRoute, private userService:UserService, private router:Router) { }
+  constructor(private route: ActivatedRoute, public userService:UserService, private router:Router) { }
 
   /**
    * Get user from route
    */
   ngOnInit(): void {
-    this.userService.getUser(this.route.snapshot.paramMap.get('keyWord')).subscribe(data => {
-      this.userModel = data;
-    });
+      this.userService.getUser(this.route.snapshot.paramMap.get('keyWord')).subscribe(data => {
+        this.userModel = data;
+      });
+    this.userModel = [];
   }
 
   /**

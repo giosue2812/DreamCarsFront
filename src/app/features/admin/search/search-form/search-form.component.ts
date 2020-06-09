@@ -34,7 +34,7 @@ export class SearchFormComponent implements OnInit {
   initForm(){
       this.searchGroup = this.formBuilder.group({
         search: ['', Validators.required]
-    })
+    });
   }
 
   /**

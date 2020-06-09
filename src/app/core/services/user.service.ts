@@ -7,6 +7,7 @@ import {GroupeModel} from '../models/GroupeModel';
 import {RoleModel} from '../models/RoleModel';
 import {UserModel} from '../models/UserModel';
 import {UserRoleModel} from '../models/UserRoleModel';
+import {catchError} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +15,7 @@ import {UserRoleModel} from '../models/UserRoleModel';
 export class UserService implements OnDestroy{
   userArray$ = new BehaviorSubject<UserModel[]>([]);
   isLoading$ = new BehaviorSubject<boolean>(false);
-  /**
-   * Variable id type user model to recupe the id from user
-   */
-  id:UserModel[];
+
   /**
    * @param httpClient
    * @param sessionService
@@ -28,10 +26,12 @@ export class UserService implements OnDestroy{
    * We get the user id from the server.
    */
   getIdUser(): Observable<UserModel[]>{
+    this.isLoading$.next(true)
     this.httpClient
       .get<UserModel[]>(environment.url+'user/'+this.sessionService.username).subscribe(
         data => {
           this.userArray$.next(data);
+          this.isLoading$.next(false);
         }
       );
     return this.userArray$;
@@ -45,15 +45,15 @@ export class UserService implements OnDestroy{
   updateUser(userModel:UserModel){
     this.getIdUser().subscribe(
       data => {
-        this.id = data;
+        this.userArray$.next(data);
       },
       error => {
         console.log('Erreur : '+error);
       }
     );
-
+    console.log(this.userArray$.getValue().find(u => u.id).id);
     return this.httpClient
-      .put(environment.url+'user/update/'+this.id,userModel).subscribe()
+      .put(environment.url+'user/update/'+this.userArray$.getValue().find(u => u.id).id,userModel).subscribe()
   }
 
   /**

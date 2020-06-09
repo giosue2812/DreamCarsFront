@@ -16,7 +16,7 @@ export class UserSetupComponent implements OnInit {
    *
    * @param userService
    */
-  constructor(private userService: UserService) { }
+  constructor(public userService: UserService) { }
 
   /**
    * I get a id user and. We call a service updateUser

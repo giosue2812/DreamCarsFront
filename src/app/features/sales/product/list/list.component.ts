@@ -13,7 +13,7 @@ export class ListComponent implements OnInit {
 
   productModel: ProductModel[];
   searchForm: FormGroup;
-  constructor(private productService:ProductService, private formBuilder:FormBuilder) { }
+  constructor(public productService:ProductService, private formBuilder:FormBuilder) { }
 
   ngOnInit(): void {
     this.productService.getProductList().subscribe(

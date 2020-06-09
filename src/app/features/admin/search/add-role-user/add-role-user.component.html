@@ -1,19 +1,5 @@
   <div class="input-field col s12">
     <form *ngIf="addRoleForm" [formGroup]="addRoleForm" (ngSubmit)="onSubmitFormRole()">
-      <ng-container *ngIf="roleService.isLoading$|async;else isLoaded">
-        <div class="preloader-wrapper big active">
-          <div class="spinner-layer spinner-blue-only">
-            <div class="circle-clipper left">
-              <div class="circle"></div>
-            </div><div class="gap-patch">
-            <div class="circle"></div>
-          </div><div class="circle-clipper right">
-            <div class="circle"></div>
-          </div>
-          </div>
-        </div>
-      </ng-container>
-      <ng-template #isLoaded>
       <div class="card">
         <div class="card-content">
           <label for="role">Role</label>
@@ -24,7 +10,6 @@
         </div>
         <button type="submit" class="waves-effect waves-light btn col s5" *ngIf="addRoleForm.valid">Update</button>
       </div>
-      </ng-template>
     </form>
   </div>
 

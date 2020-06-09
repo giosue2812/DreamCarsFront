@@ -7,6 +7,7 @@ import {CoreModule} from '../../../core/core.module';
 import { EditComponent } from './edit/edit.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NewComponent } from './new/new.component';
+import {SharedModule} from '../../../shared/shared.module';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { NewComponent } from './new/new.component';
         ProductRoutingModule,
         CoreModule,
         ReactiveFormsModule,
-        FormsModule
+        FormsModule,
+        SharedModule
     ]
 })
 export class ProductModule { }

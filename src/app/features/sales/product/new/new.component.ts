@@ -40,14 +40,14 @@ export class NewComponent implements OnInit {
 
   initForm(){
     this.newFormGroup = this.formBuilder.group({
-      product: new FormControl(''),
-      price: new FormControl(''),
-      picture: new FormControl(''),
-      description: new FormControl(''),
-      avaibility: new FormControl(''),
-      category: new FormGroup({name: new FormControl('')}),
-      supplier: new FormGroup({name: new FormControl('')})
-    },{validators: [Validators.required]})
+      product: new FormControl('',[Validators.required]),
+      price: new FormControl('',[Validators.required]),
+      picture: new FormControl('',[Validators.required]),
+      description: new FormControl('',[Validators.required]),
+      avaibility: new FormControl('',[Validators.required]),
+      category: new FormGroup({name: new FormControl('')},[Validators.required]),
+      supplier: new FormGroup({name: new FormControl('')},[Validators.required])
+    })
   }
 
   onSubmitForm(){

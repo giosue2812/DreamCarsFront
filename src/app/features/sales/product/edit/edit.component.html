@@ -1,5 +1,19 @@
 <ng-container *ngIf="productModel">
   <div class="col s9">
+    <ng-container *ngIf="productService.isLoading$|async; else isLoaded">
+      <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-blue-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #isLoaded>
     <div class="card">
       <div class="card-content" *ngFor="let item of productModel">
         <form [formGroup]="productFormUpdate">
@@ -16,21 +30,21 @@
               <label class="active" for="description">Description</label>
                 <input id="description" type="text" [(ngModel)]="item.description" formControlName="description">
             </div>
-            <div class="input-field col s6">
+            <div class="input-field col s6" formGroupName="supplier">
                 <label class="active" for="supplier">Supplier</label>
-                <select id="supplier" class="browser-default" formControlName="supplier">
-                  <option value="" disabled selected>{{item.supplier}}</option>
+                <select id="supplier" class="browser-default" formControlName="name">
+                  <option value="" disabled selected>Choose</option>
                   <ng-container *ngFor="let supl of supplierModel">
-                    <option value="{{supl.id}}">{{supl.name}}</option>
+                    <option value="{{supl.name}}">{{supl.name}}</option>
                   </ng-container>
                 </select>
             </div>
-            <div class="input-field col s6">
+            <div class="input-field col s6" formGroupName="category">
               <label class="active" for="category">Category</label>
-              <select id="category" class="browser-default" formControlName="category">
-                <option value="" disabled selected>{{item.category}}</option>
+              <select id="category" class="browser-default" formControlName="name">
+                <option value="" disabled selected>Choose</option>
                 <ng-container *ngFor="let cat of categoryModel">
-                  <option value="{{cat.id}}">{{cat.name}}</option>
+                  <option value="{{cat.name}}">{{cat.name}}</option>
                 </ng-container>
               </select>
             </div>
@@ -48,21 +62,27 @@
               </label>
               </p>
             </div>
-            <div class="file-field input-field col s12">
-              <div class="btn">
-                <span>File</span>
-                <input type="file" formControlName="picture">
-              </div>
-              <div class="file-path-wrapper">
-                <input class="file-path validate" type="text">
-              </div>
+          </div>
+          <div class="card-image" *ngFor="let img of productModel">
+            <img style="width: 50%;height: 50%" src="{{img.picture}}" alt="{{img.picture}}">
+          </div>
+          <div class="file-field input-field">
+            <div class="btn">
+              <span>File</span>
+              <input type="file" (change)="submitFile($event)">
             </div>
-            <div class="input-field col s12">
-              <button type="submit" class="waves-effect waves-light btn col s5" (click)="onSubmitForm(item.id)">Update</button>
+            <div class="file-path-wrapper">
+              <label for="picture">Choisir une image</label>
+              <input id="picture" class="file-path validate" type="text">
             </div>
           </div>
+          <div class="input-field col s12">
+            <button [disabled]="productFormUpdate.invalid" type="submit" class="waves-effect waves-light btn col s5" (click)="onSubmitForm(item.id)">Update</button>
+          </div>
         </form>
+        <button type="button" class="waves-effect waves-light btn" (click)="onDelete(item.id)">Delete</button>
       </div>
     </div>
+    </ng-template>
   </div>
 </ng-container>

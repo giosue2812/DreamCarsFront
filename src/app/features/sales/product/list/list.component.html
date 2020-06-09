@@ -5,12 +5,16 @@
     <button class="waves-effect waves-light btn" type="submit">Search</button>
   </form>
 </div>
+<ng-container *ngIf="productService.isLoading$|async;else isLoaded">
+  <loader></loader>
+</ng-container>
+<ng-template #isLoaded>
 <ul mCollapsible class="collapsible popout" *ngFor="let item of productModel">
   <li>
     <div class="collapsible-header">{{item.product}}</div>
     <div class="collapsible-body">
       Description : {{item.description}}<br/>
-      <img alt="{{item.product}}" src="{{item.picture}}"><br/>
+      <img style="width: 50%;height: 50%" alt="{{item.product}}" src="{{item.picture}}"><br/>
       Category : {{item.category}}<br/>
       Prix : {{item.price}}<br/>
       <a routerLink="edit/{{item.id}}">Edit</a>
@@ -18,3 +22,4 @@
   </li>
 </ul>
 <a routerLink="new" class="waves-light waves-effect btn">New</a>
+</ng-template>

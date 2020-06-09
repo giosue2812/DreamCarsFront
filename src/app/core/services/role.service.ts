@@ -45,17 +45,21 @@ export class RoleService implements OnDestroy{
    * @param role
    */
   updateRole(idRole,role){
+    this.isLoading$.next(true);
     this.httpClient.put<RoleModel[]>(environment.url+'role/updateRole/'+idRole,role)
       .subscribe(data => {
         this.roles$.next(data);
+        this.isLoading$.next(false);
       });
     return this.roles$;
   }
 
   removeRole(idRole){
+    this.isLoading$.next(true)
     this.httpClient.delete<RoleModel[]>(environment.url+'role/removeRole/'+idRole).subscribe(
       data => {
         this.roles$.next(data);
+        this.isLoading$.next(false)
       });
     return this.roles$;
   }

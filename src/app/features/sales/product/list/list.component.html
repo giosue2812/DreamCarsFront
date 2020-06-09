@@ -10,7 +10,7 @@
 </ng-container>
 <ng-template #isLoaded>
 <ul mCollapsible class="collapsible popout" *ngFor="let item of productModel">
-  <li>
+  <li *ngIf="item.deleteAt == null">
     <div class="collapsible-header">{{item.product}}</div>
     <div class="collapsible-body">
       Description : {{item.description}}<br/>
@@ -23,3 +23,4 @@
 </ul>
 <a routerLink="new" class="waves-light waves-effect btn">New</a>
 </ng-template>
+

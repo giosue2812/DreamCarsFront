@@ -63,6 +63,17 @@ export class ProductService implements OnDestroy{
     );
     return this.products$;
   }
+
+  removeProduct(productId):Observable<ProductModel[]>{
+    this.isLoading$.next(true)
+    this.httpClient.delete<ProductModel[]>(environment.url+'product/remove/'+productId).subscribe(
+      data => {
+        this.products$.next(data);
+        this.isLoading$.next(false);
+      }
+    );
+    return this.products$;
+  }
   ngOnDestroy(): void {
     this.products$.unsubscribe();
   }

@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ProductModel} from '../../../../core/models/ProductModel';
 import {ProductService} from '../../../../core/services/product.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {SupplierModel} from '../../../../core/models/SupplierModel';
 import {SupplierService} from '../../../../core/services/supplier.service';
@@ -31,7 +31,8 @@ export class EditComponent implements OnInit {
               public categoryService: CategoryService,
               private activatedRoute: ActivatedRoute,
               private uploadService: UploadService,
-              private formBuilder: FormBuilder) { }
+              private formBuilder: FormBuilder,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.productService.getProduct(this.activatedRoute.snapshot.paramMap.get('productId')).subscribe(
@@ -72,7 +73,9 @@ export class EditComponent implements OnInit {
   }
 
   onDelete(productId){
-    console.log(productId);
+    this.productService.removeProduct(productId).subscribe();
+    return this.router.navigate(['sales/product'])
+
   }
 }
 

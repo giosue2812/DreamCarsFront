@@ -16,6 +16,7 @@
     <ng-template #isLoaded>
     <div class="card">
       <div class="card-content" *ngFor="let item of productModel">
+        <ng-container *ngIf="item.deleteAt == null">
         <form [formGroup]="productFormUpdate">
           <div class="row">
             <div class="input-field col s6">
@@ -81,6 +82,7 @@
           </div>
         </form>
         <button type="button" class="waves-effect waves-light btn" (click)="onDelete(item.id)">Delete</button>
+        </ng-container>
       </div>
     </div>
     </ng-template>

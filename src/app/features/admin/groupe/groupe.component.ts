@@ -11,13 +11,27 @@ import {GroupeService} from '../../../core/services/groupe.service';
 })
 export class GroupeComponent implements OnInit {
 
+  /**
+   * @type editGroupeForm: FormGroup
+   */
   editGroupeForm:FormGroup;
+  /**
+   * @type groupeModel: GroupeModel[]
+   */
   groupeModel:GroupeModel[];
 
+  /**
+   * @param groupeService: GroupeService
+   * @param route: ActivatedRoute
+   * @param formBuilder: FormBuilder
+   */
   constructor(public groupeService:GroupeService,
               private route:ActivatedRoute,
               private formBuilder: FormBuilder) { }
 
+  /**
+   * @description Init a list of groupe and a form
+   */
   ngOnInit(): void {
     this.initForm();
     this.groupeService.getGroupes().subscribe(data => {
@@ -25,6 +39,9 @@ export class GroupeComponent implements OnInit {
     })
   }
 
+  /**
+   * @description Form to init a form groupe
+   */
   initForm(){
     this.editGroupeForm = this.formBuilder.group({
       groupe: new FormControl('',[Validators.required])
@@ -33,6 +50,10 @@ export class GroupeComponent implements OnInit {
     })
   }
 
+  /**
+   * @return groupe: FormGroup or find == null
+   * @description Valid form
+   */
   validForm(){
     return(groupe: FormGroup) => {
       const group = groupe.get('groupe').value;
@@ -43,10 +64,18 @@ export class GroupeComponent implements OnInit {
     }
   }
 
+  /**
+   * @param idGroupe Number
+   * @description Update a groupe
+   */
   onSubmitForm(idGroupe){
     this.groupeService.updateGroupe(idGroupe,this.editGroupeForm.value);
   }
 
+  /**
+   * @param idGroupe Number
+   * @description Remove a groupe
+   */
   removeGroupe(idGroupe){
     this.groupeService.removeGroupe(idGroupe);
   }

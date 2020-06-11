@@ -1,20 +1,6 @@
     <div class="col s9">
       <div class="card">
         <div class="card-content">
-          <ng-container *ngIf="userService.isLoading$|async; else isLoaded">
-            <div class="preloader-wrapper big active">
-              <div class="spinner-layer spinner-blue-only">
-                <div class="circle-clipper left">
-                  <div class="circle"></div>
-                </div><div class="gap-patch">
-                <div class="circle"></div>
-              </div><div class="circle-clipper right">
-                <div class="circle"></div>
-              </div>
-              </div>
-            </div>
-          </ng-container>
-          <ng-template #isLoaded>
           <ul class="collection" *ngFor="let item of userModel">
               <li class="collection-item">First Name : {{item.firstName}}</li>
               <li class="collection-item">Last Name : {{item.lastName}}</li>
@@ -39,7 +25,6 @@
                 </ul>
               </ng-container>
           </ul>
-          </ng-template>
         </div>
 
       </div>

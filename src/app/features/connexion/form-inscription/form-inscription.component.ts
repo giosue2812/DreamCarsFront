@@ -9,12 +9,15 @@ import {InscriptionService} from '../../../core/services/inscription.service';
 })
 export class FormInscriptionComponent implements OnInit {
 
+  /**
+   * @type inscriptionGroup: FormGroup
+   */
   inscriptionGroup: FormGroup;
 
   /**
-   * @param router
-   * @param formBuilder
-   * @param inscriptionService
+   * @param router: Router
+   * @param formBuilder: FormBuilder
+   * @param inscriptionService: InscriptionService
    */
   constructor(
     private router: Router,
@@ -22,12 +25,15 @@ export class FormInscriptionComponent implements OnInit {
     private inscriptionService: InscriptionService
   ) { }
 
+  /**
+   * @description Init form
+   */
   ngOnInit(): void {
     this.initForm();
   }
 
   /**
-   * This form is for inscription
+   * @description Form new user
    */
   initForm(){
     this.inscriptionGroup = this.formBuilder.group({
@@ -46,8 +52,7 @@ export class FormInscriptionComponent implements OnInit {
   }
 
   /**
-   * Method called from the template when the form is ok.
-   * Call the service to record the new UserDetails.
+   * @description Add new user
    */
   onSubmitForm(){
     this.inscriptionService.onRecordServer(this.inscriptionGroup.value)

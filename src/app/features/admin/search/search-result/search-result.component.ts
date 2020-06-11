@@ -2,8 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../../../core/services/user.service';
 import {UserModel} from '../../../../core/models/UserModel';
-import {catchError} from 'rxjs/operators';
-import {of} from 'rxjs';
 
 
 @Component({
@@ -13,8 +11,13 @@ import {of} from 'rxjs';
 })
 export class SearchResultComponent implements OnInit {
 
+  /**
+   * @type userModel: string or UserModel[]
+   */
   userModel:string | UserModel[];
-  errorMessage:string;
+  /**
+   * linkUpdateRoleAndGroup: Array
+   */
   linkUpdateRoleAndGroup = [
     {
       title:"Update Groupe",
@@ -27,14 +30,14 @@ export class SearchResultComponent implements OnInit {
   ];
 
   /**
-   * @param route
-   * @param userService
-   * @param router
+   * @param route: ActivatedRoute
+   * @param userService: UserService
+   * @param router: Router
    */
   constructor(private route: ActivatedRoute, public userService:UserService, private router:Router) { }
 
   /**
-   * Get user from route
+   * @description Get a user by keyWord
    */
   ngOnInit(): void {
       this.userService.getUser(this.route.snapshot.paramMap.get('keyWord')).subscribe(data => {
@@ -44,13 +47,18 @@ export class SearchResultComponent implements OnInit {
   }
 
   /**
-   * Method used to remove a group from user
-   * @param userId
-   * @param groupe
+   * @param userId: Number
+   * @param groupe: Number
+   * @description To remove a groupe from user
    */
   onRemoveGroupe(userId,groupe){
     this.userService.removeGroupe(userId,groupe);
   }
+
+  /**
+   * @param roleID: Number
+   * @description To remove a role from user
+   */
   onRemoveRole(roleID){
     this.userService.removeRole(roleID);
   }

@@ -6,18 +6,25 @@ import {
   HttpInterceptor, HttpErrorResponse
 } from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
-import {catchError, retry, tap} from 'rxjs/operators';
+import {catchError, finalize, retry, tap} from 'rxjs/operators';
 import {ToastrService} from 'ngx-toastr';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
 
+  /**
+   * @param toasterService ToastrService
+   */
   constructor(public toasterService: ToastrService) {
   }
 
+  /**
+   * @param request HttpRequest<any>
+   * @param next HttpHandler
+   * @return throwError if HttpRequest return an HttpErrorResponse
+   */
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
-      retry(1),
       catchError((error: HttpErrorResponse)=>{
         let errorMessage = '';
         if(error.error instanceof ErrorEvent){

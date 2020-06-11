@@ -5,10 +5,6 @@
     <button class="waves-effect waves-light btn" type="submit">Search</button>
   </form>
 </div>
-<ng-container *ngIf="productService.isLoading$|async;else isLoaded">
-  <loader></loader>
-</ng-container>
-<ng-template #isLoaded>
 <ul mCollapsible class="collapsible popout" *ngFor="let item of productModel">
   <li *ngIf="item.deleteAt == null">
     <div class="collapsible-header">{{item.product}}</div>
@@ -22,5 +18,4 @@
   </li>
 </ul>
 <a routerLink="new" class="waves-light waves-effect btn">New</a>
-</ng-template>
 

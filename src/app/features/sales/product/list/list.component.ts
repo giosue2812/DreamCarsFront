@@ -11,10 +11,24 @@ import {dashCaseToCamelCase} from '@angular/compiler/src/util';
 })
 export class ListComponent implements OnInit {
 
+  /**
+   * @type productModel: ProductModel[]
+   */
   productModel: ProductModel[];
+  /**
+   * @type searchForm: FormGroup
+   */
   searchForm: FormGroup;
+
+  /**
+   * @param productService: ProductService
+   * @param formBuilder: FormBuilder
+   */
   constructor(public productService:ProductService, private formBuilder:FormBuilder) { }
 
+  /**
+   * @description Get a list of product
+   */
   ngOnInit(): void {
     this.productService.getProductList().subscribe(
       data => {
@@ -24,12 +38,18 @@ export class ListComponent implements OnInit {
     this.initForm();
   }
 
+  /**
+   * @description Form to search
+   */
   initForm(){
     this.searchForm = this.formBuilder.group({
       keyWord: new FormControl('',[Validators.required])
     })
   }
 
+  /**
+   * @description to search a product
+   */
   onSubmitForm(){
     this.productService.getSearchProduct(this.searchForm.getRawValue()).subscribe(
       data => {

@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent{
 
+  /**
+   * @type menu: array
+   */
   menu = [
     {
       title: 'Search',

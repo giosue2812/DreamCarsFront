@@ -1,19 +1,5 @@
 <h4>Groupe List</h4>
 <form [formGroup]="editGroupeForm">
-  <ng-container *ngIf="groupeService.isLoading$|async; else isLoaded">
-    <div class="preloader-wrapper big active">
-      <div class="spinner-layer spinner-blue-only">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div><div class="gap-patch">
-        <div class="circle"></div>
-      </div><div class="circle-clipper right">
-        <div class="circle"></div>
-      </div>
-      </div>
-    </div>
-  </ng-container>
-  <ng-template #isLoaded>
     <ul mCollapsible class="collapsible">
       <li *ngFor="let item of groupeModel">
         <ng-container *ngIf="item.delete_at == null">
@@ -29,6 +15,5 @@
       </li>
     </ul>
     <a routerLink="newGroupe" class="waves-effect waves-light btn">New</a>
-  </ng-template>
 </form>
 <router-outlet></router-outlet>

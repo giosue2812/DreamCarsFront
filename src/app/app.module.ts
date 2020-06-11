@@ -6,7 +6,8 @@ import {SharedModule} from './shared/shared.module';
 import {TokenInterceptor} from './core/interceptors/token.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ErrorInterceptor} from './core/interceptors/error.interceptor';
-import {Renderer} from '@angular/compiler-cli/ngcc/src/rendering/renderer';
+import {LoaderInterceptor} from './core/interceptors/loader.interceptor';
+import {NgxSpinnerModule} from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {Renderer} from '@angular/compiler-cli/ngcc/src/rendering/renderer';
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxSpinnerModule
   ],
   providers: [
     {
@@ -24,6 +26,9 @@ import {Renderer} from '@angular/compiler-cli/ngcc/src/rendering/renderer';
     },
     {
       provide: HTTP_INTERCEPTORS, multi: true, useClass: ErrorInterceptor
+    },
+    {
+      provide: HTTP_INTERCEPTORS, multi: true, useClass: LoaderInterceptor
     }
   ],
   bootstrap: [AppComponent]

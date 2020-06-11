@@ -11,14 +11,20 @@ import {Router} from '@angular/router';
 })
 export class FormLoginComponent implements OnInit {
 
+  /**
+   * @type loginGroup: FormGroup
+   */
   loginGroup: FormGroup;
+  /**
+   * @type messageError: String
+   */
   messageError: string;
 
   /**
-   * @param router
-   * @param formBuilder
-   * @param connexionService
-   * @param sessionService
+   * @param router: Router
+   * @param formBuilder: FormBuilder
+   * @param connexionService: ConnexionService
+   * @param sessionService: SessionService
    */
   constructor(
     private router: Router,
@@ -27,12 +33,15 @@ export class FormLoginComponent implements OnInit {
     private sessionService: SessionService
   ) { }
 
+  /**
+   * @description Init form
+   */
   ngOnInit(): void {
     this.initForm();
   }
 
   /**
-   * Form for login
+   * @description form to log
    */
   initForm(){
     this.loginGroup = this.formBuilder.group({
@@ -42,8 +51,7 @@ export class FormLoginComponent implements OnInit {
   }
 
   /**
-   * When form is ok.
-   * I call the service to check the credential.
+   * @description Login
    */
   onSubmitForm(){
     this.connexionService.login(this.loginGroup.value)
@@ -57,13 +65,6 @@ export class FormLoginComponent implements OnInit {
            * Navigation to the home page
            */
           this.router.navigateByUrl('home');
-        },
-        error => {
-          /**
-           * If the credential is False i send a message.
-           */
-          //Amelioration show in an toast
-          return this.messageError = error.statusText;
         }
       );
   }

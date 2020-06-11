@@ -6,12 +6,11 @@ import {SessionService} from '../../../core/services/session.service';
   templateUrl: './menu-admin.component.html',
   styleUrls: ['./menu-admin.component.scss']
 })
-export class MenuAdminComponent implements OnInit {
+export class MenuAdminComponent{
 
+  /**
+   * @param sessionService:SessionService
+   */
   constructor(public sessionService: SessionService) { }
-
-  ngOnInit(): void {
-
-  }
 
 }

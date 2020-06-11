@@ -10,30 +10,30 @@ import {UserModel} from '../../../core/models/UserModel';
 })
 export class UserSetupComponent implements OnInit {
 
+  /**
+   * @type userModel: UserModel[]
+   */
   userModel: UserModel[];
 
   /**
-   *
-   * @param userService
+   * @param userService: UserService
    */
   constructor(public userService: UserService) { }
 
   /**
-   * I get a id user and. We call a service updateUser
+   * @description User id
    */
   ngOnInit(): void {
     this.userService.getIdUser().subscribe(
       (data) => {
         this.userModel = data
-      },
-      error => {
-        console.log('Erreur : '+Error)
       }
     )
   }
 
   /**
-   * @param form
+   * @param form: NgForm
+   * @description Update user
    */
   onSubmitForm(form:NgForm){
     this.userService.updateUser(form.value);

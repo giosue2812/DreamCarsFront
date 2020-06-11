@@ -17,15 +17,36 @@ import {formatDate} from '@angular/common';
 })
 export class EditComponent implements OnInit {
 
-    selectedFile: File;
+  /**
+   * @type selectedFile: File
+   */
+  selectedFile: File;
+  /**
+   * @type productModel: ProductModel[]
+   */
+  productModel: ProductModel[];
+  /**
+   * @type supplierModel: SupplierModel[]
+   */
+  supplierModel: SupplierModel[];
+  /**
+   * @type categoryModel:CategoryModel[]
+   */
+  categoryModel: CategoryModel[];
+  /**
+   * @type productFormUpdate: FormGroup
+   */
+  productFormUpdate: FormGroup;
 
-    productModel: ProductModel[];
-    supplierModel: SupplierModel[];
-    categoryModel: CategoryModel[];
-
-    productFormUpdate: FormGroup;
-
-
+  /**
+   * @param productService: ProductService
+   * @param supplierService: SupplierService
+   * @param categoryService: CategoryService
+   * @param activatedRoute: ActivatedRoute
+   * @param uploadService: UploadService
+   * @param formBuilder: FormBuilder
+   * @param router: Router
+   */
   constructor(public productService: ProductService,
               public supplierService: SupplierService,
               public categoryService: CategoryService,
@@ -34,6 +55,9 @@ export class EditComponent implements OnInit {
               private formBuilder: FormBuilder,
               private router: Router) { }
 
+  /**
+   * @description Get product id and list of suppliers and categories and init form
+   */
   ngOnInit(): void {
     this.productService.getProduct(this.activatedRoute.snapshot.paramMap.get('productId')).subscribe(
       data => {
@@ -53,6 +77,9 @@ export class EditComponent implements OnInit {
     this.initForm();
   }
 
+  /**
+   * @description Form to edit form
+   */
   initForm(){
     this.productFormUpdate = this.formBuilder.group({
       product: new FormControl('',[Validators.required]),
@@ -64,14 +91,28 @@ export class EditComponent implements OnInit {
       })
   }
 
+  /**
+   * @param event Event
+   * @description Event object to get a file to upload
+   */
   submitFile(event){
     this.selectedFile = event.target.files[0];
   }
+
+  /**
+   * @param productId Number
+   * @description Upload a picture to updateProduct
+   */
   onSubmitForm(productId){
     this.uploadService.upload(this.selectedFile,productId);
     this.productService.updateProduct(this.productFormUpdate.getRawValue(),productId);
   }
 
+  /**
+   * @param productId Number
+   * @description Remove product
+   * @return Router
+   */
   onDelete(productId){
     this.productService.removeProduct(productId).subscribe();
     return this.router.navigate(['sales/product'])

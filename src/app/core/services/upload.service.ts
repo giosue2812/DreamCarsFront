@@ -7,8 +7,17 @@ import {environment} from '../../../environments/environment';
 })
 export class UploadService {
 
-  constructor(private httpClient: HttpClient) {
-  }
+  /**
+   * @param httpClient HttpClient
+   */
+  constructor(private httpClient: HttpClient) {}
+
+  /**
+   * @param file: File
+   * @param productId Number
+   * @return subscribe
+   * @description Request to upload a picture
+   */
    public upload(file: File,productId){
       const formData = new FormData();
       formData.append('picture',file,file.name);

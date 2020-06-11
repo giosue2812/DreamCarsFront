@@ -20,8 +20,9 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(private sessionService: SessionService) {}
 
   /**
-   * @param request
-   * @param next
+   * @param request HttpRequest<unknown>
+   * @param next HttpHandler
+   * @return Clone request with the header set with tokken or return the request normal
    */
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     /**

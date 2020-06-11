@@ -7,23 +7,6 @@ import {INVALID_ENTRY_POINT} from '@angular/compiler-cli/ngcc/src/packages/entry
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
-  choiceFilter:FormGroup;
-
-  constructor(private formBuilder:FormBuilder) { }
-
-  ngOnInit(): void {
-    this.initForm();
-  }
-
-  initForm(){
-    this.choiceFilter = this.formBuilder.group({
-      choiceCat:new FormControl('',[Validators.required]),
-      choiceSubCat:new FormControl('',[Validators.required])
-    });
-  }
-  onSubmitForm(){
-    console.log(this.choiceFilter.value);
-  }
 }

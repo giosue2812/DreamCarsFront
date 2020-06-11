@@ -9,56 +9,68 @@ import {environment} from '../../../environments/environment';
 })
 export class GroupeService implements OnDestroy{
 
-  private groupe$ = new BehaviorSubject<GroupeModel[]>([]);
-  isLoading$ = new BehaviorSubject<boolean>(false);
   /**
-   * @param httpClient
+   * @type groupe$: BehaviorSubject<GroupeModel[]>
+   */
+  private groupe$ = new BehaviorSubject<GroupeModel[]>([]);
+
+  /**
+   * @param httpClient: HttpClient
    */
   constructor(private httpClient: HttpClient) { }
 
   /**
-   * This service request all groupe from server. This return a groupe model
+   * @return Observable<GroupeModel[]>
+   * @description Request list of groupe
    */
   getGroupes():Observable<GroupeModel[]>{
-    this.isLoading$.next(true);
     this.httpClient.get<GroupeModel[]>(environment.url+'groupe').subscribe(data => {
       this.groupe$.next(data);
-      this.isLoading$.next(false);
       });
     return this.groupe$;
   }
 
   /**
-   * @param groupeModel
+   * @param groupeModel: GroupeModel
+   * @description Request to add a new groupe
    */
   newGroupe(groupeModel){
-    this.isLoading$.next(true);
     this.httpClient.post<GroupeModel[]>(environment.url+'groupe/addGroupe',groupeModel).subscribe(
       data => {
         this.groupe$.next(data);
-        this.isLoading$.next(false);
       });
   }
 
+  /**
+   * @param idGroupe: Number
+   * @param groupeModel: GroupeModel
+   * @return BehaviorSubject<GroupeModel[]>
+   * @description Request to update a groupe
+   */
   updateGroupe(idGroupe,groupeModel){
-    this.isLoading$.next(true);
     this.httpClient.put<GroupeModel[]>(environment.url+'groupe/updateGroupe/'+idGroupe,groupeModel).subscribe(
       data => {
         this.groupe$.next(data);
-        this.isLoading$.next(false);
       });
     return this.groupe$;
   }
 
+  /**
+   * @param idGroupe: Number
+   * @return BehaviorSubject<GroupeModel[]>
+   * @description Request to remove a groupe
+   */
   removeGroupe(idGroupe){
-    this.isLoading$.next(true);
     this.httpClient.delete<GroupeModel[]>(environment.url+'groupe/removeGroupe/'+idGroupe).subscribe(
       data => {
         this.groupe$.next(data);
-        this.isLoading$.next(false);
       });
     return this.groupe$;
   }
+
+  /**
+   * @description Unsubscribe the BehaviorSubject
+   */
   ngOnDestroy(): void {
     this.groupe$.unsubscribe();
   }

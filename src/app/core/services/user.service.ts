@@ -13,93 +13,87 @@ import {catchError} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class UserService implements OnDestroy{
+  /**
+   * userArray$: BehaviorSubject<UserModel[]>
+   */
   userArray$ = new BehaviorSubject<UserModel[]>([]);
-  isLoading$ = new BehaviorSubject<boolean>(false);
 
   /**
-   * @param httpClient
-   * @param sessionService
+   * @param httpClient: HttpClient
+   * @param sessionService: SessionService
    */
   constructor(private httpClient: HttpClient, private sessionService:SessionService) { }
 
   /**
-   * We get the user id from the server.
+   * @return Observable<UserModel[]>
+   * @description Request a User by sessionService.username
    */
   getIdUser(): Observable<UserModel[]>{
-    this.isLoading$.next(true)
     this.httpClient
       .get<UserModel[]>(environment.url+'user/'+this.sessionService.username).subscribe(
         data => {
           this.userArray$.next(data);
-          this.isLoading$.next(false);
         }
       );
     return this.userArray$;
   }
 
   /**
-   * @param userModel
-   * Update UserDetails
-   * This service update the user. First a get the id user.After a put the new modification
+   * @param userModel: UserModel
+   * @return userArray$: BehaviorSubject<UserModel[]>
+   * @description Request to update a user
    */
   updateUser(userModel:UserModel){
     this.getIdUser().subscribe(
       data => {
         this.userArray$.next(data);
-      },
-      error => {
-        console.log('Erreur : '+error);
       }
     );
-    console.log(this.userArray$.getValue().find(u => u.id).id);
     return this.httpClient
       .put(environment.url+'user/update/'+this.userArray$.getValue().find(u => u.id).id,userModel).subscribe()
   }
 
   /**
-   * @param id
+   * @param id string
+   * @return Observable<UserModel[]>
+   * @description Request a user
    */
   getUserById(id:string):Observable<UserModel[]>{
-    this.isLoading$.next(true);
     this.httpClient
       .get<UserModel[]>(environment.url+'userID/'+id).subscribe(data => {
         this.userArray$.next(data);
-        this.isLoading$.next(false);
     });
     return this.userArray$;
   }
   /**
    * @param user
-   * I get a user if exist
+   * @return Observable<UserModel[]>
+   * @description Request a user
    */
   getUser(user):Observable<UserModel[]>{
-    this.isLoading$.next(true);
     this.httpClient.get<UserModel[]>(environment.url+'user/search/'+user).subscribe(data => {
       this.userArray$.next(data);
-      this.isLoading$.next(false);
     });
     return this.userArray$;
   }
   /**
    *
-   * @param userId
-   * @param groupeModel
-   * This service add a new groupe.
+   * @param userId: Number
+   * @param groupeModel: GroupeModel
+   * @description Request to add a groupe to the user
    */
   addGroupe(userId,groupeModel:GroupeModel){
-    this.isLoading$.next(true);
     this.httpClient.put<UserModel[]>(environment.url+'user/addGroupe/'+userId,groupeModel).subscribe(data =>{
       this.userArray$.next(data);
-      this.isLoading$.next(false);
     });
   }
 
   /**
-   * @param userId
-   * @param roleModel
+   * @param userId: Number
+   * @param roleModel: RoleModel
+   * @description Request to add a role from user
    */
   addRole(userId,roleModel:RoleModel){
-    this.isLoading$.next(true);
     this.httpClient.put<UserRoleModel>(environment.url+'user/addRole/'+userId,roleModel).subscribe(
       data => {
         this.httpClient.get<UserModel[]>(environment.url+'userID/'+data.user).subscribe(
@@ -107,41 +101,40 @@ export class UserService implements OnDestroy{
             this.userArray$.next(data);
           }
         );
-        this.isLoading$.next(false);
       }
     );
   }
 
   /**
-   * @param userId
-   * @param groupe
+   * @param userId Number
+   * @param groupe String
+   * @return userArray$: BehaviorSubject<UserModel[]>
+   * @description Request to remove a groupe from user
    */
   removeGroupe(userId,groupe){
-    this.isLoading$.next(true);
     this.httpClient.delete<UserModel[]>(environment.url+'user/removeGroupe/'+userId+'/'+groupe).subscribe(data => {
       this.userArray$.next(data);
-      this.isLoading$.next(false);
     });
     return this.userArray$;
   }
 
   /**
-   * @param roleId
+   * @param roleId: Number
+   * @description Request to remove a role from user
    */
   removeRole(roleId){
-    this.isLoading$.next(true);
     return this.httpClient.delete<UserRoleModel>(environment.url+'user/updateUserRole/'+roleId).subscribe(
       data => {
         this.httpClient.get<UserModel[]>(environment.url+'userID/'+data.user).subscribe(
           data => {
             this.userArray$.next(data);
-          }
-        );
-        this.isLoading$.next(false);
-      }
-    );
+          });
+      });
   }
 
+  /**
+   * @description Unsubscribe the BehaviorSubject
+   */
   ngOnDestroy(): void {
     this.userArray$.unsubscribe();
   }

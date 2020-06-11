@@ -9,17 +9,24 @@ import {environment} from '../../../environments/environment';
 })
 export class UserRoleService {
 
+  /**
+   * userRole$: BehaviorSubject<UserRoleModel[]>
+   */
   private userRole$ = new BehaviorSubject<UserRoleModel[]>([]);
-  private isLoading = new BehaviorSubject<boolean>(false);
 
+  /**
+   * @param httpClient HttpClient
+   */
   constructor(private httpClient:HttpClient) { }
 
+  /**
+   * @return userRole$: BehaviorSubject<UserRoleModel[]>
+   * @description Request a User Role
+   */
   getUserRole(){
-    this.isLoading.next(true);
     this.httpClient
       .get<UserRoleModel[]>(environment.url+'userRole').subscribe(data => {
         this.userRole$.next(data);
-        this.isLoading.next(false);
     });
     return this.userRole$;
   }

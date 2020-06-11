@@ -11,12 +11,15 @@ import {$t} from 'codelyzer/angular/styles/chars';
 })
 export class SearchFormComponent implements OnInit {
 
+  /**
+   * @type searchGroup: FormGroup
+   */
   searchGroup: FormGroup;
 
   /**
-   * @param formBuilder
-   * @param userService
-   * @param router
+   * @param formBuilder: FormBuilder
+   * @param userService: UserService
+   * @param router: Router
    */
   constructor(
     private formBuilder:FormBuilder,
@@ -24,21 +27,24 @@ export class SearchFormComponent implements OnInit {
     private router: Router
   ) { }
 
+  /**
+   * @description Init form
+   */
   ngOnInit(): void {
     this.initForm();
   }
 
   /**
-   * This form make search user
+   * @description Form to search user
    */
   initForm(){
       this.searchGroup = this.formBuilder.group({
         search: ['', Validators.required]
-    })
+    });
   }
 
   /**
-   * Submit search to the route.
+   * @description Search user
    */
   onSubmitForm() {
     this.router.navigateByUrl('/admin/search/result/'+this.searchGroup.get('search').value);

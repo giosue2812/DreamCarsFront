@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Route} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {RoleModel} from '../../../core/models/RoleModel';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {RoleService} from '../../../core/services/role.service';
@@ -11,14 +11,28 @@ import {RoleService} from '../../../core/services/role.service';
 })
 export class RoleComponent implements OnInit {
 
+  /**
+   * @type editRoleForm: FormGroup
+   */
   editRoleForm:FormGroup;
+  /**
+   * @type roleModel: RoleModel[]
+   */
   roleModel:RoleModel[];
 
+  /**
+   * @param roleService: RoleService
+   * @param route: ActivatedRoute
+   * @param formBuilder: FormBuilder
+   */
   constructor(
     public roleService: RoleService,
     private route:ActivatedRoute,
     private formBuilder:FormBuilder) { }
 
+  /**
+   * @description Init form and list of roles
+   */
   ngOnInit(): void {
       this.initForm();
       this.roleService.getRoles().subscribe(data => {
@@ -26,6 +40,9 @@ export class RoleComponent implements OnInit {
       });
   }
 
+  /**
+   * @description Form to add a group
+   */
   initForm(){
     this.editRoleForm = this.formBuilder.group({
       role: new FormControl('', [Validators.required])
@@ -34,6 +51,10 @@ export class RoleComponent implements OnInit {
     })
   }
 
+  /**
+   * @description Valid form
+   * @return role: FormGroup or !find null
+   */
   validForm() {
     return (role: FormGroup) => {
       const rol = role.get('role').value;
@@ -44,10 +65,18 @@ export class RoleComponent implements OnInit {
     }
   }
 
+  /**
+   * @param idRole: Number
+   * @description Update role
+   */
   onSubmitForm(idRole){
-        this.roleService.updateRole(idRole,this.editRoleForm.value)
+    this.roleService.updateRole(idRole,this.editRoleForm.value)
   }
 
+  /**
+   * @param idRole: Number
+   * @description Remove role
+   */
   removeRole(idRole){
     this.roleService.removeRole(idRole);
   }

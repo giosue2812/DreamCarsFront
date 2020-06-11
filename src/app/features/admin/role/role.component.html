@@ -1,20 +1,6 @@
 <h4>Role List</h4>
 <form [formGroup]="editRoleForm">
-  <ng-container *ngIf="roleService.isLoading$|async; else isLoaded">
-    <div class="preloader-wrapper big active">
-      <div class="spinner-layer spinner-blue-only">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div><div class="gap-patch">
-        <div class="circle"></div>
-      </div><div class="circle-clipper right">
-        <div class="circle"></div>
-      </div>
-      </div>
-    </div>
-  </ng-container>
-  <ng-template #isLoaded>
-    <ul mCollapsible class="collapsible">
+   <ul mCollapsible class="collapsible">
       <li *ngFor="let item of roleModel">
         <ng-container *ngIf="item.delete_at == null">
         <div class="collapsible-header">{{item.role}} - Created at : {{item.create_at}} - Last Update - {{item.update_at}}</div>
@@ -29,6 +15,5 @@
         </li>
     </ul>
     <a routerLink="newRole" class="waves-effect waves-light btn">New</a>
-  </ng-template>
 </form>
 <router-outlet></router-outlet>

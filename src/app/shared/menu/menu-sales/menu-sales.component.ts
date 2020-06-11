@@ -9,6 +9,9 @@ import {Router} from '@angular/router';
 })
 export class MenuSalesComponent implements OnInit {
 
+  /**
+   * @type menu: Array
+   */
   menu = [
     {
       title:"Inventory",
@@ -16,6 +19,10 @@ export class MenuSalesComponent implements OnInit {
     }
   ];
 
+  /**
+   * @param sessionService:SessionService
+   * @param router:Router
+   */
   constructor(public sessionService: SessionService, private router: Router) { }
 
   ngOnInit(): void {

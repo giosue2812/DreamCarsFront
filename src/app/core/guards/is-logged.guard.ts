@@ -18,8 +18,9 @@ export class IsLoggedGuard implements CanActivate {
   ) {}
 
   /**
-   * @param next
-   * @param state
+   * @param next ActivatedRouteSnapshot
+   * @param state RouterStateSnapshot
+   * @return sessionService.isLogged == true
    */
   canActivate(
     next: ActivatedRouteSnapshot,

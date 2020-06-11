@@ -8,32 +8,38 @@ import {LoginModel} from '../models/LoginModel';
 })
 export class SessionService {
 
+  /**
+   * @type loginModel: LoginModel
+   */
   private loginModel:LoginModel;
 
   /**
-   * @param token
-   * When the login is success. Saving the tokken in session storage.
+   * @param token: TokenModel
+   * @description Add the tokken to the sessionStorage
    */
   start(token: TokenModel){
     sessionStorage.setItem('TOKEN',token.token);
   }
 
   /**
-   * To check if the token is always available
+   * @return Boolean
+   * @description Get a token if != null
    */
   get isLogged():boolean{
     return sessionStorage.getItem('TOKEN') != null;
   }
 
   /**
-   * Recuperation tokken.
+   * @return string
+   * @description Get token
    */
   get tokken():string{
     return sessionStorage.getItem('TOKEN');
   }
 
   /**
-   * Recuperation of user role
+   * @return boolean
+   * @description Get if the user is an role admin
    */
     get isAdmin():boolean{
     let role = [];
@@ -44,6 +50,10 @@ export class SessionService {
     return !!role.find(p => p === 'ROLE_ADMIN');
   }
 
+  /**
+   * @return boolean
+   * @description Get if the user is a role vente
+   */
   get isVente():boolean{
       let role = [];
       this.tokenDecode();
@@ -54,7 +64,8 @@ export class SessionService {
   }
 
   /**
-   * Get the username from the token
+   * @return string
+   * @description Get username
    */
   get username():string{
     this.tokenDecode();
@@ -62,7 +73,7 @@ export class SessionService {
   }
 
   /**
-   * When the session is disconnect remove the session
+   * @description Remove the token
    */
   remove()
   {
@@ -70,7 +81,7 @@ export class SessionService {
   }
 
   /**
-   * Decode the token to get Role and Username
+   * @description Private function to decode the tokken
    */
   private tokenDecode(){
     this.loginModel = jwt_decode(this.tokken);

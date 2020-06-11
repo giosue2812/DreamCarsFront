@@ -9,25 +9,23 @@ import {UserModel} from '../../../core/models/UserModel';
 })
 export class UserDetailComponent implements OnInit {
 
+  /**
+   * @type userModel:UserModel[]
+   */
   userModel: UserModel[];
 
   /**
-   *
-   * @param userService
+   * @param userService: UserService
    */
-  constructor(private userService: UserService) { }
+  constructor(public userService: UserService) { }
 
+  /**
+   * @description Get a user id
+   */
   ngOnInit(): void {
-    /**
-     * I get the current user id
-     */
     this.userService.getIdUser().subscribe(
       data => {
         this.userModel = data;
-      },
-      error => {
-        console.log('Erreur : '+error)
-      }
-    );
+      });
   }
 }

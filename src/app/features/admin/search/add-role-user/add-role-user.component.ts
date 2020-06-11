@@ -15,20 +15,27 @@ import {GroupeModel} from '../../../../core/models/GroupeModel';
   styleUrls: ['./add-role-user.component.scss']
 })
 export class AddRoleUserComponent implements OnInit {
+
   /**
-   * A variable roleModel is to get a value from form
+   * @type roleModel:RoleModel[]
    */
   roleModel:RoleModel[];
+  /**
+   * @type userRoleModel: UserRoleModel[]
+   */
   userRoleModel:UserRoleModel[];
+  /**
+   * @type addRoleForm: FormGroup
+   */
   addRoleForm:FormGroup;
 
   /**
    *
-   * @param route
-   * @param userService
-   * @param roleService
-   * @param userRoleService
-   * @param formBuilder
+   * @param route: ActivatedRoute
+   * @param userService: UserService
+   * @param roleService: RoleService
+   * @param userRoleService: UserRoleService
+   * @param formBuilder: FormBuilder
    */
   constructor(
     private route:ActivatedRoute,
@@ -38,7 +45,7 @@ export class AddRoleUserComponent implements OnInit {
     private formBuilder:FormBuilder) { }
 
   /**
-   * This subscribe get a parms from route "rolleAll" and push into roleModelChoice
+   * @description Init form or get a list of roles
    */
   ngOnInit(): void {
     this.roleService.getRoles().subscribe(data => {
@@ -47,6 +54,9 @@ export class AddRoleUserComponent implements OnInit {
     });
   }
 
+  /**
+   * @description to add role from user
+   */
   initForm(){
     this.addRoleForm = this.formBuilder.group({
       id_role:new FormControl('',[Validators.required])
@@ -55,6 +65,10 @@ export class AddRoleUserComponent implements OnInit {
     })
   }
 
+  /**
+   * @return role: FormGroup or return roleAlreadyExist
+   * @description to valid form
+   */
   validForm(){
     return (role: FormGroup) => {
       const rol = role.get('id_role').value;
@@ -69,6 +83,9 @@ export class AddRoleUserComponent implements OnInit {
     }
   }
 
+  /**
+   * @description to add role from user
+   */
   onSubmitFormRole(){
     this.userService.addRole(this.route.snapshot.paramMap.get('user'),this.addRoleForm.value);
   }

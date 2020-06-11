@@ -10,12 +10,25 @@ import {GroupeService} from '../../../../core/services/groupe.service';
 })
 export class NewGroupeComponent implements OnInit {
 
+  /**
+   * @type newGroupeForm: FormGroup
+   */
   newGroupeForm:FormGroup;
+  /**
+   * @type groupeModel: GroupeModel
+   */
   groupeModel:GroupeModel[];
 
+  /**
+   * @param formBuilder: FormBuilder
+   * @param groupeService: GroupeService
+   */
   constructor(private formBuilder:FormBuilder,
               private groupeService:GroupeService) { }
 
+  /**
+   * @description Init form and get list of groupes
+   */
   ngOnInit(): void {
     this.initForm();
     this.groupeService.getGroupes().subscribe(data => {
@@ -23,12 +36,18 @@ export class NewGroupeComponent implements OnInit {
     })
   }
 
+  /**
+   * @description Init form
+   */
   initForm(){
     this.newGroupeForm = this.formBuilder.group({
       groupe:new FormControl('',[Validators.required])
     },{validators:[this.validForm()]})
   }
 
+  /**
+   * @description Valid Form
+   */
   validForm(){
     return(groupe: FormGroup) => {
       const group = groupe.get('groupe').value;
@@ -39,6 +58,9 @@ export class NewGroupeComponent implements OnInit {
     }
   }
 
+  /**
+   * @description Add a new groupe
+   */
   onSubmitForm(){
     this.groupeService.newGroupe(this.newGroupeForm.value);
   }

@@ -8,7 +8,7 @@ import {Component, OnInit} from '@angular/core';
 export class MenuComponent {
 
   /**
-   * Menu only for profil
+   * @type menu: array
    */
   menu = [
     {

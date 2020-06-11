@@ -9,26 +9,19 @@ import {UserModel} from '../models/UserModel';
 export class InscriptionService {
 
   /**
-   * @param httpClient
-   * @param router
+   * @param httpClient: HttpClient
+   * @param router: Router
    */
   constructor(private httpClient: HttpClient, private router: Router) { }
 
   /**
-   * @param userModel
-   * I post the new user to the server.
+   * @param userModel: UserModel
+   * @return subscribe
    */
   onRecordServer(userModel: UserModel){
       return this.httpClient.post(environment.url+'create',userModel).subscribe(
       ()=>{
-        /**
-         * When is done navigation to the url Connexion.
-         */
         this.router.navigateByUrl('connexion');
-      },
-      (error) => {
-        //Make a toast to show the error.
-        console.log(error)
       }
     );
 

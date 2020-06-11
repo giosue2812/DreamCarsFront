@@ -14,9 +14,6 @@ import {NewGroupeComponent} from './groupe/new-groupe/new-groupe.component';
 
 const routes: Routes = [
 
-  /**
-   * This route is only for Role Admin
-   */
   {path:'',component:AdminComponent,canActivate:[IsAdminGuard],children:[
       {path:'search',component:SearchComponent,children:[
           {path:'',component:SearchFormComponent},

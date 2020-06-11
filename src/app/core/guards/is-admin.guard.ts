@@ -9,14 +9,16 @@ import {SessionService} from '../services/session.service';
 export class IsAdminGuard implements CanActivate {
 
   /**
-   * @param sessionService
-   * @param router
+   * @param sessionService SessionService
+   * @param router Router
    */
   constructor(private sessionService:SessionService, private router: Router) {}
 
   /**
-   * @param next
-   * @param state
+   * @param next ActivatedRouteSnapshot
+   * @param state RouterStateSnapshot
+   * @return true if sessionService == true
+   * @throws a new DomException if sessionService == false
    */
   canActivate(
     next: ActivatedRouteSnapshot,

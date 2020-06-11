@@ -3,23 +3,30 @@ import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {SupplierModel} from '../models/SupplierModel';
 import {environment} from '../../../environments/environment';
-import {$t} from 'codelyzer/angular/styles/chars';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SupplierService {
 
+  /**
+   * @type suppliers$: BehaviorSubject<SupplierModel[]>
+   */
   suppliers$ = new BehaviorSubject<SupplierModel[]>([]);
-  isLoadding$ = new BehaviorSubject<boolean>(false);
+
+  /**
+   * @param httpClient: HttpClient
+   */
   constructor(private httpClient: HttpClient) { }
 
+  /**
+   * @return Observable<SupplierModel[]>
+   * @description Request a list of suppliers
+   */
   getSuppliers():Observable<SupplierModel[]>{
-    this.isLoadding$.next(true);
     this.httpClient.get<SupplierModel[]>(environment.url+'suppliers').subscribe(
       data => {
         this.suppliers$.next(data);
-        this.isLoadding$.next(false);
       }
     );
     return this.suppliers$;

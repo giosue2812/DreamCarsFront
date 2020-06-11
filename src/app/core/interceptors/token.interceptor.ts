@@ -9,6 +9,7 @@ import {
 import { Observable } from 'rxjs';
 import {SessionService} from '../services/session.service';
 import {Session} from 'protractor';
+import {retry} from 'rxjs/operators';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -19,8 +20,9 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(private sessionService: SessionService) {}
 
   /**
-   * @param request
-   * @param next
+   * @param request HttpRequest<unknown>
+   * @param next HttpHandler
+   * @return Clone request with the header set with tokken or return the request normal
    */
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     /**

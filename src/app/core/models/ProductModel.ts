@@ -7,4 +7,5 @@
     supplier: string;
     picture?: any;
     avaibility: boolean;
+    deleteAt: Date;
   }

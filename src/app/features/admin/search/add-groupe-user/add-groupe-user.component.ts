@@ -14,17 +14,19 @@ import {getGlobalAnalytics} from '@angular/cli/models/analytics';
 })
 export class AddGroupeUserComponent implements OnInit {
   /**
-   * A variable groupeModel is to get a value from form
+   * @type groupeModel: GroupeModel[]
+   * @type userModel: UserModel[]
+   * @type addGroupeForm: FormGroup
    */
   groupeModel:GroupeModel[];
   userModel:UserModel[];
   addGroupeForm:FormGroup;
 
   /**
-   * @param route
-   * @param userService
-   * @param groupeService
-   * @param formBuilder
+   * @param route: ActivatedRoute
+   * @param userService: UserService
+   * @param groupeService: GroupeService
+   * @param formBuilder: FormBuilder
    */
   constructor(
     private route:ActivatedRoute,
@@ -33,7 +35,7 @@ export class AddGroupeUserComponent implements OnInit {
     private formBuilder: FormBuilder) {}
 
   /**
-   * This subscribe get a parms from route "groueAll" and push into groupeModelChioce.
+   * @description get a list of groupes and init form
    */
   ngOnInit(): void {
     this.groupeService.getGroupes().subscribe(data => {
@@ -42,6 +44,9 @@ export class AddGroupeUserComponent implements OnInit {
     });
   }
 
+  /**
+   * @description form to add a groupe
+   */
   initForm(){
     this.addGroupeForm = this.formBuilder.group({
       groupe:new FormControl('',[Validators.required])
@@ -50,6 +55,10 @@ export class AddGroupeUserComponent implements OnInit {
     });
   }
 
+  /**
+   * @return group: FormGroup or groupeAlreadyExist
+   * @description Valid form
+   */
   validForm(){
     return (group: FormGroup) => {
       const groupe = group.get('groupe').value;
@@ -65,6 +74,9 @@ export class AddGroupeUserComponent implements OnInit {
     }
   }
 
+  /**
+   * @description form to add groupe
+   */
   onSubmitFormGroupe(){
     this.userService.addGroupe(this.route.snapshot.paramMap.get('user'),this.addGroupeForm.value);
   }

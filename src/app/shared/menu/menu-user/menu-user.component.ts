@@ -7,9 +7,11 @@ import {Router} from '@angular/router';
   templateUrl: './menu-user.component.html',
   styleUrls: ['./menu-user.component.scss']
 })
-export class MenuUserComponent implements OnInit {
+export class MenuUserComponent {
 
-
+  /**
+   * @type menu: Array
+   */
   menu = [
     {
       title: "Profil",
@@ -17,14 +19,16 @@ export class MenuUserComponent implements OnInit {
     }
   ];
 
+  /**
+   * @param sessionService: SessionService
+   * @param router: Router
+   */
   constructor(public sessionService: SessionService, private router: Router) {
   }
 
-  ngOnInit(): void {
-  }
-
   /**
-   * Logout to finish the operation
+   * @return sessionService.isAdmin
+   * @description Logout from the apps
    */
   logout() {
     this.sessionService.remove();

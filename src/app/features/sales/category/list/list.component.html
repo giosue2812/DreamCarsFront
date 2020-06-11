@@ -1,0 +1,13 @@
+<ul class="collection with-header">
+  <li class="collapsible-header"><h4>Category List</h4></li>
+  <li class="collection-item" *ngFor="let item of categoryModel">
+    <div>
+      {{item.name}}
+      <a routerLink="edit/{{item.id}}" class="secondary-content">
+        <i class="material-icons">
+          edit
+        </i>
+      </a>
+    </div>
+  </li>
+</ul>

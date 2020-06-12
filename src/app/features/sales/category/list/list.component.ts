@@ -28,4 +28,12 @@ export class ListComponent implements OnInit {
         this.categoryModel = data;
       })
   }
+
+  /**
+   * @param categoryId: Number
+   * @description Remove category
+   */
+  onRemove(categoryId){
+    console.log(categoryId);
+  }
 }

@@ -1,0 +1,15 @@
+<div class="row">
+  <form class="col s12" [formGroup]="editCategoryForm" (ngSubmit)="onSubmit()">
+    <div class="card">
+      <div class="card-content white-text">
+          <div class="row" *ngFor="let item of categoryModel">
+            <div class="input-field col s12">
+              <input placeholder="category" id="category" type="text" class="validate" value="{{item.name}}" formControlName="category">
+            <label class="active" for="category">First Name</label>
+          </div>
+        </div>
+        <button type="submit" class="waves-light waves-effect btn" [disabled]="editCategoryForm.invalid">Update</button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -31,4 +31,19 @@ export class CategoryService {
     );
     return this.category$;
   }
+
+  /**
+   * @param categoryId: Number
+   * @return Observable<CategoryModel[]>
+   * @description Return an array of category
+   */
+  getCategory(categoryId):Observable<CategoryModel[]>
+  {
+    this.httpClient.get<CategoryModel[]>(environment.url+'category/'+categoryId).subscribe(
+      data => {
+        this.category$.next(data);
+      }
+    );
+    return this.category$;
+  }
 }

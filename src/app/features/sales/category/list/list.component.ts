@@ -34,6 +34,9 @@ export class ListComponent implements OnInit {
    * @description Remove category
    */
   onRemove(categoryId){
-    console.log(categoryId);
+    this.categoryService.removeCategory(categoryId).subscribe(
+      data => {
+        this.categoryModel = data;
+      });
   }
 }

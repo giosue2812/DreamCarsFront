@@ -1,18 +1,20 @@
-<ul class="collection with-header">
-  <li class="collapsible-header"><h4>Category List</h4></li>
-  <li class="collection-item" *ngFor="let item of categoryModel">
-    <div>
-      {{item.name}}
-      <a routerLink="edit/{{item.id}}" class="secondary-content">
-        <i class="material-icons">
-          edit
-        </i>
-      </a>
-      <a (click)="onRemove(item.id)" class="waves-effect waves-light secondary-content">
-        <i class="material-icons">
-          delete
-        </i>
-      </a>
-    </div>
-  </li>
+<ul class="collection with-header" >
+  <li class="collection-header"><h4>Category List</h4></li>
+  <ng-container *ngFor="let item of categoryModel">
+    <li class="collection-item" *ngIf="item.active">
+      <div>
+        {{item.name}}
+        <a routerLink="edit/{{item.id}}" class="secondary-content">
+          <i class="material-icons">
+            edit
+          </i>
+        </a>
+        <a (click)="onRemove(item.id)" class="waves-effect waves-light secondary-content">
+          <i class="material-icons">
+            delete
+          </i>
+        </a>
+      </div>
+    </li>
+  </ng-container>
 </ul>

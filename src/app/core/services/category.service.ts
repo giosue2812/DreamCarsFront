@@ -31,4 +31,46 @@ export class CategoryService {
     );
     return this.category$;
   }
+
+  /**
+   * @param categoryId: Number
+   * @return Observable<CategoryModel[]>
+   * @description Return an array of category
+   */
+  getCategory(categoryId):Observable<CategoryModel[]>{
+    this.httpClient.get<CategoryModel[]>(environment.url+'category/'+categoryId).subscribe(
+      data => {
+        this.category$.next(data);
+      }
+    );
+    return this.category$;
+  }
+
+  /**
+   * @param categoryId: Number
+   * @param categoryModel: CategoryModel
+   * @return Observable<CategoryModel[]>
+   * @description Return an array of category
+   */
+  editCategory(categoryId,categoryModel):Observable<CategoryModel[]>{
+    this.httpClient.put<CategoryModel[]>(environment.url+'category/edit/'+categoryId,categoryModel).subscribe(
+      data => {
+        this.category$.next(data);
+      }
+    );
+    return this.category$;
+  }
+
+  /**
+   * @param categoryId: Number
+   * @return Observable<CategoryModel[]>
+   * @description Return an array of category
+   */
+  removeCategory(categoryId):Observable<CategoryModel[]>{
+   this.httpClient.delete<CategoryModel[]>(environment.url+'category/remove/'+categoryId).subscribe(
+     data => {
+       this.category$.next(data);
+     });
+    return this.category$;
+  }
 }

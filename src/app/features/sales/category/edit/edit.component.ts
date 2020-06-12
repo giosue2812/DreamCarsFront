@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {CategoryService} from '../../../../core/services/category.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {CategoryModel} from '../../../../core/models/CategoryModel';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
@@ -28,10 +28,12 @@ export class EditComponent implements OnInit {
    * @param categoryService: CategoryService
    * @param route: ActivatedRoute
    * @param formBuilder: FormBuilder
+   * @param router: Router
    */
   constructor(private categoryService:CategoryService,
               private route:ActivatedRoute,
-              private formBuilder: FormBuilder) { }
+              private formBuilder: FormBuilder,
+              private router:Router) { }
 
   /**
    * @description Get a category to edit and init form to edit
@@ -50,7 +52,7 @@ export class EditComponent implements OnInit {
    */
   initForm() {
     this.editCategoryForm = this.formBuilder.group({
-      category: new FormControl('', [Validators.required])
+      name: new FormControl('', [Validators.required])
     })
   }
 
@@ -58,6 +60,11 @@ export class EditComponent implements OnInit {
    * @description Submition of the category updated
    */
   onSubmit(){
-    console.log(this.editCategoryForm.getRawValue());
+    this.categoryService.editCategory(this.route.snapshot.paramMap.get('categoryId'),this.editCategoryForm.getRawValue()).subscribe(
+      data => {
+        this.categoryModel = data;
+      }
+    );
+    this.router.navigate(['/sales/category']);
   }
 }

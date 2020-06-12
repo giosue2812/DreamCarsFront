@@ -37,9 +37,24 @@ export class CategoryService {
    * @return Observable<CategoryModel[]>
    * @description Return an array of category
    */
-  getCategory(categoryId):Observable<CategoryModel[]>
-  {
+  getCategory(categoryId):Observable<CategoryModel[]>{
     this.httpClient.get<CategoryModel[]>(environment.url+'category/'+categoryId).subscribe(
+      data => {
+        this.category$.next(data);
+      }
+    );
+    return this.category$;
+  }
+
+  /**
+   * @param categoryId: Number
+   * @param categoryModel: CategoryModel
+   * @return Observable<CategoryModel[]>
+   * @description Return an array of category
+   */
+  editCategory(categoryId,categoryModel):Observable<CategoryModel[]>{
+    console.log(categoryModel);
+    this.httpClient.put<CategoryModel[]>(environment.url+'category/edit/'+categoryId,categoryModel).subscribe(
       data => {
         this.category$.next(data);
       }

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {ProductModel} from '../../../../core/models/ProductModel';
 import {ProductService} from '../../../../core/services/product.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {dashCaseToCamelCase} from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-list',

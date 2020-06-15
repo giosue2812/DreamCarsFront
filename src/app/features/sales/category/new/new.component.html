@@ -1,0 +1,14 @@
+<div class="row">
+  <form class="col s12" [formGroup]="newFormGroup" (ngSubmit)="onSubmit()">
+    <div class="card">
+      <div class="card-content white-text">
+          <div class="input-field col s12">
+            <input placeholder="category" id="category" type="text" class="validate" formControlName="name">
+            <label for="category">Category</label>
+          </div>
+        <button type="submit" class="waves-light waves-effect btn" [disabled]="newFormGroup.invalid">Update</button>
+        </div>
+      </div>
+  </form>
+</div>
+

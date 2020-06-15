@@ -20,6 +20,10 @@ export class MenuSalesComponent implements OnInit {
     {
       title:"Category",
       links:['sales/category']
+    },
+    {
+      title: "Supplier",
+      links: ['sales/supplier']
     }
   ];
 

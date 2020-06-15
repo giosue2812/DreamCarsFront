@@ -73,4 +73,17 @@ export class CategoryService {
      });
     return this.category$;
   }
+
+  /**
+   * @param categoryModel: CategoryModel
+   * @return Observable<CategoryModel[]>
+   * @description Return an array of categories
+   */
+  newCategory(categoryModel):Observable<CategoryModel[]>{
+    this.httpClient.post<CategoryModel[]>(environment.url+'category/newCategory',categoryModel).subscribe(
+      data => {
+        this.category$.next(data);
+      });
+    return this.category$;
+  }
 }

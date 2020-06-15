@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {CategoryService} from '../../../../core/services/category.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-new',
@@ -17,10 +18,12 @@ export class NewComponent implements OnInit {
   /**
    * @param formBuilder: FormBuilder
    * @param categoryService: CategoryService
+   * @param router: Router
    */
   constructor(
     private formBuilder: FormBuilder,
-    private categoryService: CategoryService) { }
+    private categoryService: CategoryService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -39,6 +42,7 @@ export class NewComponent implements OnInit {
    * @description Submition of the new category
    */
   onSubmit(){
-    console.log(this.newFormGroup.getRawValue());
+    this.categoryService.newCategory(this.newFormGroup.getRawValue());
+    this.router.navigate(['/sales/category'])
   }
 }

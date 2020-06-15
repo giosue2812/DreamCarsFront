@@ -31,4 +31,17 @@ export class SupplierService {
     );
     return this.suppliers$;
   }
+
+  /**
+   * @param supplierId: Number
+   * @description Return a supplier
+   * @return Observable<SupplierModel[]>
+   */
+  getSupplier(supplierId):Observable<SupplierModel[]>{
+    this.httpClient.get<SupplierModel[]>(environment.url+'supplier/'+supplierId).subscribe(
+      data => {
+        this.suppliers$.next(data);
+      });
+    return this.suppliers$;
+  }
 }

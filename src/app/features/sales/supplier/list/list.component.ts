@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SupplierModel} from '../../../../core/models/SupplierModel';
+import {CategoryService} from '../../../../core/services/category.service';
+import {SupplierService} from '../../../../core/services/supplier.service';
 
 @Component({
   selector: 'app-list',
@@ -8,10 +10,27 @@ import {SupplierModel} from '../../../../core/models/SupplierModel';
 })
 export class ListComponent implements OnInit {
 
-  supplierModel: SupplierModel[]
-  constructor() { }
+  /**
+   * @type supplierModel: SupplierModel
+   */
+  supplierModel: SupplierModel[];
 
+  /**
+   * @param supplierService: SupplierService
+   */
+  constructor(private supplierService: SupplierService) { }
+
+  /**
+   * @description Get les of suppliers
+   */
   ngOnInit(): void {
+    this.supplierService.getSuppliers().subscribe(
+      data => {
+        this.supplierModel = data
+      });
   }
 
+  onRemove(supplierId){
+    console.log(supplierId);
+  }
 }

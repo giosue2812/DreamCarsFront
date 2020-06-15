@@ -16,10 +16,6 @@ export class EditComponent implements OnInit {
    */
   categoryModel:CategoryModel[];
   /**
-   * @type categoryCheck: CategoryModel[]
-   */
-  categoryCheck :CategoryModel[];
-  /**
    * @type editCategoryForm: FormGroup
    */
   editCategoryForm: FormGroup;

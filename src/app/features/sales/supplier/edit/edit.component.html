@@ -1,0 +1,43 @@
+<div class="row">
+  <form class="col s12" [formGroup]="editSupplierForm" (ngSubmit)="onSubmit()">
+    <div class="card">
+      <div class="card-content white-text">
+        <div class="row" *ngFor="let item of supplierModel">
+          <div class="input-field col s12">
+            <input placeholder="supplier" id="supplier" type="text" class="validate" [(ngModel)]="item.name" formControlName="name">
+            <label class="active" for="supplier">Supplier</label>
+          </div>
+          <div class="input-field col s6">
+            <input placeholder="supplier" id="street" type="text" class="validate" [(ngModel)]="item.street" formControlName="street">
+            <label class="active" for="street">Street</label>
+          </div>
+          <div class="input-field col s6">
+            <input placeholder="number" id="number" type="text" class="validate" [(ngModel)]="item.number" formControlName="number">
+            <label class="active" for="number">Number</label>
+          </div>
+          <div class="input-field col s3">
+            <input placeholder="postal_code" id="postal_code" type="text" class="validate" [(ngModel)]="item.postal_code" formControlName="postal_code">
+            <label class="active" for="postal_code">Postal Code</label>
+          </div>
+          <div class="input-field col s3">
+            <input placeholder="city" id="city" type="text" class="validate" [(ngModel)]="item.city" formControlName="city">
+            <label class="active" for="city">City</label>
+          </div>
+          <div class="input-field col s3">
+            <input placeholder="country" id="country" type="text" class="validate" [(ngModel)]="item.country" formControlName="country">
+            <label class="active" for="country">Country</label>
+          </div>
+          <div class="input-field col s6">
+            <input placeholder="Telephone" id="tel" type="text" class="validate" [(ngModel)]="item.tel" formControlName="tel">
+            <label class="active" for="tel">Telephone</label>
+          </div>
+          <div class="input-field col s6">
+            <input placeholder="Email" id="email" type="text" class="validate" [(ngModel)]="item.email" formControlName="email">
+            <label class="active" for="email">Email</label>
+          </div>
+        </div>
+        <button type="submit" class="waves-light waves-effect btn" [disabled]="editSupplierForm.invalid">Update</button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -46,6 +46,18 @@ export class SupplierService {
   }
 
   /**
+   * @param supplierModel: SupplierModel
+   * @description Add a new Supplier
+   * @return Observable<SupplierModel[]>
+   */
+  newSupplier(supplierModel):Observable<SupplierModel[]>{
+    this.httpClient.post<SupplierModel[]>(environment.url+'supplier/new',supplierModel).subscribe(
+      data => {
+        this.suppliers$.next(data);
+      });
+    return this.suppliers$;
+  }
+  /**
    * @param supplierId: Number
    * @param supplierModel: SupplierModel
    * @return Observable<SupplierModel[]>

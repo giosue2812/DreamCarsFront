@@ -1,52 +1,41 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
 import {SupplierService} from '../../../../core/services/supplier.service';
-import {SupplierModel} from '../../../../core/models/SupplierModel';
+import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-edit',
-  templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.scss']
+  selector: 'app-new',
+  templateUrl: './new.component.html',
+  styleUrls: ['./new.component.scss']
 })
-export class EditComponent implements OnInit {
+export class NewComponent implements OnInit {
 
   /**
-   * @type supplierModel: SupplierModel[]
+   * @type supplierModel: SupplierMode[]
    */
-  supplierModel: SupplierModel[];
-  /**
-   * @type editCategoryForm: FormGroup
-   */
-  editSupplierForm: FormGroup;
+  newSupplierForm: FormGroup;
 
   /**
    * @param supplierService: SupplierService
-   * @param route: ActivatedRoute
    * @param formBuilder: FormBuilder
    * @param router: Router
    */
-  constructor(private supplierService:SupplierService,
-              private route: ActivatedRoute,
+  constructor(private supplierService: SupplierService,
               private formBuilder: FormBuilder,
               private router: Router) { }
 
   /**
-   * @description Get a supplier to edit and inti form
+   * @description Init form to add supplier
    */
   ngOnInit(): void {
-    this.supplierService.getSupplier(this.route.snapshot.paramMap.get('supplierId')).subscribe(
-      data => {
-        this.supplierModel = data;
-      });
-    this.initForm();
+    this.intForm();
   }
 
   /**
-   * @description Form to add a new Supplier
+   * @description Form to add supplier
    */
-  initForm(){
-    this.editSupplierForm = this.formBuilder.group({
+  intForm(){
+    this.newSupplierForm = this.formBuilder.group({
       name: new FormControl('',[Validators.required]),
       street: new FormControl('',[Validators.required]),
       number: new FormControl('',[Validators.required]),
@@ -62,7 +51,7 @@ export class EditComponent implements OnInit {
    * @description Submition of new supplier
    */
   onSubmit(){
-    this.supplierService.editSupplier(this.route.snapshot.paramMap.get('supplierId'),this.editSupplierForm.getRawValue());
+    this.supplierService.newSupplier(this.newSupplierForm.getRawValue());
     this.router.navigate(['/sales/supplier']);
   }
 }

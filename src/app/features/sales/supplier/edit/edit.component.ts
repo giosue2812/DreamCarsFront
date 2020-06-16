@@ -5,6 +5,7 @@ import {CategoryService} from '../../../../core/services/category.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SupplierService} from '../../../../core/services/supplier.service';
 import {SupplierModel} from '../../../../core/models/SupplierModel';
+import {$t} from 'codelyzer/angular/styles/chars';
 
 @Component({
   selector: 'app-edit',
@@ -49,16 +50,16 @@ export class EditComponent implements OnInit {
       name: new FormControl('',[Validators.required]),
       street: new FormControl('',[Validators.required]),
       number: new FormControl('',[Validators.required]),
-      postal_code: new FormControl('',[Validators.required]),
+      postalCode: new FormControl('',[Validators.required]),
       city: new FormControl('',[Validators.required]),
       country: new FormControl('',[Validators.required]),
       tel: new FormControl('',[Validators.required]),
       email: new FormControl('',[Validators.email])
     });
-    console.log(this.editSupplierForm);
   }
 
   onSubmit(){
-    console.log(this.editSupplierForm.getRawValue());
+    this.supplierService.editSupplier(this.route.snapshot.paramMap.get('supplierId'),this.editSupplierForm.getRawValue());
+    this.router.navigate(['/sales/supplier']);
   }
 }

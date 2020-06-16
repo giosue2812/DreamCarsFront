@@ -44,4 +44,29 @@ export class SupplierService {
       });
     return this.suppliers$;
   }
+
+  /**
+   * @param supplierId: Number
+   * @param supplierModel: SupplierModel
+   * @return Observable<SupplierModel[]>
+   */
+  editSupplier(supplierId,supplierModel):Observable<SupplierModel[]>{
+    this.httpClient.put<SupplierModel[]>(environment.url+'supplier/edit/'+supplierId,supplierModel).subscribe(
+      data => {
+        this.suppliers$.next(data);
+      });
+    return this.suppliers$;
+  }
+
+  /**
+   * @param supplierId: Number
+   * @return Observable<SupplierModel[]>
+   */
+  removeSupplier(supplierId):Observable<SupplierModel[]>{
+    this.httpClient.delete<SupplierModel[]>(environment.url+'supplier/remove/'+supplierId).subscribe(
+      data => {
+        this.suppliers$.next(data);
+      });
+    return this.suppliers$;
+  }
 }

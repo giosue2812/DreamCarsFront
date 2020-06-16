@@ -80,7 +80,7 @@ export class CategoryService {
    * @description Return an array of categories
    */
   newCategory(categoryModel):Observable<CategoryModel[]>{
-    this.httpClient.post<CategoryModel[]>(environment.url+'category/newCategory',categoryModel).subscribe(
+    this.httpClient.post<CategoryModel[]>(environment.url+'category/new',categoryModel).subscribe(
       data => {
         this.category$.next(data);
       });

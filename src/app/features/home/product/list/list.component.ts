@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ProductService} from '../../../../core/services/product.service';
 import {ProductModel} from '../../../../core/models/ProductModel';
+import {SessionService} from '../../../../core/services/session.service';
+import {CardService} from '../../../../core/services/card.service';
 
 @Component({
   selector: 'app-list',
@@ -16,8 +18,10 @@ export class ListComponent implements OnInit {
 
   /**
    * @param productService: ProductService
+   * @param sessionService: SessionService
+   * @param cardService
    */
-  constructor(public productService: ProductService) { }
+  constructor(public productService: ProductService,public sessionService:SessionService,private cardService: CardService) { }
 
   /**
    * @description Get a list of product
@@ -34,7 +38,14 @@ export class ListComponent implements OnInit {
    * @param productId Number
    */
   addCard(productId){
-    console.log(productId);
+    if(!this.sessionService.isLogged)
+    {
+      console.log("Vous devez etre connecter");
+    }
+    else {
+      this.cardService.addCard(productId,this.sessionService.username);
+    }
+
   }
 
 }

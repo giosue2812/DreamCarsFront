@@ -7,12 +7,14 @@ import { MenuUserComponent } from './menu/menu-user/menu-user.component';
 import { MenuSalesComponent } from './menu/menu-sales/menu-sales.component';
 import {ToastrModule} from 'ngx-toastr';
 import {NgxSpinnerModule} from 'ngx-spinner';
+import { CardComponent } from './card/card.component';
 
 
 @NgModule({
-  declarations: [MenuComponent, MenuAdminComponent, MenuUserComponent, MenuSalesComponent],
+  declarations: [MenuComponent, MenuAdminComponent, MenuUserComponent, MenuSalesComponent, CardComponent],
   exports: [
-    MenuComponent
+    MenuComponent,
+    CardComponent
   ],
   imports: [
     CommonModule,

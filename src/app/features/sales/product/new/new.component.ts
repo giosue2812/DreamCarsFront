@@ -6,6 +6,8 @@ import {ProductService} from '../../../../core/services/product.service';
 import {CategoryService} from '../../../../core/services/category.service';
 import {SupplierService} from '../../../../core/services/supplier.service';
 import {Router} from '@angular/router';
+import {UploadService} from '../../../../core/services/upload.service';
+import {ProductModel} from '../../../../core/models/ProductModel';
 
 @Component({
   selector: 'app-new',
@@ -64,7 +66,6 @@ export class NewComponent implements OnInit {
     this.newFormGroup = this.formBuilder.group({
       product: new FormControl('',[Validators.required]),
       price: new FormControl('',[Validators.required]),
-      picture: new FormControl('',[Validators.required]),
       description: new FormControl('',[Validators.required]),
       avaibility: new FormControl('',[Validators.required]),
       category: new FormGroup({name: new FormControl('')},[Validators.required]),
@@ -77,6 +78,6 @@ export class NewComponent implements OnInit {
    */
   onSubmitForm(){
     this.productService.createProduct(this.newFormGroup.getRawValue()).subscribe();
-    this.router.navigateByUrl('');
+    this.router.navigate(['sales/product']);
   }
 }

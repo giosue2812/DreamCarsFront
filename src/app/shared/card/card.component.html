@@ -1,1 +1,19 @@
-<li><a routerLink="logout">{{article}}<span class="material-icons">shopping_cart</span></a></li>
+<li><a href="#modal1" class="modal-trigger">{{article}}<span class="material-icons">shopping_cart</span></a></li>
+<!-- Modal Trigger -->
+<a class=" " href="#modal1">Modal</a>
+
+<!-- Modal Structure -->
+<div mModal id="modal1" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <ul class="collection">
+      <li class="collection-item avatar">
+        <img src="images/yuna.jpg" alt="" class="circle">
+        <span class="title">Title</span>
+        <p>First Line <br>
+          Second Line
+        </p>
+        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+      </li>
+    </ul>
+  </div>
+</div>

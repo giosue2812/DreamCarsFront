@@ -31,6 +31,19 @@ export class CardService implements OnDestroy{
     return this.card;
   }
 
+  /**
+   * @param username: String
+   * @return Observable<boolean>
+   */
+  getCard(username):Observable<boolean>{
+    this.httpClient.get<boolean>(environment.url+'sales/card/'+username).subscribe(
+      data => {
+        this.card.next(data);
+      });
+    return this.card;
+  }
+
   ngOnDestroy(): void {
+    this.card.unsubscribe();
   }
 }

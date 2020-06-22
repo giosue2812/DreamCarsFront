@@ -45,7 +45,5 @@ export class ListComponent implements OnInit {
     else {
       this.cardService.addCard(productId,this.sessionService.username);
     }
-
   }
-
 }

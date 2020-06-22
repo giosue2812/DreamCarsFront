@@ -6,8 +6,6 @@ import {ProductService} from '../../../../core/services/product.service';
 import {CategoryService} from '../../../../core/services/category.service';
 import {SupplierService} from '../../../../core/services/supplier.service';
 import {Router} from '@angular/router';
-import {UploadService} from '../../../../core/services/upload.service';
-import {ProductModel} from '../../../../core/models/ProductModel';
 
 @Component({
   selector: 'app-new',

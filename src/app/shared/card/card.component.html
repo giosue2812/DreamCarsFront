@@ -1,19 +1,24 @@
-<li><a href="#modal1" class="modal-trigger">{{article}}<span class="material-icons">shopping_cart</span></a></li>
-<!-- Modal Trigger -->
-<a class=" " href="#modal1">Modal</a>
+<li *ngIf="article"><a href="#modal1" class="modal-trigger" (click)="getCardDetail()">{{article.count}}<span class="material-icons">shopping_cart</span></a></li>
 
 <!-- Modal Structure -->
 <div mModal id="modal1" class="modal modal-fixed-footer">
-  <div class="modal-content">
-    <ul class="collection">
+  <div class="modal-content" style="color: black" >
+    <ul class="collection" *ngFor="let item of cardDetailModel">
+      <h5>{{item.user}}</h5>
       <li class="collection-item avatar">
-        <img src="images/yuna.jpg" alt="" class="circle">
-        <span class="title">Title</span>
-        <p>First Line <br>
-          Second Line
-        </p>
-        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+        <img src="{{item.picture}}" alt="{{item.picture}}" class="circle">
+        Product: {{item.product}}<br/>
+        Quantity : {{item.quantity}}<br/>
+        Price : {{item.price}}<br/>
+        Date: {{item.date|date:'d-MM-y'}}<br/>
+      </li>
+      <li class="secondary-content avatar">
+        Total : {{item.price * item.quantity}} €<br/>
+        <button class="waves-light waves-effect btn offset-m5" (click)="removeItem(item.idProduct)">Supprimer</button><br/>
       </li>
     </ul>
+    Total Commande: {{totalOrder}} €<br/>
+    <button class="waves-effect waves-light btn" (click)="confirmOrder()">Confirm</button>
   </div>
 </div>
+

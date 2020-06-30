@@ -1,0 +1,40 @@
+<li *ngIf="article && !sessionService.isAdmin"><a href="#modal1" class="modal-trigger" (click)="getCardDetail()">{{article.count}}<span class="material-icons">shopping_cart</span></a></li>
+
+<!-- Modal Structure -->
+<div mModal id="modal1" class="modal modal-fixed-footer">
+  <div class="modal-content" style="color: black" >
+    <ul class="collection" *ngFor="let item of cardDetailModel">
+      <h5>{{item.user}}</h5>
+      <li class="collection-item avatar">
+        <img src="{{item.picture}}" alt="{{item.picture}}" class="circle">
+        Product: {{item.product}}<br/>
+        Quantity : {{item.quantity}}<br/>
+        Price : {{item.price}}<br/>
+      </li>
+      <li class="secondary-content avatar">
+        Total : {{item.price * item.quantity}} €<br/>
+        <button class="waves-light waves-effect btn offset-m5" (click)="removeItem(getItemIdArticle(item.id_product_sale))">Supprimer</button><br/>
+      </li>
+    </ul>
+    Total Commande: {{totalOrder}} €<br/>
+    <a href="#modal3" class="modal-trigger waves-effect waves-light btn">Confirm</a>
+  </div>
+</div>
+
+<div mModal id="modal3" class="modal modal-fixed-footer" style="width: 30%;height: 30%">
+  <div class="modal-content" style="color: black" >
+    <form [formGroup]="confirmForm">
+      <div class="row">
+        <div class="input-field col s12">
+          <label for="typePay">Veuillez choisir le type de payement</label><br/>
+          <select id="typePay" class="browser-default" formControlName="typePayement">
+            <option *ngFor="let pay of payementModel" value="{{pay.id}}">{{pay.name_payement}}</option>
+          </select>
+        </div>
+        <div class="input-field col s6">
+          <button type="submit" class="waves-light waves-effect btn" (click)="confirmOrder()">Confirmer</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

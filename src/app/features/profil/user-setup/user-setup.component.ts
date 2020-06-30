@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {UserService} from '../../../core/services/user.service';
 import {UserModel} from '../../../core/models/UserModel';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-user-setup',
@@ -17,8 +18,9 @@ export class UserSetupComponent implements OnInit {
 
   /**
    * @param userService: UserService
+   * @param router
    */
-  constructor(public userService: UserService) { }
+  constructor(public userService: UserService,private router:Router) { }
 
   /**
    * @description User id
@@ -37,5 +39,6 @@ export class UserSetupComponent implements OnInit {
    */
   onSubmitForm(form:NgForm){
     this.userService.updateUser(form.value);
+    this.router.navigate(['/profil/profil']);
    }
 }

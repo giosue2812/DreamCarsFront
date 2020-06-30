@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ErrorInterceptor} from './core/interceptors/error.interceptor';
 import {LoaderInterceptor} from './core/interceptors/loader.interceptor';
 import {NgxSpinnerModule} from 'ngx-spinner';
+import {CoreModule} from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {NgxSpinnerModule} from 'ngx-spinner';
     HttpClientModule,
     SharedModule,
     BrowserAnimationsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    CoreModule
   ],
   providers: [
     {

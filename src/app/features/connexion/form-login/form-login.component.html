@@ -1,3 +1,18 @@
+<ng-container *ngIf="isLoaded;else loaded">
+  <div class="preloader-wrapper active">
+    <div class="spinner-layer spinner-red-only">
+      <div class="circle-clipper left">
+        <div class="circle"></div>
+      </div><div class="gap-patch">
+      <div class="circle"></div>
+    </div><div class="circle-clipper right">
+      <div class="circle"></div>
+    </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #loaded>
 <div class="container">
   <h1 class="with-header center-align">Login</h1>
   <div class="row valign-wrapper">
@@ -19,4 +34,5 @@
     </div>
   </div>
   </div>
+</ng-template>
 {{messageError}}

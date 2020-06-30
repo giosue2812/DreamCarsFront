@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProductModel} from '../../../../core/models/ProductModel';
 import {ProductService} from '../../../../core/services/product.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -8,7 +8,6 @@ import {SupplierService} from '../../../../core/services/supplier.service';
 import {CategoryModel} from '../../../../core/models/CategoryModel';
 import {CategoryService} from '../../../../core/services/category.service';
 import {UploadService} from '../../../../core/services/upload.service';
-import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-edit',

@@ -19,7 +19,7 @@ export class FormLoginComponent implements OnInit {
    * @type messageError: String
    */
   messageError: string;
-
+  isLoaded = false;
   /**
    * @param router: Router
    * @param formBuilder: FormBuilder
@@ -54,6 +54,7 @@ export class FormLoginComponent implements OnInit {
    * @description Login
    */
   onSubmitForm(){
+    this.isLoaded = true;
     this.connexionService.login(this.loginGroup.value)
       .subscribe(
         data => {
@@ -64,7 +65,11 @@ export class FormLoginComponent implements OnInit {
           /**
            * Navigation to the home page
            */
+          this.isLoaded = false;
           this.router.navigateByUrl('home');
+        },error => {
+          this.isLoaded = false;
+          return M.toast({html:'Erreur de mot de passe ou email incorrecte',classes:'red'});
         }
       );
   }

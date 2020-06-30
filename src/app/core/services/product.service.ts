@@ -10,11 +10,11 @@ import {environment} from '../../../environments/environment';
 })
 export class ProductService implements OnDestroy{
 
+
   /**
    * @type products$: BehaviorSubject<ProductModel[]>
    */
   products$ = new BehaviorSubject<ProductModel[]>([]);
-
   /**
    * @param httpClient: HttpClient
    */

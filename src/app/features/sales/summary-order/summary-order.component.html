@@ -1,0 +1,14 @@
+<ul class="collection with-header">
+  <ng-container *ngFor="let item of summaryProductSaleModel">
+    <li class="collection-header" style="font-weight: bold;align-content: center">Recapitulatif de votre commande: {{this.sessionService.username}}</li>
+    Date de la commande : <li class="collection-item">{{item.date}}</li>
+    Produit : <li class="collection-item">{{item.product}}</li>
+    Quantity : <li class="collection-item">{{item.quantity}}</li>
+    Prix a l'unité : <li class="collection-item">{{item.unit_price}} €</li>
+    Total de la commande : <li class="collection-item">{{item.total_price}} €</li>
+    Payement choisi: <li class="collection-item"> {{item.type_payment}}</li>
+  </ng-container>
+</ul>
+
+<p>Lorsque votre commande sera prete a l'envoi vous receverez un mail.</p>
+

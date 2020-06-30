@@ -21,7 +21,6 @@ export class ConnexionService {
    * @description Send the login credential to the server.
    */
   login(login: LoginModel): Observable<TokenModel>{
-
     return this.httpClient.post<TokenModel>(environment.url + 'login_check',login)
   }
 }

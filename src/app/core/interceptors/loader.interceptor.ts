@@ -6,11 +6,13 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {finalize} from 'rxjs/operators';
+import {finalize, tap} from 'rxjs/operators';
 import {NgxSpinnerService} from 'ngx-spinner';
 
 @Injectable()
 export class LoaderInterceptor implements HttpInterceptor {
+
+  count = 0;
   /**
    * @param ngxSpinnerService NgxSpinnerService
    */
@@ -23,8 +25,15 @@ export class LoaderInterceptor implements HttpInterceptor {
    */
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.ngxSpinnerService.show();
-    return next.handle(request).pipe(
-      finalize(()=>this.ngxSpinnerService.hide())
-    )
+    this.count++;
+    return next.handle(request)
+      .pipe(tap(
+        event => console.log(event),
+        error => console.log(error)
+      ),finalize(()=> {
+        this.count --;
+        if(this.count == 0) this.ngxSpinnerService.hide()
+      }))
+
   }
 }

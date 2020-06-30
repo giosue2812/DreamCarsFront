@@ -1,5 +1,5 @@
 export interface CardDetailModel {
-  idProduct: number;
+  id_product_sale: number;
   user: string;
   date: string;
   product: string;

@@ -1,5 +1,6 @@
-  <h4 class="header">Product List</h4>
-  <div class="card horizontal col s4" *ngFor="let item of productModel">
+
+<h4 class="header">Product List</h4>
+  <div class="card small horizontal col s4 m4" *ngFor="let item of productModel">
     <div class="card-image">
       <img alt="{{item.product}}" src="{{item.picture}}">
     </div>
@@ -19,9 +20,23 @@
         </ng-template>
       </div>
       </div>
-      <div class="card-action">
-        <button class="waves-effect waves-light btn" (click)="addCard(item.id)">Add Card</button>
+      <div class="card-action" style="left: 10%">
+        <a href="#modal2" class="modal-trigger waves-effect waves-light btn" (click)="getItemIdArticle(item.id)">Add Card</a>
+      </div>
+    </div>
+    <div mModal id="modal2" class="modal modal-fixed-footer" style="width: 20%;height: 20%">
+      <div class="modal-content" style="color: black" >
+        <form [formGroup]="qtyForm">
+          <div class="row">
+            <div class="input-field col s12">
+              <input type="number" id="quantity" class="validate" formControlName="qty">
+              <label for="quantity">Veuillez indiquer une quantity.</label>
+            </div>
+            <div class="input-field col s6">
+              <button type="submit" class="waves-light waves-effect btn" (click)="addCard(idArticle)">Confirmer</button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
-

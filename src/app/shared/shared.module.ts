@@ -9,6 +9,7 @@ import {ToastrModule} from 'ngx-toastr';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import { CardComponent } from './card/card.component';
 import {CoreModule} from '../core/core.module';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [MenuComponent, MenuAdminComponent, MenuUserComponent, MenuSalesComponent, CardComponent],
@@ -16,12 +17,13 @@ import {CoreModule} from '../core/core.module';
     MenuComponent,
     CardComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    ToastrModule.forRoot(),
-    NgxSpinnerModule,
-    CoreModule,
-  ]
+    imports: [
+        CommonModule,
+        RouterModule,
+        ToastrModule.forRoot(),
+        NgxSpinnerModule,
+        CoreModule,
+        ReactiveFormsModule,
+    ]
 })
 export class SharedModule { }
